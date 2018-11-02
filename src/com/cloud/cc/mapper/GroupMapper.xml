@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.GroupMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.Group" >
+    <id column="groupId" property="groupid" jdbcType="INTEGER" />
+    <result column="groupName" property="groupname" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    groupId, groupName, remark, userId, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from group
+    where groupId = #{groupid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from group
+    where groupId = #{groupid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.Group" >
+    insert into group (groupId, groupName, remark, 
+      userId, createTime)
+    values (#{groupid,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.Group" >
+    insert into group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        groupId,
+      </if>
+      <if test="groupname != null" >
+        groupName,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.Group" >
+    update group
+    <set >
+      <if test="groupname != null" >
+        groupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where groupId = #{groupid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.Group" >
+    update group
+    set groupName = #{groupname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where groupId = #{groupid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.QrCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.QrCode" >
+    <id column="qrId" property="qrid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="UDID" property="udid" jdbcType="VARCHAR" />
+    <result column="taskId" property="taskid" jdbcType="INTEGER" />
+    <result column="codeImg" property="codeimg" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    qrId, url, UDID, taskId, codeImg, status, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qrcode
+    where qrId = #{qrid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qrcode
+    where qrId = #{qrid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.QrCode" >
+    insert into qrcode (qrId, url, UDID, 
+      taskId, codeImg, status, 
+      createTime)
+    values (#{qrid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{udid,jdbcType=VARCHAR}, 
+      #{taskid,jdbcType=INTEGER}, #{codeimg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.QrCode" >
+    insert into qrcode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qrid != null" >
+        qrId,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="udid != null" >
+        UDID,
+      </if>
+      <if test="taskid != null" >
+        taskId,
+      </if>
+      <if test="codeimg != null" >
+        codeImg,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qrid != null" >
+        #{qrid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="udid != null" >
+        #{udid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="codeimg != null" >
+        #{codeimg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.QrCode" >
+    update qrcode
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="udid != null" >
+        UDID = #{udid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        taskId = #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="codeimg != null" >
+        codeImg = #{codeimg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where qrId = #{qrid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.QrCode" >
+    update qrcode
+    set url = #{url,jdbcType=VARCHAR},
+      UDID = #{udid,jdbcType=VARCHAR},
+      taskId = #{taskid,jdbcType=INTEGER},
+      codeImg = #{codeimg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where qrId = #{qrid,jdbcType=INTEGER}
+  </update>
+</mapper>

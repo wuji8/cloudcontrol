@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.Orders" >
+    <id column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="orderCode" property="ordercode" jdbcType="VARCHAR" />
+    <result column="Num" property="num" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="propId" property="propid" jdbcType="INTEGER" />
+    <result column="propNum" property="propnum" jdbcType="REAL" />
+    <result column="payType" property="paytype" jdbcType="INTEGER" />
+    <result column="paySource" property="paysource" jdbcType="INTEGER" />
+    <result column="tradeNo" property="tradeno" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="payTime" property="paytime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, orderCode, Num, amount, propId, propNum, payType, paySource, tradeNo, userId, 
+    createTime, payTime, status, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orders
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.Orders" >
+    insert into orders (orderId, orderCode, Num, 
+      amount, propId, propNum, 
+      payType, paySource, tradeNo, 
+      userId, createTime, payTime, 
+      status, type)
+    values (#{orderid,jdbcType=INTEGER}, #{ordercode,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{propid,jdbcType=INTEGER}, #{propnum,jdbcType=REAL}, 
+      #{paytype,jdbcType=INTEGER}, #{paysource,jdbcType=INTEGER}, #{tradeno,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{paytime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="ordercode != null" >
+        orderCode,
+      </if>
+      <if test="num != null" >
+        Num,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="propid != null" >
+        propId,
+      </if>
+      <if test="propnum != null" >
+        propNum,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="paysource != null" >
+        paySource,
+      </if>
+      <if test="tradeno != null" >
+        tradeNo,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="paytime != null" >
+        payTime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="ordercode != null" >
+        #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="propid != null" >
+        #{propid,jdbcType=INTEGER},
+      </if>
+      <if test="propnum != null" >
+        #{propnum,jdbcType=REAL},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="paysource != null" >
+        #{paysource,jdbcType=INTEGER},
+      </if>
+      <if test="tradeno != null" >
+        #{tradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytime != null" >
+        #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.Orders" >
+    update orders
+    <set >
+      <if test="ordercode != null" >
+        orderCode = #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        Num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="propid != null" >
+        propId = #{propid,jdbcType=INTEGER},
+      </if>
+      <if test="propnum != null" >
+        propNum = #{propnum,jdbcType=REAL},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="paysource != null" >
+        paySource = #{paysource,jdbcType=INTEGER},
+      </if>
+      <if test="tradeno != null" >
+        tradeNo = #{tradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytime != null" >
+        payTime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.Orders" >
+    update orders
+    set orderCode = #{ordercode,jdbcType=VARCHAR},
+      Num = #{num,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      propId = #{propid,jdbcType=INTEGER},
+      propNum = #{propnum,jdbcType=REAL},
+      payType = #{paytype,jdbcType=INTEGER},
+      paySource = #{paysource,jdbcType=INTEGER},
+      tradeNo = #{tradeno,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      payTime = #{paytime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

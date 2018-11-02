@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.UserAdditsMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.UserAddits" >
+    <id column="uaid" property="uaid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="additvalue" property="additvalue" jdbcType="DECIMAL" />
+    <result column="additTime" property="addittime" jdbcType="TIMESTAMP" />
+    <result column="additType" property="addittype" jdbcType="INTEGER" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uaid, userId, additvalue, additTime, additType, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from useraddits
+    where uaid = #{uaid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from useraddits
+    where uaid = #{uaid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.UserAddits" >
+    insert into useraddits (uaid, userId, additvalue, 
+      additTime, additType, updateTime
+      )
+    values (#{uaid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{additvalue,jdbcType=DECIMAL}, 
+      #{addittime,jdbcType=TIMESTAMP}, #{addittype,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.UserAddits" >
+    insert into useraddits
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uaid != null" >
+        uaid,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="additvalue != null" >
+        additvalue,
+      </if>
+      <if test="addittime != null" >
+        additTime,
+      </if>
+      <if test="addittype != null" >
+        additType,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uaid != null" >
+        #{uaid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="additvalue != null" >
+        #{additvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="addittime != null" >
+        #{addittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addittype != null" >
+        #{addittype,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.UserAddits" >
+    update useraddits
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="additvalue != null" >
+        additvalue = #{additvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="addittime != null" >
+        additTime = #{addittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addittype != null" >
+        additType = #{addittype,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uaid = #{uaid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.UserAddits" >
+    update useraddits
+    set userId = #{userid,jdbcType=INTEGER},
+      additvalue = #{additvalue,jdbcType=DECIMAL},
+      additTime = #{addittime,jdbcType=TIMESTAMP},
+      additType = #{addittype,jdbcType=INTEGER},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where uaid = #{uaid,jdbcType=INTEGER}
+  </update>
+</mapper>

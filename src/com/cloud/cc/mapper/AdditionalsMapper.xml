@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.AdditionalsMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.Additionals" >
+    <id column="additId" property="additid" jdbcType="INTEGER" />
+    <result column="additName" property="additname" jdbcType="VARCHAR" />
+    <result column="expiretime" property="expiretime" jdbcType="TIMESTAMP" />
+    <result column="additvalue" property="additvalue" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="additType" property="addittype" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    additId, additName, expiretime, additvalue, price, remark, additType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from additionals
+    where additId = #{additid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from additionals
+    where additId = #{additid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.Additionals" >
+    insert into additionals (additId, additName, expiretime, 
+      additvalue, price, remark, 
+      additType)
+    values (#{additid,jdbcType=INTEGER}, #{additname,jdbcType=VARCHAR}, #{expiretime,jdbcType=TIMESTAMP}, 
+      #{additvalue,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{addittype,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.Additionals" >
+    insert into additionals
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="additid != null" >
+        additId,
+      </if>
+      <if test="additname != null" >
+        additName,
+      </if>
+      <if test="expiretime != null" >
+        expiretime,
+      </if>
+      <if test="additvalue != null" >
+        additvalue,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="addittype != null" >
+        additType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="additid != null" >
+        #{additid,jdbcType=INTEGER},
+      </if>
+      <if test="additname != null" >
+        #{additname,jdbcType=VARCHAR},
+      </if>
+      <if test="expiretime != null" >
+        #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="additvalue != null" >
+        #{additvalue,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addittype != null" >
+        #{addittype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.Additionals" >
+    update additionals
+    <set >
+      <if test="additname != null" >
+        additName = #{additname,jdbcType=VARCHAR},
+      </if>
+      <if test="expiretime != null" >
+        expiretime = #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="additvalue != null" >
+        additvalue = #{additvalue,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addittype != null" >
+        additType = #{addittype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where additId = #{additid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.Additionals" >
+    update additionals
+    set additName = #{additname,jdbcType=VARCHAR},
+      expiretime = #{expiretime,jdbcType=TIMESTAMP},
+      additvalue = #{additvalue,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      additType = #{addittype,jdbcType=INTEGER}
+    where additId = #{additid,jdbcType=INTEGER}
+  </update>
+</mapper>

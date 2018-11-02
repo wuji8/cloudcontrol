@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!-- targetRuntime指的是Mybatis的版本 -->
+	<context id="disport_dltDBTables" targetRuntime="MyBatis3">
+
+		<!-- 为了防止生成的代码中有很多注释，比较难看，加入下面的配置控制 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<!-- 注释控制完毕 -->
+
+		<!-- 数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/cloundcontrol"
+			userId="root" password="lijinran">
+		</jdbcConnection>
+
+
+			<!-- 数据表对应的model 层 、targetPackage的值需要修改，自己定义 -->
+		<javaModelGenerator targetPackage="com.cloud.cc.vo"
+			targetProject="src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		
+		<!-- sql mapper 隐射配置文件 、targetPackage的值需要修改，自己定义 -->
+		<sqlMapGenerator targetPackage="com.cloud.cc.mapper"
+			targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 在ibatis2 中是dao层，但在mybatis3中，其实就是mapper接口-->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.cloud.cc.mapper" targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- 要对那些数据表进行生成操作，必须要有一个. -->
+		<table tableName="account" domainObjectName="Account"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="additionals" domainObjectName="Additionals"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="additName" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="remark" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		 <table tableName="devicepool" domainObjectName="DevicePool"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="devices" domainObjectName="Devices"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="group" domainObjectName="Group"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="remark" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		<table tableName="logs" domainObjectName="Logs"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table> 
+		
+		<table tableName="orders" domainObjectName="Orders"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="qrcell" domainObjectName="QrCell"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="qrcode" domainObjectName="QrCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="codeImg" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		<table tableName="qrtask" domainObjectName="QrTask"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="qrwall" domainObjectName="QrWall"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="remark" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		<table tableName="softcode" domainObjectName="SoftCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="systemfundrecords" domainObjectName="SystemFundRecords"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="task" domainObjectName="Task"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="task_device_ass" domainObjectName="TaskDeviceAss"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="uisave" domainObjectName="UiSave"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="uisave" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		<table tableName="useraddits" domainObjectName="UserAddits"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="userapi" domainObjectName="UserApi"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="prop" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="apiJson" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="sqlQuery" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="api" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		<table tableName="userprops" domainObjectName="UserProps"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="users" domainObjectName="Users"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="usertabledelete" domainObjectName="UserTableDelete"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<!--  
+		<table tableName="app_receive" domainObjectName="AppReceive"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="app_receive" domainObjectName="AppReceive"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="finish_data" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="imgurl" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		
+		<table tableName="appeal_data" domainObjectName="AppealData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="imgurl" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data" domainObjectName="AssistData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="ad_text" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data_app" domainObjectName="AssistDataApp"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="app_remarke" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<columnOverride column="data_url" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data_delete" domainObjectName="AssistDataDelete"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="assist_data_nu" domainObjectName="AssistDataNu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="assist_data_pn" domainObjectName="AssistDataPn"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="pn_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<columnOverride column="pn_content" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="pn_require" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data_type" domainObjectName="AssistDataType"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="assist_user" domainObjectName="AssistUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_capital_flowout" domainObjectName="AucapitalFlowout"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_register_code" domainObjectName="AuRegisterCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_spread_detail" domainObjectName="AuSpreadDetail"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_spread_withdrawals" domainObjectName="AuSpreadWithdrawals"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_withdrawals" domainObjectName="AuWithdrawals"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+			<columnOverride column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+		</table>
+		
+		<table tableName="bau_capital_flowout" domainObjectName="BauCapitalFlowout"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_recharge_record" domainObjectName="BauRechargeRecord"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_register_code" domainObjectName="BauRegisterCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_restrict" domainObjectName="BauRestrict"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_return_amount" domainObjectName="BauReturnAmount"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_spread_detail" domainObjectName="BauSpreadDetail"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="being_assist_user" domainObjectName="BeingAssistUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="blocktask" domainObjectName="BlockTask"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="developer_withdraws" domainObjectName="DeveloperWithdraws"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="inflow_charts" domainObjectName="InflowCharts"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="malice_au_appeal" domainObjectName="MaliceAuAppeal"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="pn_receive" domainObjectName="PnReceive"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="script_ic" domainObjectName="ScriptIc"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="sys_advertisement" domainObjectName="SysAdvertisement"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+			<columnOverride column="sa_title" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="sa_url" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="sys_data" domainObjectName="SysData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="sys_param_data" domainObjectName="SysParamData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+			<columnOverride column="data_value" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		<table tableName="usertrajectory" domainObjectName="UserTrajectory"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		-->
+		<!-- 
+		<table tableName="userToken" domainObjectName="UserToken"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		
+		<table tableName="app_receive" domainObjectName="AppReceive"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="finish_data" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="imgurl" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+		</table>
+		
+		
+		<table tableName="appeal_data" domainObjectName="AppealData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="imgurl" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data" domainObjectName="AssistData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="ad_text" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data_app" domainObjectName="AssistDataApp"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="app_remarke" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<columnOverride column="data_url" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data_delete" domainObjectName="AssistDataDelete"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="assist_data_nu" domainObjectName="AssistDataNu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="assist_data_pn" domainObjectName="AssistDataPn"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<columnOverride column="pn_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+			<columnOverride column="pn_content" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="pn_require" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="assist_data_type" domainObjectName="AssistDataType"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="assist_user" domainObjectName="AssistUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_capital_flowout" domainObjectName="AucapitalFlowout"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_register_code" domainObjectName="AuRegisterCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_spread_detail" domainObjectName="AuSpreadDetail"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_spread_withdrawals" domainObjectName="AuSpreadWithdrawals"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="au_withdrawals" domainObjectName="AuWithdrawals"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+			<columnOverride column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+		</table>
+		
+		<table tableName="bau_capital_flowout" domainObjectName="BauCapitalFlowout"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_recharge_record" domainObjectName="BauRechargeRecord"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_register_code" domainObjectName="BauRegisterCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_restrict" domainObjectName="BauRestrict"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_return_amount" domainObjectName="BauReturnAmount"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="bau_spread_detail" domainObjectName="BauSpreadDetail"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="being_assist_user" domainObjectName="BeingAssistUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="blocktask" domainObjectName="BlockTask"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="developer_withdraws" domainObjectName="DeveloperWithdraws"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="inflow_charts" domainObjectName="InflowCharts"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="malice_au_appeal" domainObjectName="MaliceAuAppeal"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="pn_receive" domainObjectName="PnReceive"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="script_ic" domainObjectName="ScriptIc"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="sys_advertisement" domainObjectName="SysAdvertisement"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+			<columnOverride column="sa_title" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="sa_url" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		
+		<table tableName="sys_data" domainObjectName="SysData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+		</table>
+		
+		<table tableName="sys_param_data" domainObjectName="SysParamData"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"> 
+			<columnOverride column="data_value" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table> -->
+		
+	</context>
+	
+</generatorConfiguration>

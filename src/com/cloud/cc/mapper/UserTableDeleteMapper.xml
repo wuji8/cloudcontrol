@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.UserTableDeleteMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.UserTableDelete" >
+    <id column="utbId" property="utbid" jdbcType="INTEGER" />
+    <result column="tableId" property="tableid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="deleteTime" property="deletetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    utbId, tableId, userId, deleteTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usertabledelete
+    where utbId = #{utbid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usertabledelete
+    where utbId = #{utbid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.UserTableDelete" >
+    insert into usertabledelete (utbId, tableId, userId, 
+      deleteTime)
+    values (#{utbid,jdbcType=INTEGER}, #{tableid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{deletetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.UserTableDelete" >
+    insert into usertabledelete
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="utbid != null" >
+        utbId,
+      </if>
+      <if test="tableid != null" >
+        tableId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="deletetime != null" >
+        deleteTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="utbid != null" >
+        #{utbid,jdbcType=INTEGER},
+      </if>
+      <if test="tableid != null" >
+        #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null" >
+        #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.UserTableDelete" >
+    update usertabledelete
+    <set >
+      <if test="tableid != null" >
+        tableId = #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null" >
+        deleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where utbId = #{utbid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.UserTableDelete" >
+    update usertabledelete
+    set tableId = #{tableid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      deleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where utbId = #{utbid,jdbcType=INTEGER}
+  </update>
+</mapper>

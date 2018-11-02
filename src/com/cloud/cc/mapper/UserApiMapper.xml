@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.UserApiMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.UserApi" >
+    <id column="apiId" property="apiid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="tableId" property="tableid" jdbcType="INTEGER" />
+    <result column="api" property="api" jdbcType="VARCHAR" />
+    <result column="guid" property="guid" jdbcType="VARCHAR" />
+    <result column="paramNum" property="paramnum" jdbcType="INTEGER" />
+    <result column="apiJson" property="apijson" jdbcType="VARCHAR" />
+    <result column="sqlQuery" property="sqlquery" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="apiName" property="apiname" jdbcType="VARCHAR" />
+    <result column="blockTime" property="blocktime" jdbcType="INTEGER" />
+    <result column="prop" property="prop" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    apiId, type, tableId, api, guid, paramNum, apiJson, sqlQuery, userId, createTime, 
+    apiName, blockTime, prop
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userapi
+    where apiId = #{apiid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userapi
+    where apiId = #{apiid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.UserApi" >
+    insert into userapi (apiId, type, tableId, 
+      api, guid, paramNum, 
+      apiJson, sqlQuery, userId, 
+      createTime, apiName, blockTime, 
+      prop)
+    values (#{apiid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{tableid,jdbcType=INTEGER}, 
+      #{api,jdbcType=VARCHAR}, #{guid,jdbcType=VARCHAR}, #{paramnum,jdbcType=INTEGER}, 
+      #{apijson,jdbcType=VARCHAR}, #{sqlquery,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{apiname,jdbcType=VARCHAR}, #{blocktime,jdbcType=INTEGER}, 
+      #{prop,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.UserApi" >
+    insert into userapi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apiid != null" >
+        apiId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="tableid != null" >
+        tableId,
+      </if>
+      <if test="api != null" >
+        api,
+      </if>
+      <if test="guid != null" >
+        guid,
+      </if>
+      <if test="paramnum != null" >
+        paramNum,
+      </if>
+      <if test="apijson != null" >
+        apiJson,
+      </if>
+      <if test="sqlquery != null" >
+        sqlQuery,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="apiname != null" >
+        apiName,
+      </if>
+      <if test="blocktime != null" >
+        blockTime,
+      </if>
+      <if test="prop != null" >
+        prop,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apiid != null" >
+        #{apiid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tableid != null" >
+        #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="api != null" >
+        #{api,jdbcType=VARCHAR},
+      </if>
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="paramnum != null" >
+        #{paramnum,jdbcType=INTEGER},
+      </if>
+      <if test="apijson != null" >
+        #{apijson,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlquery != null" >
+        #{sqlquery,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apiname != null" >
+        #{apiname,jdbcType=VARCHAR},
+      </if>
+      <if test="blocktime != null" >
+        #{blocktime,jdbcType=INTEGER},
+      </if>
+      <if test="prop != null" >
+        #{prop,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.UserApi" >
+    update userapi
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tableid != null" >
+        tableId = #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="api != null" >
+        api = #{api,jdbcType=VARCHAR},
+      </if>
+      <if test="guid != null" >
+        guid = #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="paramnum != null" >
+        paramNum = #{paramnum,jdbcType=INTEGER},
+      </if>
+      <if test="apijson != null" >
+        apiJson = #{apijson,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlquery != null" >
+        sqlQuery = #{sqlquery,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apiname != null" >
+        apiName = #{apiname,jdbcType=VARCHAR},
+      </if>
+      <if test="blocktime != null" >
+        blockTime = #{blocktime,jdbcType=INTEGER},
+      </if>
+      <if test="prop != null" >
+        prop = #{prop,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apiId = #{apiid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.UserApi" >
+    update userapi
+    set type = #{type,jdbcType=INTEGER},
+      tableId = #{tableid,jdbcType=INTEGER},
+      api = #{api,jdbcType=VARCHAR},
+      guid = #{guid,jdbcType=VARCHAR},
+      paramNum = #{paramnum,jdbcType=INTEGER},
+      apiJson = #{apijson,jdbcType=VARCHAR},
+      sqlQuery = #{sqlquery,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      apiName = #{apiname,jdbcType=VARCHAR},
+      blockTime = #{blocktime,jdbcType=INTEGER},
+      prop = #{prop,jdbcType=VARCHAR}
+    where apiId = #{apiid,jdbcType=INTEGER}
+  </update>
+</mapper>

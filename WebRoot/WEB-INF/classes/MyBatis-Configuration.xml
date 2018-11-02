@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<!-- 告诉MyBatis我用的是哪个日志框架 -->
+	<settings>
+		<!-- <setting name="logImpl" value="LOG4J"/> -->
+		<!-- 打开延迟加载的开关 -->
+		<setting name="lazyLoadingEnabled" value="true"></setting>
+		<!-- 将积极加载改为消极加载，即为延迟加载 -->
+		<setting name="aggressiveLazyLoading" value="false"></setting>
+		<!-- 开启二级缓存 -->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+</configuration>
