@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<config:SpringProjectConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:config="spring.config" xmlns:model="model" mailServer=""><extendedCore xsi:type="model:Project" href=".properties.prj#/"/><clusterSettings udpAddress="231.12.21.132" udpPort="45566" webServerPort="8080" name="san-PC"/></config:SpringProjectConfiguration>

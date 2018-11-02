@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<specs:GenerationSpecifications xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="model" xmlns:specs="specs"><extendedCore xsi:type="model:Project" href=".properties.prj#/"/><generation name="Skyway Spring Generation" id="org.skyway.integration.java.spring.webfacet" version="11.0.1.me201805280638"/></specs:GenerationSpecifications>
