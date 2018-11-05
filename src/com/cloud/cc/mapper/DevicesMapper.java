@@ -1,5 +1,7 @@
 package com.cloud.cc.mapper;
 
+import java.util.List;
+
 import com.cloud.cc.vo.Devices;
 
 public interface DevicesMapper {
@@ -14,4 +16,8 @@ public interface DevicesMapper {
     int updateByPrimaryKeySelective(Devices record);
 
     int updateByPrimaryKey(Devices record);
+    
+    int delByGroupId(Integer groupId);
+    
+    List<Devices> selectByGroupId(Integer groupId);
 }

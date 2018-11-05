@@ -149,4 +149,13 @@
       createtime = #{createtime,jdbcType=TIMESTAMP}
     where deviceId = #{deviceid,jdbcType=INTEGER}
   </update>
+  
+  <delete id="delByGroupId" parameterType="int">
+  	delete from devices where groupId=#{groupId}
+  </delete>
+  
+  <select id="selectByGroupId" resultMap="BaseResultMap" parameterType="int">
+  	select * from devices where groupId=#{groupId}
+  </select>
+  
 </mapper>
