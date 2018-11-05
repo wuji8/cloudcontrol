@@ -14,7 +14,7 @@ public interface GroupService {
 	/**
 	 * 删除分组数据
 	 * @param groupId
-	 * @param flag	是否删除分组下的设备
+	 * @param flag	是否删除分组下的设备 true为删除
 	 * @param userId
 	 * @return
 	 */
