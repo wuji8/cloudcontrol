@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.UiSaveMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.UiSave" >
+    <id column="uisId" property="uisid" jdbcType="INTEGER" />
+    <result column="uitId" property="uitid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="taskId" property="taskid" jdbcType="INTEGER" />
+    <result column="uisave" property="uisave" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uisId, uitId, userId, taskId, uisave
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from uisave
+    where uisId = #{uisid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from uisave
+    where uisId = #{uisid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.UiSave" >
+    insert into uisave (uisId, uitId, userId, 
+      taskId, uisave)
+    values (#{uisid,jdbcType=INTEGER}, #{uitid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{taskid,jdbcType=INTEGER}, #{uisave,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.UiSave" >
+    insert into uisave
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uisid != null" >
+        uisId,
+      </if>
+      <if test="uitid != null" >
+        uitId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="taskid != null" >
+        taskId,
+      </if>
+      <if test="uisave != null" >
+        uisave,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uisid != null" >
+        #{uisid,jdbcType=INTEGER},
+      </if>
+      <if test="uitid != null" >
+        #{uitid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="uisave != null" >
+        #{uisave,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.UiSave" >
+    update uisave
+    <set >
+      <if test="uitid != null" >
+        uitId = #{uitid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="taskid != null" >
+        taskId = #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="uisave != null" >
+        uisave = #{uisave,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uisId = #{uisid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.UiSave" >
+    update uisave
+    set uitId = #{uitid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      taskId = #{taskid,jdbcType=INTEGER},
+      uisave = #{uisave,jdbcType=VARCHAR}
+    where uisId = #{uisid,jdbcType=INTEGER}
+  </update>
+</mapper>

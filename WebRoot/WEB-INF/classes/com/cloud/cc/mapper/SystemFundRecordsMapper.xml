@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.SystemFundRecordsMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.SystemFundRecords" >
+    <id column="fundId" property="fundid" jdbcType="INTEGER" />
+    <result column="fundCode" property="fundcode" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="orderCode" property="ordercode" jdbcType="VARCHAR" />
+    <result column="capital" property="capital" jdbcType="DECIMAL" />
+    <result column="fundTime" property="fundtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fundId, fundCode, type, orderCode, capital, fundTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from systemfundrecords
+    where fundId = #{fundid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from systemfundrecords
+    where fundId = #{fundid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.SystemFundRecords" >
+    insert into systemfundrecords (fundId, fundCode, type, 
+      orderCode, capital, fundTime
+      )
+    values (#{fundid,jdbcType=INTEGER}, #{fundcode,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{ordercode,jdbcType=VARCHAR}, #{capital,jdbcType=DECIMAL}, #{fundtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.SystemFundRecords" >
+    insert into systemfundrecords
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fundid != null" >
+        fundId,
+      </if>
+      <if test="fundcode != null" >
+        fundCode,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="ordercode != null" >
+        orderCode,
+      </if>
+      <if test="capital != null" >
+        capital,
+      </if>
+      <if test="fundtime != null" >
+        fundTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fundid != null" >
+        #{fundid,jdbcType=INTEGER},
+      </if>
+      <if test="fundcode != null" >
+        #{fundcode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ordercode != null" >
+        #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="capital != null" >
+        #{capital,jdbcType=DECIMAL},
+      </if>
+      <if test="fundtime != null" >
+        #{fundtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.SystemFundRecords" >
+    update systemfundrecords
+    <set >
+      <if test="fundcode != null" >
+        fundCode = #{fundcode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ordercode != null" >
+        orderCode = #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="capital != null" >
+        capital = #{capital,jdbcType=DECIMAL},
+      </if>
+      <if test="fundtime != null" >
+        fundTime = #{fundtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fundId = #{fundid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.SystemFundRecords" >
+    update systemfundrecords
+    set fundCode = #{fundcode,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      orderCode = #{ordercode,jdbcType=VARCHAR},
+      capital = #{capital,jdbcType=DECIMAL},
+      fundTime = #{fundtime,jdbcType=TIMESTAMP}
+    where fundId = #{fundid,jdbcType=INTEGER}
+  </update>
+</mapper>

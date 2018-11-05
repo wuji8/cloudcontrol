@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.TaskMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.Task" >
+    <id column="taskId" property="taskid" jdbcType="INTEGER" />
+    <result column="cloudId" property="cloudid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cloud.cc.vo.TaskWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="uiSave" property="uisave" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    taskId, cloudId, userId, createTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, uiSave
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from task
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.TaskWithBLOBs" >
+    insert into task (taskId, cloudId, userId, 
+      createTime, content, uiSave
+      )
+    values (#{taskid,jdbcType=INTEGER}, #{cloudid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, #{uisave,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.TaskWithBLOBs" >
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        taskId,
+      </if>
+      <if test="cloudid != null" >
+        cloudId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="uisave != null" >
+        uiSave,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="cloudid != null" >
+        #{cloudid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uisave != null" >
+        #{uisave,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.TaskWithBLOBs" >
+    update task
+    <set >
+      <if test="cloudid != null" >
+        cloudId = #{cloudid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uisave != null" >
+        uiSave = #{uisave,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cloud.cc.vo.TaskWithBLOBs" >
+    update task
+    set cloudId = #{cloudid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR},
+      uiSave = #{uisave,jdbcType=LONGVARCHAR}
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.Task" >
+    update task
+    set cloudId = #{cloudid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where taskId = #{taskid,jdbcType=INTEGER}
+  </update>
+</mapper>

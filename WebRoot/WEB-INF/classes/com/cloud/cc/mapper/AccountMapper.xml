@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.Account" >
+    <id column="accid" property="accid" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="pass" property="pass" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="cuId" property="cuid" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="apoint" property="apoint" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    accid, account, pass, userId, cuId, createtime, apoint
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where accid = #{accid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from account
+    where accid = #{accid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.Account" >
+    insert into account (accid, account, pass, 
+      userId, cuId, createtime, 
+      apoint)
+    values (#{accid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{cuid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{apoint,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accid != null" >
+        accid,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="pass != null" >
+        pass,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="cuid != null" >
+        cuId,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="apoint != null" >
+        apoint,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accid != null" >
+        #{accid,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cuid != null" >
+        #{cuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apoint != null" >
+        #{apoint,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.Account" >
+    update account
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cuid != null" >
+        cuId = #{cuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="apoint != null" >
+        apoint = #{apoint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where accid = #{accid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.Account" >
+    update account
+    set account = #{account,jdbcType=VARCHAR},
+      pass = #{pass,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      cuId = #{cuid,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      apoint = #{apoint,jdbcType=VARCHAR}
+    where accid = #{accid,jdbcType=INTEGER}
+  </update>
+</mapper>

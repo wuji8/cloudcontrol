@@ -13,10 +13,6 @@ import org.json.JSONObject;
 
 public class AddressUtils {
 
-
-	public static void main(String[] args) {
-		System.out.println(getAddressByBD2("120.12.189.12")[1]);
-	}
 	
 	
 	/**

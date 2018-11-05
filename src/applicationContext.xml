@@ -1,9 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-4.1.xsd
+	">
+	
+	<context:component-scan base-package="com.cloud.cc.service"/>
+	<!-- 引用database的配置文件 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:database.properties"/>
+	</bean>
+	
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverName}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${userpassword}"/>
+		<property name="initialSize" value="${initialSize}"></property> <!-- 初始化连接 -->
+		<property name="maxIdle" value="${maxIdle}"></property> <!-- 最大空闲链接数 -->
+		<property name="minIdle" value="${minIdle}"></property> <!-- 最小空闲链接数 -->
+		<property name="maxActive" value="${maxActive}"></property> <!-- 最大链接数 -->
+		<property name="removeAbandoned" value="${removeAbandoned}"></property>
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"></property>
+		<property name="maxWait" value="${maxWait}"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:MyBatis-Configuration.xml"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wj.ut.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
 
-
+	<!-- 任务扫描注解 
+  	<task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
+	<task:scheduler id="qbScheduler" pool-size="20"/>
+	<context:component-scan base-package="com.wj.ut.task" />-->	
+	
+	<!-- 定义事务 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="oper*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="create*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="load*" read-only="true"/>
+			<tx:method name="select*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Throwable" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 定义切点 织入事务 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.cloud.cc.service..**.*(..))"
+			id="servicemethod" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicemethod" />
+	</aop:config>
+	
+	
+										<!-- 分销系统数据源 -->
+	
+	<!-- 配置数据源 
+	<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverName}"/>
+		<property name="url" value="${url2}"/>
+		<property name="username" value="${username2}"/>
+		<property name="password" value="${userpassword2}"/>	
+		<property name="initialSize" value="${initialSize}"></property>
+		<property name="maxIdle" value="${maxIdle}"></property> 
+		<property name="minIdle" value="${minIdle}"></property> 
+		<property name="maxActive" value="${maxActive}"></property>
+		<property name="removeAbandoned" value="${removeAbandoned}"></property>
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"></property>
+		<property name="maxWait" value="${maxWait}"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory2">
+		<property name="dataSource" ref="dataSource2"/>
+		<property name="configLocation" value="classpath:MyBatis-Configuration.xml"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wj.ut.mobile.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2"></property>
+	</bean>
+	-->
+	<!-- 定义事务
+	<bean id="txManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource2"/>
+	</bean>
+	
+	<tx:advice id="txAdvice2" transaction-manager="txManager2">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="oper*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Throwable"/>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Throwable" />
+		</tx:attributes>
+	</tx:advice>
+	-->
+	<!-- 定义切点 织入事务 	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.wj.ut.mobile.service..**.*(..))"
+			id="servicemethod2" />
+		<aop:advisor advice-ref="txAdvice2" pointcut-ref="servicemethod2" />
+	</aop:config>
+	-->
 </beans>

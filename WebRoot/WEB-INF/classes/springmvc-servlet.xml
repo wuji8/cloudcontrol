@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+	">
+	<context:component-scan base-package="com.cloud.cc.controller"/>
+	<!-- 配置Spring MVC的视图渲染器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<mvc:annotation-driven>
+	<!-- 消息转换器 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+					
+						<value>application/json;charset=utf-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=utf-8</value>
+						<value>application/json;charset=utf-8</value>
+					</list>
+					
+				</property>
+				<property name="features">
+					<list>
+						<value>WriteMapNullValue</value>
+						<value>QuoteFieldNames</value>
+						<value>WriteDateUseDateFormat</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+		<!-- 配置MultipartResolver，用于文件上传，使用spring的CommonsMultipartResolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 限制文件上传大小，单位为字节 	-->
+		<property name="maxUploadSize" value="5242440"></property>
+		<!-- 请求的编码格式,此属性必须和JSP的pageEncoding设置一致，以便一致读取表单的内容 -->
+		<property name="defaultEncoding" value="utf-8"></property>
+	</bean> 
+	
+	
+	<!-- 全局异常处理配置   	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.RuntimeException">../index.action</prop>
+			</props>
+		</property>
+	</bean>	-->
+	
+ <!-- 定义拦截器
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/bau/**"/>
+			<mvc:exclude-mapping path="/bau/ifLogin.action"/>
+			<bean class="com.wj.ut.interceptors.SysInterceptors"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/au/**"/>
+			<mvc:exclude-mapping path="/au/ifLogin.action"/>
+			<bean class="com.wj.ut.interceptors.UserInterceptors"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>-->
+	 
+	<!-- 解决静态资源问题 
+	<mvc:resources location="/statics/" mapping="/statics/**"/>-->
+</beans>

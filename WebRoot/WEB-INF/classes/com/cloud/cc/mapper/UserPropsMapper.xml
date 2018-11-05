@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.UserPropsMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.UserProps" >
+    <id column="upropid" property="upropid" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="coins" property="coins" jdbcType="INTEGER" />
+    <result column="regTime" property="regtime" jdbcType="TIMESTAMP" />
+    <result column="regIp" property="regip" jdbcType="VARCHAR" />
+    <result column="Ulogo" property="ulogo" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="lastIp" property="lastip" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="questionId1" property="questionid1" jdbcType="INTEGER" />
+    <result column="questionId2" property="questionid2" jdbcType="INTEGER" />
+    <result column="questionId3" property="questionid3" jdbcType="INTEGER" />
+    <result column="answer1" property="answer1" jdbcType="VARCHAR" />
+    <result column="answer2" property="answer2" jdbcType="VARCHAR" />
+    <result column="answer3" property="answer3" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    upropid, email, phone, coins, regTime, regIp, Ulogo, sex, lastIp, times, questionId1, 
+    questionId2, questionId3, answer1, answer2, answer3, userId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userprops
+    where upropid = #{upropid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userprops
+    where upropid = #{upropid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.UserProps" >
+    insert into userprops (upropid, email, phone, 
+      coins, regTime, regIp, 
+      Ulogo, sex, lastIp, 
+      times, questionId1, questionId2, 
+      questionId3, answer1, answer2, 
+      answer3, userId)
+    values (#{upropid,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{coins,jdbcType=INTEGER}, #{regtime,jdbcType=TIMESTAMP}, #{regip,jdbcType=VARCHAR}, 
+      #{ulogo,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{lastip,jdbcType=VARCHAR}, 
+      #{times,jdbcType=INTEGER}, #{questionid1,jdbcType=INTEGER}, #{questionid2,jdbcType=INTEGER}, 
+      #{questionid3,jdbcType=INTEGER}, #{answer1,jdbcType=VARCHAR}, #{answer2,jdbcType=VARCHAR}, 
+      #{answer3,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.UserProps" >
+    insert into userprops
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="upropid != null" >
+        upropid,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="coins != null" >
+        coins,
+      </if>
+      <if test="regtime != null" >
+        regTime,
+      </if>
+      <if test="regip != null" >
+        regIp,
+      </if>
+      <if test="ulogo != null" >
+        Ulogo,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="lastip != null" >
+        lastIp,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="questionid1 != null" >
+        questionId1,
+      </if>
+      <if test="questionid2 != null" >
+        questionId2,
+      </if>
+      <if test="questionid3 != null" >
+        questionId3,
+      </if>
+      <if test="answer1 != null" >
+        answer1,
+      </if>
+      <if test="answer2 != null" >
+        answer2,
+      </if>
+      <if test="answer3 != null" >
+        answer3,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="upropid != null" >
+        #{upropid,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="coins != null" >
+        #{coins,jdbcType=INTEGER},
+      </if>
+      <if test="regtime != null" >
+        #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regip != null" >
+        #{regip,jdbcType=VARCHAR},
+      </if>
+      <if test="ulogo != null" >
+        #{ulogo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="lastip != null" >
+        #{lastip,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="questionid1 != null" >
+        #{questionid1,jdbcType=INTEGER},
+      </if>
+      <if test="questionid2 != null" >
+        #{questionid2,jdbcType=INTEGER},
+      </if>
+      <if test="questionid3 != null" >
+        #{questionid3,jdbcType=INTEGER},
+      </if>
+      <if test="answer1 != null" >
+        #{answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer2 != null" >
+        #{answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="answer3 != null" >
+        #{answer3,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.UserProps" >
+    update userprops
+    <set >
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="coins != null" >
+        coins = #{coins,jdbcType=INTEGER},
+      </if>
+      <if test="regtime != null" >
+        regTime = #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regip != null" >
+        regIp = #{regip,jdbcType=VARCHAR},
+      </if>
+      <if test="ulogo != null" >
+        Ulogo = #{ulogo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="lastip != null" >
+        lastIp = #{lastip,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="questionid1 != null" >
+        questionId1 = #{questionid1,jdbcType=INTEGER},
+      </if>
+      <if test="questionid2 != null" >
+        questionId2 = #{questionid2,jdbcType=INTEGER},
+      </if>
+      <if test="questionid3 != null" >
+        questionId3 = #{questionid3,jdbcType=INTEGER},
+      </if>
+      <if test="answer1 != null" >
+        answer1 = #{answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer2 != null" >
+        answer2 = #{answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="answer3 != null" >
+        answer3 = #{answer3,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where upropid = #{upropid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.UserProps" >
+    update userprops
+    set email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      coins = #{coins,jdbcType=INTEGER},
+      regTime = #{regtime,jdbcType=TIMESTAMP},
+      regIp = #{regip,jdbcType=VARCHAR},
+      Ulogo = #{ulogo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      lastIp = #{lastip,jdbcType=VARCHAR},
+      times = #{times,jdbcType=INTEGER},
+      questionId1 = #{questionid1,jdbcType=INTEGER},
+      questionId2 = #{questionid2,jdbcType=INTEGER},
+      questionId3 = #{questionid3,jdbcType=INTEGER},
+      answer1 = #{answer1,jdbcType=VARCHAR},
+      answer2 = #{answer2,jdbcType=VARCHAR},
+      answer3 = #{answer3,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER}
+    where upropid = #{upropid,jdbcType=INTEGER}
+  </update>
+</mapper>

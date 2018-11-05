@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.TaskDeviceAssMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.TaskDeviceAss" >
+    <id column="tdaId" property="tdaid" jdbcType="INTEGER" />
+    <result column="taskId" property="taskid" jdbcType="INTEGER" />
+    <result column="deviceId" property="deviceid" jdbcType="INTEGER" />
+    <result column="dotimes" property="dotimes" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tdaId, taskId, deviceId, dotimes, createTime, userId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from task_device_ass
+    where tdaId = #{tdaid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from task_device_ass
+    where tdaId = #{tdaid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.TaskDeviceAss" >
+    insert into task_device_ass (tdaId, taskId, deviceId, 
+      dotimes, createTime, userId
+      )
+    values (#{tdaid,jdbcType=INTEGER}, #{taskid,jdbcType=INTEGER}, #{deviceid,jdbcType=INTEGER}, 
+      #{dotimes,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.TaskDeviceAss" >
+    insert into task_device_ass
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tdaid != null" >
+        tdaId,
+      </if>
+      <if test="taskid != null" >
+        taskId,
+      </if>
+      <if test="deviceid != null" >
+        deviceId,
+      </if>
+      <if test="dotimes != null" >
+        dotimes,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tdaid != null" >
+        #{tdaid,jdbcType=INTEGER},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=INTEGER},
+      </if>
+      <if test="dotimes != null" >
+        #{dotimes,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.TaskDeviceAss" >
+    update task_device_ass
+    <set >
+      <if test="taskid != null" >
+        taskId = #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="deviceid != null" >
+        deviceId = #{deviceid,jdbcType=INTEGER},
+      </if>
+      <if test="dotimes != null" >
+        dotimes = #{dotimes,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tdaId = #{tdaid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.TaskDeviceAss" >
+    update task_device_ass
+    set taskId = #{taskid,jdbcType=INTEGER},
+      deviceId = #{deviceid,jdbcType=INTEGER},
+      dotimes = #{dotimes,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=INTEGER}
+    where tdaId = #{tdaid,jdbcType=INTEGER}
+  </update>
+</mapper>
