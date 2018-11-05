@@ -28,6 +28,11 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public int addGroupData(Group group) {
 		// TODO Auto-generated method stub
+		Logs logs=new Logs();
+		logs.setContent("添加了设备分组【"+group.getGroupname()+"】");
+		logs.setCreatetime(new Date());
+		logs.setUserid(group.getUserid());
+		logsMapper.insertSelective(logs);
 		return groupMapper.insertSelective(group);
 	}
 
