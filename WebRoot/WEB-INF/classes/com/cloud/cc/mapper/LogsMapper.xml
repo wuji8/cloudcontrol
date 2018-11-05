@@ -90,4 +90,9 @@
       userId = #{userid,jdbcType=INTEGER}
     where logId = #{logid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+  	select * from logs where userid=#{userId}
+  </select>
+  
 </mapper>

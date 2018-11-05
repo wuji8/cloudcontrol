@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.UserTableMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.UserTable" >
+    <id column="tableId" property="tableid" jdbcType="INTEGER" />
+    <result column="tableName" property="tablename" jdbcType="VARCHAR" />
+    <result column="dbTable" property="dbtable" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="cloudId" property="cloudid" jdbcType="INTEGER" />
+    <result column="deleteTime" property="deletetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tableId, tableName, dbTable, userId, createTime, cloudId, deleteTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usertable
+    where tableId = #{tableid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usertable
+    where tableId = #{tableid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.UserTable" >
+    insert into usertable (tableId, tableName, dbTable, 
+      userId, createTime, cloudId, 
+      deleteTime)
+    values (#{tableid,jdbcType=INTEGER}, #{tablename,jdbcType=VARCHAR}, #{dbtable,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{cloudid,jdbcType=INTEGER}, 
+      #{deletetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.UserTable" >
+    insert into usertable
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableid != null" >
+        tableId,
+      </if>
+      <if test="tablename != null" >
+        tableName,
+      </if>
+      <if test="dbtable != null" >
+        dbTable,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="cloudid != null" >
+        cloudId,
+      </if>
+      <if test="deletetime != null" >
+        deleteTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableid != null" >
+        #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="tablename != null" >
+        #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtable != null" >
+        #{dbtable,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cloudid != null" >
+        #{cloudid,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null" >
+        #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.UserTable" >
+    update usertable
+    <set >
+      <if test="tablename != null" >
+        tableName = #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtable != null" >
+        dbTable = #{dbtable,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cloudid != null" >
+        cloudId = #{cloudid,jdbcType=INTEGER},
+      </if>
+      <if test="deletetime != null" >
+        deleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where tableId = #{tableid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.UserTable" >
+    update usertable
+    set tableName = #{tablename,jdbcType=VARCHAR},
+      dbTable = #{dbtable,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      cloudId = #{cloudid,jdbcType=INTEGER},
+      deleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where tableId = #{tableid,jdbcType=INTEGER}
+  </update>
+</mapper>

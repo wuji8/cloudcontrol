@@ -1,5 +1,7 @@
 package com.cloud.cc.mapper;
 
+import java.util.List;
+
 import com.cloud.cc.vo.Logs;
 
 public interface LogsMapper {
@@ -14,4 +16,6 @@ public interface LogsMapper {
     int updateByPrimaryKeySelective(Logs record);
 
     int updateByPrimaryKey(Logs record);
+    
+    List<Logs> selectByUserId(Integer userId);
 }

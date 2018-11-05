@@ -42,12 +42,13 @@
 		</javaClientGenerator>
 		
 		<!-- 要对那些数据表进行生成操作，必须要有一个. -->
-		<table tableName="account" domainObjectName="Account"
+		<table tableName="userTable" domainObjectName="UserTable"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
 		
+		<!-- 
 		<table tableName="additionals" domainObjectName="Additionals"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
@@ -177,7 +178,7 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table>
+		</table>	-->
 		
 		<!--  
 		<table tableName="app_receive" domainObjectName="AppReceive"
