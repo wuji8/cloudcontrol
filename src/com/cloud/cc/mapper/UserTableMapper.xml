@@ -8,11 +8,21 @@
     <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="cloudId" property="cloudid" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="INTEGER"/>
     <result column="deleteTime" property="deletetime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    tableId, tableName, dbTable, userId, createTime, cloudId, deleteTime
+    tableId, tableName, dbTable, userId, createTime, cloudId, deleteTime,deleted
   </sql>
+  
+  
+  <!-- 表属性结果集 -->
+  <resultMap type="com.cloud.cc.vo.model.TableProp" id="TablePropMap">
+  	<result column="COLUMN_NAME" property="columnName"/>
+  	<result column="DATA_TYPE" property="dataType"/>
+  </resultMap>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -55,6 +65,9 @@
       <if test="deletetime != null" >
         deleteTime,
       </if>
+      <if test="deleted!=null">
+      	deleted,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tableid != null" >
@@ -77,6 +90,9 @@
       </if>
       <if test="deletetime != null" >
         #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted!=null">
+      	#{deleted,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +117,9 @@
       <if test="deletetime != null" >
         deleteTime = #{deletetime,jdbcType=TIMESTAMP},
       </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
     </set>
     where tableId = #{tableid,jdbcType=INTEGER}
   </update>
@@ -114,4 +133,16 @@
       deleteTime = #{deletetime,jdbcType=TIMESTAMP}
     where tableId = #{tableid,jdbcType=INTEGER}
   </update>
+  
+  <update id="createTable" parameterType="map">
+  	CREATE TABLE `${tableName}` (
+  `id` int(10) unsigned NOT NULL primary key AUTO_INCREMENT,
+   ${content}
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+  </update>
+  
+  <select id="selectTablePropByTableName" resultMap="TablePropMap" parameterType="string">
+  	SELECT DISTINCT COLUMN_NAME,DATA_TYPE FROM information_schema.COLUMNS WHERE table_name =#{tableName}
+  </select>
+  
 </mapper>

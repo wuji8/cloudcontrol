@@ -14,8 +14,18 @@ public class UserTable {
     private Date createtime;
 
     private Integer cloudid;
+    
+    private Integer deleted;
 
-    private Date deletetime;
+    public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
+
+	private Date deletetime;
 
     public Integer getTableid() {
         return tableid;

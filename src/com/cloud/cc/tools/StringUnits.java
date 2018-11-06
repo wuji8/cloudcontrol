@@ -147,4 +147,9 @@ public class StringUnits {
 		return "国外";
 	}
 	
+	public static void main(String[] args) {
+		String str="abvcasd,";
+		System.out.println(str.substring(0, str.length()-1));
+	}
+	
 }
