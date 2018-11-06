@@ -10,7 +10,7 @@ public interface UiTableService {
 	
 	int delUiData(Integer uiId);
 	
-	List<UiTable> selectByUserId(Integer userId);
+	List<UiTable> selectByUserId(Integer userId,Integer cloudId);
 	
 	int updateUiData(UiTable uiTable);
 }

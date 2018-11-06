@@ -10,6 +10,7 @@
     <result column="cloudId" property="cloudid" jdbcType="INTEGER" />
     <result column="deleted" property="deleted" jdbcType="INTEGER"/>
     <result column="deleteTime" property="deletetime" jdbcType="TIMESTAMP" />
+    <result column="count" property="count"/>
   </resultMap>
   <sql id="Base_Column_List" >
     tableId, tableName, dbTable, userId, createTime, cloudId, deleteTime,deleted
@@ -143,6 +144,10 @@
   
   <select id="selectTablePropByTableName" resultMap="TablePropMap" parameterType="string">
   	SELECT DISTINCT COLUMN_NAME,DATA_TYPE FROM information_schema.COLUMNS WHERE table_name =#{tableName}
+  </select>
+  
+  <select id="selectUserTable" resultMap="BaseResultMap">
+  	select *,count(tableId) as `count` from usertable where userId=#{userId} and clouId=#{clouId} and deleted=1
   </select>
   
 </mapper>

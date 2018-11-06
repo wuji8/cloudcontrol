@@ -27,9 +27,9 @@ public class UiTableServiceImpl implements UiTableService {
 	}
 
 	@Override
-	public List<UiTable> selectByUserId(Integer userId) {
+	public List<UiTable> selectByUserId(Integer userId,Integer cloudId) {
 		// TODO Auto-generated method stub
-		return uiTableMapper.selectByUserId(userId);
+		return uiTableMapper.selectByUserId(userId,cloudId);
 	}
 
 	@Override

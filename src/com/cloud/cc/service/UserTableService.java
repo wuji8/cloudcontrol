@@ -13,4 +13,6 @@ public interface UserTableService {
 	int delTable(Integer tableId);
 	
 	List<TableProp> selectTableFieldList(String tableName);
+	
+	List<UserTable> selectUserTable(Integer userId,Integer cloudId);
 }

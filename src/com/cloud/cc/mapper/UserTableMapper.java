@@ -3,6 +3,8 @@ package com.cloud.cc.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cloud.cc.vo.UserTable;
 import com.cloud.cc.vo.model.TableProp;
 
@@ -22,4 +24,6 @@ public interface UserTableMapper {
     int createTable(Map<String,Object> param);
     
     List<TableProp> selectTablePropByTableName(String tableName);
+    
+    List<UserTable> selectUserTable(@Param("cloudId")Integer cloudId,@Param("userId")Integer userId);
 }

@@ -16,8 +16,18 @@ public class UserTable {
     private Integer cloudid;
     
     private Integer deleted;
+    
+    private Integer count; 	//数据条数
 
-    public Integer getDeleted() {
+    public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public Integer getDeleted() {
 		return deleted;
 	}
 

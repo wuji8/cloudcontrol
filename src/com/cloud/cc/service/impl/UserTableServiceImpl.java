@@ -63,4 +63,10 @@ public class UserTableServiceImpl implements UserTableService {
 		return userTableMapper.selectTablePropByTableName(tableName);
 	}
 
+	@Override
+	public List<UserTable> selectUserTable(Integer userId, Integer cloudId) {
+		// TODO Auto-generated method stub
+		return userTableMapper.selectUserTable(cloudId, userId);
+	}
+
 }

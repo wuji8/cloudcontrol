@@ -2,6 +2,8 @@ package com.cloud.cc.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cloud.cc.vo.UiTable;
 
 public interface UiTableMapper {
@@ -17,5 +19,5 @@ public interface UiTableMapper {
 
     int updateByPrimaryKey(UiTable record);
     
-    List<UiTable> selectByUserId(Integer userId);
+    List<UiTable> selectByUserId(@Param("userId")Integer userId,@Param("cloudId'")Integer cloudId);
 }
