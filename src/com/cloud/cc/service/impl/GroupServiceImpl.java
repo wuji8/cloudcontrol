@@ -32,6 +32,7 @@ public class GroupServiceImpl implements GroupService {
 		logs.setContent("添加了设备分组【"+group.getGroupname()+"】");
 		logs.setCreatetime(new Date());
 		logs.setUserid(group.getUserid());
+		logs.setType(2);
 		logsMapper.insertSelective(logs);
 		return groupMapper.insertSelective(group);
 	}
@@ -50,6 +51,7 @@ public class GroupServiceImpl implements GroupService {
 			logs.setContent("删除了设备【"+content+"】");
 			logs.setCreatetime(new Date());
 			logs.setUserid(userId);
+			logs.setType(5);
 			logsMapper.insertSelective(logs);
 			devicesMapper.delByGroupId(groupId);
 		}
@@ -58,6 +60,7 @@ public class GroupServiceImpl implements GroupService {
 		logs.setContent("删除了设备分组【"+group.getGroupname()+"】");
 		logs.setCreatetime(new Date());
 		logs.setUserid(userId);
+		logs.setType(2);
 		logsMapper.insertSelective(logs);
 		return groupMapper.deleteByPrimaryKey(groupId);
 	}

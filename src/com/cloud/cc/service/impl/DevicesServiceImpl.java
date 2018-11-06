@@ -28,7 +28,7 @@ public class DevicesServiceImpl implements DevicesService{
 			logs.setContent("添加了设备【"+devices.getRemark()+"】");
 			logs.setCreatetime(new Date());
 			logs.setUserid(devices.getUserid());
-			
+			logs.setType(3);
 			logsMapper.insertSelective(logs);
 		}
 		return result;
@@ -48,6 +48,7 @@ public class DevicesServiceImpl implements DevicesService{
 		logs.setContent("删除了设备【"+content+"】");
 		logs.setCreatetime(new Date());
 		logs.setUserid(userId);
+		logs.setType(5);
 		logsMapper.insertSelective(logs);
 		return result;
 	}

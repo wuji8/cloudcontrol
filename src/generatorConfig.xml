@@ -42,10 +42,12 @@
 		</javaClientGenerator>
 		
 		<!-- 要对那些数据表进行生成操作，必须要有一个. -->
-		<table tableName="userTable" domainObjectName="UserTable"
+		<table tableName="UiTable" domainObjectName="UiTable"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
+			<columnOverride column="uitName" javaType="java.lang.String" jdbcType="VARCHAR" /> 
+			<columnOverride column="uijson" javaType="java.lang.String" jdbcType="VARCHAR" /> 
 		</table>
 		
 		<!-- 
