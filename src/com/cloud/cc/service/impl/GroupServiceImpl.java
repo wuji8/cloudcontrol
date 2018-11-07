@@ -29,7 +29,7 @@ public class GroupServiceImpl implements GroupService {
 	public int addGroupData(Group group) {
 		// TODO Auto-generated method stub
 		Logs logs=new Logs();
-		logs.setContent("Ìí¼ÓÁËÉè±¸·Ö×é¡¾"+group.getGroupname()+"¡¿");
+		logs.setContent("æ·»åŠ äº†åˆ†ç»„ã€"+group.getGroupname()+"ã€‘");
 		logs.setCreatetime(new Date());
 		logs.setUserid(group.getUserid());
 		logs.setType(2);
@@ -41,14 +41,13 @@ public class GroupServiceImpl implements GroupService {
 	public int delGroup(Integer groupId,boolean flag,Integer userId) {
 		// TODO Auto-generated method stub
 		if(flag) {
-			//É¾³ı·Ö×éÏÂÃæµÄÉè±¸
 			List<Devices> lists=devicesMapper.selectByGroupId(groupId);
 			String content="";
 			for(Devices list:lists) {
 				content+=list.getRemark()+",";
 			}
 			Logs logs=new Logs();
-			logs.setContent("É¾³ıÁËÉè±¸¡¾"+content+"¡¿");
+			logs.setContent("åˆ é™¤äº†è®¾å¤‡ã€"+content+"ã€‘");
 			logs.setCreatetime(new Date());
 			logs.setUserid(userId);
 			logs.setType(5);
@@ -57,7 +56,7 @@ public class GroupServiceImpl implements GroupService {
 		}
 		Group group=groupMapper.selectByPrimaryKey(groupId);
 		Logs logs=new Logs();
-		logs.setContent("É¾³ıÁËÉè±¸·Ö×é¡¾"+group.getGroupname()+"¡¿");
+		logs.setContent("åˆ é™¤äº†åˆ†ç»„ã€"+group.getGroupname()+"ã€‘");
 		logs.setCreatetime(new Date());
 		logs.setUserid(userId);
 		logs.setType(2);

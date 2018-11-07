@@ -43,7 +43,7 @@
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.wj.ut.mapper"/>
+		<property name="basePackage" value="com.cloud.cc.mapper"/>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 

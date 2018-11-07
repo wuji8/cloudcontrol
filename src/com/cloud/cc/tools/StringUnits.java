@@ -1,5 +1,6 @@
 package com.cloud.cc.tools;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
@@ -31,7 +32,7 @@ public class StringUnits {
 	}
 	
 	/**
-	 * 判断是否为数�?
+	 * 判断是否为数�?
 	 * @param str
 	 * @return
 	 */
@@ -61,7 +62,7 @@ public class StringUnits {
 	}
 	
 	/**
-	 * 拿到商家的Code�?
+	 * 拿到商家的Code�?
 	 * @param bauName
 	 * @param salt
 	 * @return
@@ -96,23 +97,23 @@ public class StringUnits {
 	public static String getParam(HttpServletRequest request){
 		Map params=request.getParameterMap();
 		Iterator it = params.keySet().iterator();
-		StringBuffer sb=new StringBuffer("请求方式�?"+request.getMethod()+";");
+		StringBuffer sb=new StringBuffer("请求方式�?"+request.getMethod()+";");
 		while(it.hasNext()){
 		    String paramName = (String) it.next();
 		    String paramValue = request.getParameter(paramName);
-		    sb.append("参数�?"+paramName);
+		    sb.append("参数�?"+paramName);
 		    sb.append(",值："+paramValue+";");
 		}
 		return sb.toString();
 	}
 	
 	/**
-	 * 替换字符�?
+	 * 替换字符�?
 	 * @param str 原字符串
-	 * @param startIndex �?始小�?
+	 * @param startIndex �?始小�?
 	 * @param endIndex 结束下标
-	 * @param replaceWord �?要替换的字符�?
-	 * @param wordQuantity �?要替换的字符串数�?
+	 * @param replaceWord �?要替换的字符�?
+	 * @param wordQuantity �?要替换的字符串数�?
 	 * @return
 	 */
 	public static String getReplaceWord(String str,int startIndex,int endIndex,String replaceWord,int wordQuantity){
@@ -134,7 +135,7 @@ public class StringUnits {
 	
 	
 	/**
-	 * �?验地区是否正�?
+	 * �?验地区是否正�?
 	 * @param region
 	 * @return
 	 */
@@ -148,8 +149,26 @@ public class StringUnits {
 	}
 	
 	public static void main(String[] args) {
-		String str="abvcasd,";
-		System.out.println(str.substring(0, str.length()-1));
+		String str="c84f1ecc66718e19,";
+		System.out.println(str.length());
+	}
+	
+	/**
+	 * 获取request中的名称和值
+	 * @param request
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public static Map<String,Object> getParamValue(HttpServletRequest request) {
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		Map params=request.getParameterMap();
+		Iterator it = params.keySet().iterator();
+		while(it.hasNext()){
+		    String paramName = (String) it.next();
+		    String paramValue = request.getParameter(paramName);
+		    resultMap.put(paramName, paramValue);
+		}
+		return resultMap;
 	}
 	
 }

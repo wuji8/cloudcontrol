@@ -138,6 +138,7 @@
   <update id="createTable" parameterType="map">
   	CREATE TABLE `${tableName}` (
   `id` int(10) unsigned NOT NULL primary key AUTO_INCREMENT,
+   `lockingTime` datetime default null,
    ${content}
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
   </update>

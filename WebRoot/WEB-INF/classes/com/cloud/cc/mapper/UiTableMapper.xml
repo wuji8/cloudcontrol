@@ -105,7 +105,7 @@
   </update>
   
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
-  	select * from uitable where userId=#{userId}
+  	select * from uitable where userId=#{userId} and cloudId=#{cloudId}
   </select>
   
 </mapper>

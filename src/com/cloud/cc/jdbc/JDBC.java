@@ -50,27 +50,6 @@ public class JDBC {
 	}
 
 	/**
-	 * 鏌ヨ
-	 * 
-	 * @param sql 鏌ヨ鍒扮殑鏁版嵁
-	 */
-//  	public static List<LogRecord> Select(String sql){
-//  		JDBC db = new JDBC(sql);
-//  		List<LogRecord> logR = new ArrayList<LogRecord>();
-//  		try {
-//  			ResultSet ret = (ResultSet) db.pst.executeQuery();
-//  			while(ret.next()){
-//  				logR.add(new LogRecord(ret.getInt(1),ret.getString(2),ret.getString(3),ret.getString(4),ret.getDate(5),ret.getString(6),ret.getString(7),ret.getDouble(8),ret.getInt(9),ret.getInt(10),ret.getInt(11),ret.getInt(12)));
-//  			}
-//  		} catch (Exception e) {
-//  		    e.printStackTrace();
-//  		}finally{
-//  			db.close();
-//  		}
-//  		return logR;
-//  	}
-
-	/**
 	 * 获取多条记录数据
 	 * @param sql
 	 * @return	返回值为List
@@ -89,17 +68,25 @@ public class JDBC {
 	 }
 	
 	/**
-	 * 鎻掑叆淇敼鍒犻櫎鏁版嵁
+	 * 增删改通用
 	 * 
-	 * @param sql 鎻掑叆sql
+	 * @param sql 
 	 */
 	public static boolean upDate(String sql) {
 		JDBC db = new JDBC(sql);
 		try {
+			db.conn.setAutoCommit(false);
 			db.pst.executeUpdate();
+			db.conn.commit();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				db.conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		} finally {
 			db.close();
@@ -125,6 +112,13 @@ public class JDBC {
 			list.add(rowData);
 		}
 		return list;
+	}
+	
+	public static void main(String[] args) {
+		Object c=new Object();
+		Object a=new Object();
+		System.out.println(c.equals(a));
+		System.out.println(c==a);
 	}
 
 }

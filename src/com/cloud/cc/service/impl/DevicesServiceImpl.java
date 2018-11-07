@@ -25,7 +25,7 @@ public class DevicesServiceImpl implements DevicesService{
 		int result=devicesMapper.insertSelective(devices);
 		if(result>0) {
 			Logs logs=new Logs();
-			logs.setContent("Ìí¼ÓÁËÉè±¸¡¾"+devices.getRemark()+"¡¿");
+			logs.setContent("æ·»åŠ äº†è®¾å¤‡ã€"+devices.getRemark()+"ã€‘");
 			logs.setCreatetime(new Date());
 			logs.setUserid(devices.getUserid());
 			logs.setType(3);
@@ -45,7 +45,7 @@ public class DevicesServiceImpl implements DevicesService{
 			content+=devices.getRemark()+",";
 		}
 		Logs logs=new Logs();
-		logs.setContent("É¾³ıÁËÉè±¸¡¾"+content+"¡¿");
+		logs.setContent("åˆ é™¤äº†è®¾å¤‡ã€"+content+"ã€‘");
 		logs.setCreatetime(new Date());
 		logs.setUserid(userId);
 		logs.setType(5);
