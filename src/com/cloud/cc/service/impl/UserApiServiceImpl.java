@@ -1,5 +1,7 @@
 package com.cloud.cc.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,13 @@ public class UserApiServiceImpl implements UserApiService {
 	public int delApiInterface(Integer apiId) {
 		// TODO Auto-generated method stub
 		return userApiMapper.deleteByPrimaryKey(apiId);
+	}
+
+
+
+	@Override
+	public List<UserApi> selectByTableId(Integer tableId) {
+		// TODO Auto-generated method stub
+		return userApiMapper.selectByTableId(tableId);
 	}
 }

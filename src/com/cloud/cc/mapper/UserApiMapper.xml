@@ -15,7 +15,12 @@
     <result column="apiName" property="apiname" jdbcType="VARCHAR" />
     <result column="blockTime" property="blocktime" jdbcType="INTEGER" />
     <result column="prop" property="prop" jdbcType="VARCHAR" />
+    <association property="userTable" javaType="com.cloud.cc.vo.UserTable">
+    	<id column="tableid" property="tableId" jdbcType="INTEGER"/>
+  		<result column="tableName" property="tableName" jdbcType="VARCHAR"/>
+  	</association>
   </resultMap>
+    
   <sql id="Base_Column_List" >
     apiId, type, tableId, api, guid, paramNum, apiJson, sqlQuery, userId, createTime, 
     apiName, blockTime, prop
@@ -185,4 +190,13 @@
       prop = #{prop,jdbcType=VARCHAR}
     where apiId = #{apiid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByTableId" resultMap="BaseResultMap" parameterType="string">
+  	SELECT api.ApiID,ut.TableName,api.APIName,api.Type,api.Guid,api.CreateTime 
+	FROM UserAPI AS api
+	INNER JOIN UserTable AS ut
+	ON api.TableID=ut.TableID
+	WHERE ut.CloudID=10 AND ut.Deleted!=1
+  </select>
+  
 </mapper>

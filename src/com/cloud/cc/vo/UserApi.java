@@ -16,8 +16,18 @@ public class UserApi {
     private Integer paramnum;
 
     private String apijson;
+    
+    private UserTable userTable;
 
-    private String sqlquery;
+    public UserTable getUserTable() {
+		return userTable;
+	}
+
+	public void setUserTable(UserTable userTable) {
+		this.userTable = userTable;
+	}
+
+	private String sqlquery;
 
     private Integer userid;
 
