@@ -15,6 +15,7 @@
     <result column="apiName" property="apiname" jdbcType="VARCHAR" />
     <result column="blockTime" property="blocktime" jdbcType="INTEGER" />
     <result column="prop" property="prop" jdbcType="VARCHAR" />
+    <result column="limitTop" property="limitTop" jdbcType="INTEGER"/>
     <association property="userTable" javaType="com.cloud.cc.vo.UserTable">
     	<id column="tableid" property="tableId" jdbcType="INTEGER"/>
   		<result column="tableName" property="tableName" jdbcType="VARCHAR"/>
@@ -27,7 +28,7 @@
     
   <sql id="Base_Column_List" >
     apiId, type, tableId, api, guid, paramNum, apiJson, sqlQuery, userId, createTime, 
-    apiName, blockTime, prop
+    apiName, blockTime, prop,limitTop
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -93,6 +94,9 @@
       <if test="prop != null" >
         prop,
       </if>
+      <if test="limitTop!=null">
+      	limitTop,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="apiid != null" >
@@ -133,6 +137,9 @@
       </if>
       <if test="prop != null" >
         #{prop,jdbcType=VARCHAR},
+      </if>
+      <if test="limitTop!=null">
+      	#{limitTop,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -175,6 +182,9 @@
       <if test="prop != null" >
         prop = #{prop,jdbcType=VARCHAR},
       </if>
+      <if test="limitTop!=null">
+      	limitTop=#{limitTop,jdbcType=INTEGER},
+      </if>
     </set>
     where apiId = #{apiid,jdbcType=INTEGER}
   </update>
@@ -204,13 +214,13 @@
   </select>
   
   <select id="selectUserApiByGUID" resultMap="BaseResultMap">
-  	select ua.*,cp.cloudid,cp.cloudname from 
+  	select ua.*,cp.cloudid,cp.cloudname,ut.tableName,ua.limitTop from 
   	userapi as ua
   	inner join usertable as ut
   	on ua.tableId=ut.tableId
   	inner join cloudprojects as cp
   	on cp.cloudId=ut.cloudId
-  	where ua.guid=#{guid} and cp.cuid=#{cuId} 
+  	where ua.guid=#{guid} and cp.cuid=#{cuId} and ut.deleted=0
   </select>
   
 </mapper>

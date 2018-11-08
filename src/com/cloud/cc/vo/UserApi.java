@@ -19,7 +19,17 @@ public class UserApi {
     
     private UserTable userTable;
     
-    private CloudProjects cloudProject;
+    private Integer limitTop;
+    
+    public Integer getLimitTop() {
+		return limitTop;
+	}
+
+	public void setLimitTop(Integer limitTop) {
+		this.limitTop = limitTop;
+	}
+
+	private CloudProjects cloudProject;
 
     public CloudProjects getCloudProject() {
 		return cloudProject;

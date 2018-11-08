@@ -138,4 +138,9 @@
       cloudId = #{cloudid,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectUsersByCCID" resultMap="BaseResultMap" parameterType="string">
+  	select * from users where ccid=#{ccId}
+  </select>
+  
 </mapper>

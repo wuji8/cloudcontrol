@@ -15,5 +15,5 @@ public interface UserApiService {
 	
 	Map<String,Object> userOperApi(Map<String,Object> param,UserApi userApi);
 	
-	UserApi selectUserApiByGUID(String guid);
+	UserApi selectUserApiByGUID(String guid,String cuId);
 }

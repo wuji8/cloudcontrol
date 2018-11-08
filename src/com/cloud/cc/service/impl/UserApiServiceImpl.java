@@ -50,8 +50,8 @@ public class UserApiServiceImpl implements UserApiService {
 
 
 	@Override
-	public UserApi selectUserApiByGUID(String guid) {
+	public UserApi selectUserApiByGUID(String guid,String cuId) {
 		// TODO Auto-generated method stub
-		return null;
+		return userApiMapper.selectUserApiByGUID(guid, cuId);
 	}
 }

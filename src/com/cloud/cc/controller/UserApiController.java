@@ -8,8 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.cloud.cc.service.UserApiService;
 import com.cloud.cc.service.UsersService;
+import com.cloud.cc.tools.StringUnits;
+import com.cloud.cc.vo.UserApi;
+import com.cloud.cc.vo.Users;
+import com.cloud.cc.vo.model.JsonModel;
+import com.cloud.cc.vo.model.Querys;
+import com.cloud.cc.vo.model.Update;
 
 @Controller
 public class UserApiController {
@@ -21,14 +29,129 @@ public class UserApiController {
 	private UsersService userService;
 	
 	public Map<String,Object> userOperApi(HttpServletRequest request){
-		Map<String,Object> reusltMap=new HashMap<String, Object>();
+		Map<String,Object> resultMap=new HashMap<String, Object>();
 		//拿去guid参数获取该条api数据
 		String guid=request.getParameter("guid");	//api的唯一标识
 		String cuid=request.getParameter("cuid");	//项目的唯一标识
 		String ccid=request.getParameter("ccid");	//用户的唯一标识
-		//获取cuid判断该条api是否属于该项目
-		//获取ccid判断这条api是否是这个用户可供使用
+		if(StringUnits.isEmpty(guid)||StringUnits.isEmpty(cuid)||StringUnits.isEmpty(ccid)) {
+			resultMap.put("code", 0);	//参数错误
+			resultMap.put("msg", "参数错误，请检查是否为空");
+			return resultMap;
+		}
+		UserApi userApi=userApiService.selectUserApiByGUID(guid,cuid);
+		if(userApi==null) {
+			resultMap.put("code", 2);
+			resultMap.put("msg", "找不到该数据，请检查是否已删除");
+			return resultMap;
+		}
+		Users user=userService.selectUserByCCID(ccid);
+		if(user==null || !user.getUserid().equals(userApi.getUserid())) {
+			resultMap.put("code",3);
+			resultMap.put("msg", "与该数据用户不匹配，请检查");
+			return resultMap;
+		}
 		//判断参数是否都有传
-		return reusltMap;
+		JsonModel jsonModel=JSON.parseObject(userApi.getApijson(), new TypeReference<JsonModel>() {});	//把json字符串转为对象
+		if(jsonModel==null) {
+			resultMap.put("code",4);
+			resultMap.put("msg", "请求错误，请重试");
+			return resultMap;
+		}
+		//获得此请求的所有参数Map
+		Map<String,Object> requestParam=StringUnits.getParamValue(request);
+		//获取该api本要请求的参数数组，循环遍历，判断参数Map是否有包含，如果没有则提示用户缺少参数
+		for(Querys query:jsonModel.getQuerys()) {
+			if(requestParam.containsKey(query.getField())) {
+				if(requestParam.get(query.getField())==null) {
+					resultMap.put("code", 0);	//参数错误
+					resultMap.put("msg", "参数错误，请检查是否为空");
+					return resultMap;
+				}
+			}else {
+				resultMap.put("code", 0);	//参数错误
+				resultMap.put("msg", "参数错误，请检查是否为空");
+				return resultMap;
+			}
+		}
+		//判断api类型，操作为什么类型
+		//给sql语句赋值
+		return resultMap;
+	}
+	
+	/**
+	 * 生成sql语句
+	 * @param operType	操作类型
+	 * @param field	字段数据
+	 * @param valueMap	参数值Map
+	 * @param tableName 操作的表名称
+	 * @return
+	 */
+	public static String getSql(Integer operType,JsonModel jsonModel,Map<String,Object> valueMap,String tableName,Integer limit) {
+		String sql="";
+		switch(operType) {
+		case 1:
+			//查询
+			sql+="select ";
+			for (int i = 0; i < jsonModel.getFields().length; i++) {
+				sql+=jsonModel.getFields()[i]+",";	//填充要查询的字段
+			}
+			sql=sql.substring(0, sql.length()-1);	//截取掉最后的,
+			sql+=" from `"+tableName+"` ";
+			for(Querys query:jsonModel.getQuerys()) {
+				sql+="where `"+query.getField()+"` "+query.getSymbol()+" '"+valueMap.get(query.getField())+"' and";
+			}
+			sql=sql.substring(0, sql.length()-3);
+			sql+=" limit "+limit;
+			break;
+		case 2:
+			//删除
+			sql+="delete from `"+tableName+"' where";
+			for(Querys query:jsonModel.getQuerys()) {
+				sql+=" `"+query.getField()+"' "+query.getSymbol()+" "+valueMap.get(query.getField())+"' and";
+			}
+			sql=sql.substring(0,sql.length()-3);
+			break;
+		case 3:
+			//增加
+			sql+="insert into "+tableName+" (";
+			for(Querys query:jsonModel.getQuerys()) {
+				sql+=query.getField()+",";
+			}
+			sql=sql.substring(0, sql.length()-1);	//删除最后的,
+			sql+=") values (";
+			for(Querys query:jsonModel.getQuerys()) {
+				sql+="'"+valueMap.get(query.getField())+"',";
+			}
+			sql=sql.substring(0, sql.length()-1);	//删除最后的,
+			sql+=");";
+			break;
+		case 4:
+			//修改
+			sql+="update '"+tableName+"' set ";
+			//填充字段
+			for(Update update:jsonModel.getUpdates()) {
+				sql+="`"+update.getField()+"`= '"+valueMap.get(update.getField())+"',";
+			}
+			sql=sql.substring(0, sql.length()-1);	//删除最后的,
+			sql+=" where ";
+			for(Querys query:jsonModel.getQuerys()) {
+				sql+="`"+query.getField()+"` "+query.getSymbol()+" '"+valueMap.get(query.getField())+"' and ";
+			}
+			sql=sql.substring(0, sql.length()-3);	//删除最后的and
+			break;
+		}
+		return sql;
+	}
+	
+	
+	public static void main(String[] args) {
+//		String str="{\"querys\":[{\"field\":\"ID\",\"symbol\":\">\",\"valtype\":\"2\",\"val\":\"@ID\"}],\"fields\":[\"phnub\",\"jbnub\",\"temi\"]}";
+//		JsonModel json=JSON.parseObject(str, new TypeReference<JsonModel>() {});
+//		JSONObject json2=(JSONObject) JSON.toJSON(json);
+//		System.out.println(json);
+//		System.out.println(json2);
+		String str="asdaadand";
+		System.out.println(str.substring(0, str.length()-3));
 	}
 }
