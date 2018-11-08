@@ -18,8 +18,18 @@ public class UserApi {
     private String apijson;
     
     private UserTable userTable;
+    
+    private CloudProjects cloudProject;
 
-    public UserTable getUserTable() {
+    public CloudProjects getCloudProject() {
+		return cloudProject;
+	}
+
+	public void setCloudProject(CloudProjects cloudProject) {
+		this.cloudProject = cloudProject;
+	}
+
+	public UserTable getUserTable() {
 		return userTable;
 	}
 

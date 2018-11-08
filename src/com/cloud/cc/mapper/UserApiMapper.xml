@@ -19,6 +19,10 @@
     	<id column="tableid" property="tableId" jdbcType="INTEGER"/>
   		<result column="tableName" property="tableName" jdbcType="VARCHAR"/>
   	</association>
+  	<association property="cloudProject" javaType="com.cloud.cc.vo.CloudProjects">
+  		<id column="cloudId" property="cloudid" jdbcType="INTEGER"/>
+  		<result column="cloudName" property="cloudname" jdbcType="VARCHAR"/>
+  	</association>
   </resultMap>
     
   <sql id="Base_Column_List" >
@@ -197,6 +201,16 @@
 	INNER JOIN UserTable AS ut
 	ON api.TableID=ut.TableID
 	WHERE ut.CloudID=10 AND ut.Deleted!=1
+  </select>
+  
+  <select id="selectUserApiByGUID" resultMap="BaseResultMap">
+  	select ua.*,cp.cloudid,cp.cloudname from 
+  	userapi as ua
+  	inner join usertable as ut
+  	on ua.tableId=ut.tableId
+  	inner join cloudprojects as cp
+  	on cp.cloudId=ut.cloudId
+  	where ua.guid=#{guid} and cp.cuid=#{cuId} 
   </select>
   
 </mapper>
