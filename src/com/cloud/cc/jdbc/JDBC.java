@@ -54,7 +54,7 @@ public class JDBC {
 	 * @param sql
 	 * @return	返回值为List
 	 */
-	 public static List<Map<String,Object>> getListData(String sql){
+	 public List<Map<String,Object>> getListData(String sql){
 		 List<Map<String,Object>> resultList=new ArrayList<Map<String,Object>>();
 		 JDBC db=new JDBC(sql);
 		 try {
@@ -72,7 +72,7 @@ public class JDBC {
 	 * 
 	 * @param sql 
 	 */
-	public static boolean upDate(String sql) {
+	public boolean upDate(String sql) {
 		JDBC db = new JDBC(sql);
 		try {
 			db.conn.setAutoCommit(false);
@@ -89,6 +89,12 @@ public class JDBC {
 			}
 			return false;
 		} finally {
+			try {
+				db.conn.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			db.close();
 		}
 	}

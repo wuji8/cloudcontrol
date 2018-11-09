@@ -13,7 +13,6 @@ public interface UserApiService {
 	
 	List<UserApi> selectByTableId(Integer tableId);
 	
-	Map<String,Object> userOperApi(Map<String,Object> param,UserApi userApi);
 	
 	UserApi selectUserApiByGUID(String guid,String cuId);
 }

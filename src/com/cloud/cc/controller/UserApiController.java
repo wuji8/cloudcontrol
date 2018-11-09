@@ -1,17 +1,23 @@
 package com.cloud.cc.controller;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.cloud.cc.jdbc.JDBC;
 import com.cloud.cc.service.UserApiService;
 import com.cloud.cc.service.UsersService;
+import com.cloud.cc.tools.DateUtil;
 import com.cloud.cc.tools.StringUnits;
 import com.cloud.cc.vo.UserApi;
 import com.cloud.cc.vo.Users;
@@ -28,6 +34,9 @@ public class UserApiController {
 	@Autowired
 	private UsersService userService;
 	
+	
+	@RequestMapping("/userApi")
+	@ResponseBody
 	public Map<String,Object> userOperApi(HttpServletRequest request){
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		//拿去guid参数获取该条api数据
@@ -74,8 +83,32 @@ public class UserApiController {
 				return resultMap;
 			}
 		}
-		//判断api类型，操作为什么类型
-		//给sql语句赋值
+		//判断api类型，操作什么类型就执行什么操作
+		String sql=getSql(userApi.getType(),jsonModel,requestParam,userApi.getUserTable().getTablename(),userApi.getLimitTop());
+		JDBC jdbc=new JDBC(sql);
+		if(userApi.getType()==1) {	//查询，调用查询方法
+			resultMap.put("code", 1);
+			List<Map<String,Object>> resultList=jdbc.getListData(sql);
+			resultMap.put("data", resultList);
+			String str="";
+			for(Querys query:jsonModel.getQuerys()) {
+				str+="`"+query.getField()+"` "+query.getSymbol()+" '"+requestParam.get(query.getField())+"' and";
+			}
+			str=str.substring(0, str.length()-3);
+			//进行修改该数据的锁定时长
+			String sqlStr="update "+userApi.getUserTable().getTablename()+" set blockTime="+DateUtil.getNewSecond(new Date(), userApi.getBlocktime())+" where "+str;
+			jdbc.upDate(sqlStr);
+			resultMap.put("msg", "操作成功");
+		}else if(userApi.getType()==4) {	//判断是否修改，修改则给该数据为行级锁
+			jdbc.getListData("select * from "+userApi.getUserTable().getTablename()+" where id="+requestParam.get("ID")+" for update");
+			jdbc.upDate(sql);
+			resultMap.put("code", 1);
+			resultMap.put("msg", "操作成功");
+		}else {
+			jdbc.upDate(sql);
+			resultMap.put("code", 1);
+			resultMap.put("msg", "操作成功");
+		}
 		return resultMap;
 	}
 	
@@ -97,11 +130,11 @@ public class UserApiController {
 				sql+=jsonModel.getFields()[i]+",";	//填充要查询的字段
 			}
 			sql=sql.substring(0, sql.length()-1);	//截取掉最后的,
-			sql+=" from `"+tableName+"` ";
+			sql+=" from `"+tableName+"` where ";
 			for(Querys query:jsonModel.getQuerys()) {
-				sql+="where `"+query.getField()+"` "+query.getSymbol()+" '"+valueMap.get(query.getField())+"' and";
+				sql+="`"+query.getField()+"` "+query.getSymbol()+" '"+valueMap.get(query.getField())+"' and";
 			}
-			sql=sql.substring(0, sql.length()-3);
+			sql+=" lockingTime<="+new Date();
 			sql+=" limit "+limit;
 			break;
 		case 2:

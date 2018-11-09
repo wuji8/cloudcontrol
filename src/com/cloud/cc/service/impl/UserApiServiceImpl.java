@@ -18,8 +18,7 @@ public class UserApiServiceImpl implements UserApiService {
 	@Override
 	public int addApiInterface(UserApi userApi) {
 		// TODO Auto-generated method stub
-		
-		return 0;
+		return userApiMapper.insertSelective(userApi);
 	}
 
 
@@ -36,15 +35,6 @@ public class UserApiServiceImpl implements UserApiService {
 	public List<UserApi> selectByTableId(Integer tableId) {
 		// TODO Auto-generated method stub
 		return userApiMapper.selectByTableId(tableId);
-	}
-
-
-
-	@Override
-	public Map<String, Object> userOperApi(Map<String, Object> param,UserApi userApi) {
-		// TODO Auto-generated method stub
-		
-		return null;
 	}
 
 
