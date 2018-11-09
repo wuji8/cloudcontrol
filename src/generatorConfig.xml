@@ -42,29 +42,25 @@
 		</javaClientGenerator>
 		
 		<!-- 要对那些数据表进行生成操作，必须要有一个. -->
-		<table tableName="UiTable" domainObjectName="UiTable"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false">
-			<columnOverride column="uitName" javaType="java.lang.String" jdbcType="VARCHAR" /> 
-			<columnOverride column="uijson" javaType="java.lang.String" jdbcType="VARCHAR" /> 
-		</table>
-		
-		<!-- 
-		<table tableName="additionals" domainObjectName="Additionals"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false">
-			<columnOverride column="additName" javaType="java.lang.String" jdbcType="VARCHAR" /> 
-			<columnOverride column="remark" javaType="java.lang.String" jdbcType="VARCHAR" /> 
-		</table>
-		
-		 <table tableName="devicepool" domainObjectName="DevicePool"
+		<table tableName="userRole" domainObjectName="UserRole"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
 		
+		
+		<table tableName="relation" domainObjectName="Relation"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		 <table tableName="role_relation" domainObjectName="RoleRelation"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<!--  
 		<table tableName="devices" domainObjectName="Devices"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"

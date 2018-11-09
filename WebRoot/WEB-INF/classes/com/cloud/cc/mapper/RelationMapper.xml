@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cc.mapper.RelationMapper" >
+  <resultMap id="BaseResultMap" type="com.cloud.cc.vo.Relation" >
+    <id column="relation_id" property="relationId" jdbcType="INTEGER" />
+    <result column="relation_name" property="relationName" jdbcType="VARCHAR" />
+    <result column="relation_url" property="relationUrl" jdbcType="VARCHAR" />
+    <result column="relation_description" property="relationDescription" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    relation_id, relation_name, relation_url, relation_description, parent_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from relation
+    where relation_id = #{relationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from relation
+    where relation_id = #{relationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.cc.vo.Relation" >
+    insert into relation (relation_id, relation_name, relation_url, 
+      relation_description, parent_id, create_time
+      )
+    values (#{relationId,jdbcType=INTEGER}, #{relationName,jdbcType=VARCHAR}, #{relationUrl,jdbcType=VARCHAR}, 
+      #{relationDescription,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.cc.vo.Relation" >
+    insert into relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relationId != null" >
+        relation_id,
+      </if>
+      <if test="relationName != null" >
+        relation_name,
+      </if>
+      <if test="relationUrl != null" >
+        relation_url,
+      </if>
+      <if test="relationDescription != null" >
+        relation_description,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relationId != null" >
+        #{relationId,jdbcType=INTEGER},
+      </if>
+      <if test="relationName != null" >
+        #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationUrl != null" >
+        #{relationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="relationDescription != null" >
+        #{relationDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.cc.vo.Relation" >
+    update relation
+    <set >
+      <if test="relationName != null" >
+        relation_name = #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationUrl != null" >
+        relation_url = #{relationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="relationDescription != null" >
+        relation_description = #{relationDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where relation_id = #{relationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.cc.vo.Relation" >
+    update relation
+    set relation_name = #{relationName,jdbcType=VARCHAR},
+      relation_url = #{relationUrl,jdbcType=VARCHAR},
+      relation_description = #{relationDescription,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where relation_id = #{relationId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectById" resultMap="BaseResultMap" parameterType="string">
+  	select * from relation where relation_id in(${idStr})
+  </select>
+  
+</mapper>

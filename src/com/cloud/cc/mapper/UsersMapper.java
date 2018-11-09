@@ -16,4 +16,6 @@ public interface UsersMapper {
     int updateByPrimaryKey(Users record);
     
     Users selectUsersByCCID(String ccId);
+    
+    Users selectByUserName(String userName);
 }

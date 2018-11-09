@@ -12,8 +12,18 @@ public class Users {
     private String token;
 
     private String mToken;
+    
+    private Integer roleId;
 
-    private Integer status;
+    public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	private Integer status;
 
     private String ccid;
 

@@ -67,6 +67,8 @@ public class UserApiController {
 			resultMap.put("msg", "请求错误，请重试");
 			return resultMap;
 		}
+		
+		
 		//获得此请求的所有参数Map
 		Map<String,Object> requestParam=StringUnits.getParamValue(request);
 		//获取该api本要请求的参数数组，循环遍历，判断参数Map是否有包含，如果没有则提示用户缺少参数
@@ -177,14 +179,16 @@ public class UserApiController {
 		return sql;
 	}
 	
-	
-	public static void main(String[] args) {
-//		String str="{\"querys\":[{\"field\":\"ID\",\"symbol\":\">\",\"valtype\":\"2\",\"val\":\"@ID\"}],\"fields\":[\"phnub\",\"jbnub\",\"temi\"]}";
-//		JsonModel json=JSON.parseObject(str, new TypeReference<JsonModel>() {});
-//		JSONObject json2=(JSONObject) JSON.toJSON(json);
-//		System.out.println(json);
-//		System.out.println(json2);
-		String str="asdaadand";
-		System.out.println(str.substring(0, str.length()-3));
+	@RequestMapping("/addApi")
+	@ResponseBody
+	public Map<String,Object> addApiInterface(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String apiName=request.getParameter("apiname");
+		String tableId=request.getParameter("tableid");
+		String apiType=request.getParameter("apiType");
+		String json=request.getParameter("json");
+		String limit=request.getParameter("limit");
+		String blockTime=request.getParameter("blockTime");
+		return resultMap;
 	}
 }
