@@ -46,6 +46,7 @@ public class GroupServiceImpl implements GroupService {
 			for(Devices list:lists) {
 				content+=list.getRemark()+",";
 			}
+			content=content.substring(0, content.length()-1);
 			Logs logs=new Logs();
 			logs.setContent("删除了设备【"+content+"】");
 			logs.setCreatetime(new Date());
