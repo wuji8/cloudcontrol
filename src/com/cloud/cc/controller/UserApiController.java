@@ -237,7 +237,10 @@ public class UserApiController {
 				urlStr += update.getField() + "=@" + update.getField() + "&";
 			}
 		}
-		userApi.setSqlquery(tempContextUrl+="?"+urlStr);
+		if(urlStr.length()>0) {
+			tempContextUrl+="?"+urlStr;
+		}
+		userApi.setSqlquery(tempContextUrl);
 		userApi.setGuid(StringUnits.getUUID());
 		int result = userApiService.addApiInterface(userApi);
 		resultMap.put("code", result);

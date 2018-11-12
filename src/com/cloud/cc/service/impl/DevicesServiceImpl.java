@@ -44,6 +44,7 @@ public class DevicesServiceImpl implements DevicesService{
 			Devices devices=devicesMapper.selectByPrimaryKey(devicesId[i]);
 			content+=devices.getRemark()+",";
 		}
+		content=content.substring(0,content.length()-1);
 		Logs logs=new Logs();
 		logs.setContent("删除了设备【"+content+"】");
 		logs.setCreatetime(new Date());
