@@ -9,12 +9,11 @@
     <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="m_token" property="mToken" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="CCID" property="ccid" jdbcType="VARCHAR" />
     <result column="cloudId" property="cloudid" jdbcType="INTEGER" />
     <result column="role_id" property="roleId" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    userId, userName, userPass, nickName, token, m_token, status, CCID, cloudId,role_id
+    userId, userName, userPass, nickName, token, m_token, status, cloudId,role_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -29,11 +28,11 @@
   <insert id="insert" parameterType="com.cloud.cc.vo.Users" >
     insert into users (userId, userName, userPass, 
       nickName, token, m_token, 
-      status, CCID, cloudId
+      status, cloudId
       )
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpass,jdbcType=VARCHAR}, 
       #{nickname,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{mToken,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{ccid,jdbcType=VARCHAR}, #{cloudid,jdbcType=INTEGER}
+      #{status,jdbcType=INTEGER}, #{cloudid,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cloud.cc.vo.Users" >
@@ -59,9 +58,6 @@
       </if>
       <if test="status != null" >
         status,
-      </if>
-      <if test="ccid != null" >
-        CCID,
       </if>
       <if test="cloudid != null" >
         cloudId,
@@ -92,9 +88,6 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="ccid != null" >
-        #{ccid,jdbcType=VARCHAR},
-      </if>
       <if test="cloudid != null" >
         #{cloudid,jdbcType=INTEGER},
       </if>
@@ -124,9 +117,6 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="ccid != null" >
-        CCID = #{ccid,jdbcType=VARCHAR},
-      </if>
       <if test="cloudid != null" >
         cloudId = #{cloudid,jdbcType=INTEGER},
       </if>
@@ -144,7 +134,6 @@
       token = #{token,jdbcType=VARCHAR},
       m_token = #{mToken,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      CCID = #{ccid,jdbcType=VARCHAR},
       cloudId = #{cloudid,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}
   </update>

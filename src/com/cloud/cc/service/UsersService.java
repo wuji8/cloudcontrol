@@ -18,4 +18,6 @@ public interface UsersService {
 	int delUser(Integer userId);
 	
 	List<UserRole> selectUserRole(Integer userId,Integer roleId);
+	
+	Users isLogin(String userName,String userPwd);
 }

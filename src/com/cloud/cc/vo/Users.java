@@ -25,7 +25,6 @@ public class Users {
 
 	private Integer status;
 
-    private String ccid;
 
     private Integer cloudid;
 
@@ -83,14 +82,6 @@ public class Users {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getCcid() {
-        return ccid;
-    }
-
-    public void setCcid(String ccid) {
-        this.ccid = ccid == null ? null : ccid.trim();
     }
 
     public Integer getCloudid() {

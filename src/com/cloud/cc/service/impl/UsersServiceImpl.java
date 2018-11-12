@@ -86,4 +86,14 @@ public class UsersServiceImpl implements UsersService {
 		return userRoleMapper.selectByUserIdAndRoleId(userId, roleId);
 	}
 
+	@Override
+	public Users isLogin(String userName,String userPwd) {
+		// TODO Auto-generated method stub
+		Users users=usersMapper.selectByUserName(userName);
+		if(users==null || !users.getUserpass().equals(userPwd)) {
+			return users;
+		}
+		return null;
+	}
+
 }
