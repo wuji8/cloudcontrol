@@ -96,4 +96,25 @@ public class UsersServiceImpl implements UsersService {
 		return null;
 	}
 
+	@Override
+	public int updateUserRole(Integer userId, String[] role) {
+		// TODO Auto-generated method stub
+		//查出用户
+		Users user=usersMapper.selectByPrimaryKey(userId);
+		//删除用户原先的权限
+		roleRelationMapper.delByUserId(userId);
+		if(user==null) {
+			return 0;
+		}
+		for (int i = 0; i < role.length; i++) {
+			RoleRelation roleRelation=new RoleRelation();
+			roleRelation.setCreatetime(new Date());
+			roleRelation.setRelationId(Integer.parseInt(role[i]));
+			roleRelation.setRoleId(user.getRoleId());
+			roleRelation.setUserId(user.getUserid());
+			roleRelationMapper.insertSelective(roleRelation);
+		}
+		return 1;
+	}
+
 }

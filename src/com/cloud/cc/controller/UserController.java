@@ -116,7 +116,7 @@ public class UserController {
 	
 	@RequestMapping("/modifyUserRole")
 	@ResponseBody
-	public Map<String,Object> modifyUserRole(HttpServletRequest request){
+	public Map<String,Object> modifyUserRole(HttpServletRequest request,Integer userId,String[] roleId){
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		Users users=(Users) request.getSession().getAttribute("user");
 		if(users==null) {
@@ -127,6 +127,7 @@ public class UserController {
 			resultMap.put("code", 4);	//没有权限操作
 			return resultMap;
 		}
+		resultMap.put("code", userService.updateUserRole(userId, roleId));
 		return resultMap;
 	}
 }

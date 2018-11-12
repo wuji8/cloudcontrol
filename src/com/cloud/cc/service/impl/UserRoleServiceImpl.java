@@ -19,5 +19,4 @@ public class UserRoleServiceImpl implements UserRoleService {
 		// TODO Auto-generated method stub
 		return userRoleMapper.selectAll();
 	}
-
 }

@@ -66,19 +66,14 @@
 		</property>
 	</bean>	-->
 	
- <!-- 定义拦截器
+ <!-- 定义拦截器	-->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/bau/**"/>
-			<mvc:exclude-mapping path="/bau/ifLogin.action"/>
-			<bean class="com.wj.ut.interceptors.SysInterceptors"></bean>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/toLogin.action"/>
+			<bean class="com.cloud.cc.interceptors.UserInterceptors"></bean>
 		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/au/**"/>
-			<mvc:exclude-mapping path="/au/ifLogin.action"/>
-			<bean class="com.wj.ut.interceptors.UserInterceptors"></bean>
-		</mvc:interceptor>
-	</mvc:interceptors>-->
+	</mvc:interceptors>
 	 
 	<!-- 解决静态资源问题 
 	<mvc:resources location="/statics/" mapping="/statics/**"/>-->

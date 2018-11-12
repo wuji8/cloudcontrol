@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Salt {
 
 	/**
-	 * 获取盐�??
+	 * 获取盐�??
 	 * @return
 	 */
 	public static String getSalt(){
@@ -21,7 +21,7 @@ public class Salt {
 	}
 	
 	/**
-	 * 获取订单�?
+	 * 获取订单�?
 	 * @return
 	 */
 	public static String getOrderNum(){
@@ -32,6 +32,6 @@ public class Salt {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getOrderNum());
+		System.out.println(getOrderNum().length());
 	}
 }

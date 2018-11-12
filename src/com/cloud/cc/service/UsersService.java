@@ -20,4 +20,6 @@ public interface UsersService {
 	List<UserRole> selectUserRole(Integer userId,Integer roleId);
 	
 	Users isLogin(String userName,String userPwd);
+	
+	int updateUserRole(Integer userId,String[] role);
 }

@@ -1,7 +1,5 @@
 package com.cloud.cc.mapper;
 
-import java.util.List;
-
 import com.cloud.cc.vo.RoleRelation;
 
 public interface RoleRelationMapper {
@@ -17,4 +15,5 @@ public interface RoleRelationMapper {
 
     int updateByPrimaryKey(RoleRelation record);
 
+    int delByUserId(Integer userId);
 }
