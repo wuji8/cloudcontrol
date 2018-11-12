@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.cc.service.LogsService;
 import com.cloud.cc.service.UsersService;
+import com.cloud.cc.tools.PageHelper;
 import com.cloud.cc.tools.StringUnits;
 import com.cloud.cc.vo.Logs;
 import com.cloud.cc.vo.Users;
@@ -128,6 +129,33 @@ public class UserController {
 			return resultMap;
 		}
 		resultMap.put("code", userService.updateUserRole(userId, roleId));
+		return resultMap;
+	}
+	
+	@RequestMapping("/logsPage")
+	@ResponseBody
+	public Map<String,Object> queryLogsPage(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		Users user=(Users) request.getSession().getAttribute("user");
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		String type=request.getParameter("type");
+		if(StringUnits.isEmpty(pageNo) || StringUnits.isEmpty(pageSize)) {
+			pageNo="0";
+			pageSize="20";
+		}
+		if(!StringUnits.isInteger(pageSize) || !StringUnits.isInteger(pageNo)) {
+			resultMap.put("code", 2);	//页数或页码必须要为数字
+			return resultMap;
+		}
+		PageHelper<Logs> pageHelper=new PageHelper<Logs>();
+		pageHelper.setPageNo(Integer.parseInt(pageNo));
+		pageHelper.setPageSize(Integer.parseInt(pageSize));
+		pageHelper.getParams().put("type", type);
+		pageHelper.getParams().put("userId", user.getUserid());
+		logsService.queryPage(pageHelper);
+		resultMap.put("code", 1);
+		resultMap.put("data",pageHelper);
 		return resultMap;
 	}
 }

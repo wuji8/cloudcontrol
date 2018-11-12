@@ -2,21 +2,25 @@ package com.cloud.cc.service;
 
 import java.util.List;
 
+import com.cloud.cc.tools.PageHelper;
 import com.cloud.cc.vo.Logs;
 
 public interface LogsService {
 	
 	/**
-	 * 查询用户下的日志数据
+	 * 锟斤拷询锟矫伙拷锟铰碉拷锟斤拷志锟斤拷锟斤拷
 	 * @param userId
 	 * @return
 	 */
 	List<Logs> selectByUserId(Integer userId);
 	
 	/**
-	 * 增加日志数据
+	 * 锟斤拷锟斤拷锟斤拷志锟斤拷锟斤拷
 	 * @param logs
 	 * @return
 	 */
 	int addLogsData(Logs logs);
+	
+	
+	void queryPage(PageHelper<Logs> pageHelper);
 }

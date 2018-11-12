@@ -95,4 +95,24 @@
   	select * from logs where userid=#{userId}
   </select>
   
+  <select id="selectByMapPage" resultMap="BaseResultMap" parameterType="map">
+  	select *
+  	from logs
+  	where userid=#{userId} 
+  	<if test="type!=null">
+  	and type=#{type}
+  	</if>
+  	order by createtime desc
+  	limit #{pageNo},#{pageSize}
+  </select>
+  
+  <select id="queryCount" resultType="int" parameterType="map">
+  	select count(logid)
+  	from logs
+  	where userid=#{userId}
+  	<if test="type!=null">
+  	and type=#{type}
+  	</if>
+  </select>
+  
 </mapper>

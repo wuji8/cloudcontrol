@@ -90,4 +90,9 @@
     where rl_id = #{rlId,jdbcType=INTEGER}
   </update>
   
+  
+  <delete id="delByUserId" parameterType="int">
+  	delete from role_relation where userId=#{userId}
+  </delete>
+  
 </mapper>

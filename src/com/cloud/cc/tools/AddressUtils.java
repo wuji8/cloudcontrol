@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -66,10 +67,10 @@ public class AddressUtils {
    }
 
 	/**
-	 * * 百度接口 通过用户ip获取用户�?在地
-	 *  返回是一个数�?
-	 *  下标0为市�?
-	 *  下标1为省�?
+	 * * 百度接口 通过用户ip获取用户�?在地
+	 *  返回是一个数�?
+	 *  下标0为市�?
+	 *  下标1为省�?
 	 * @param userIp
 	 * @return
 	 */
@@ -89,7 +90,7 @@ public class AddressUtils {
 			JSONObject jsStr2 = ((JSONObject) jsStr.get("content"));
 			System.out.println(jsStr);
 			System.out.println(jsStr2);
-			str[0] = ((JSONObject) jsStr2.get("address_detail")).get("city").toString();//�?
+			str[0] = ((JSONObject) jsStr2.get("address_detail")).get("city").toString();//�?
 			System.out.println(str[0]);
 			str[1] = ((JSONObject) jsStr2.get("address_detail")).get("province").toString(); // 省份	
 			return str;
@@ -101,7 +102,7 @@ public class AddressUtils {
 	}
 
 	/**
-	 * 获取操作系统,浏览器及浏览器版本信�?
+	 * 获取操作系统,浏览器及浏览器版本信�?
 	 * 
 	 * @param request
 	 * @return
@@ -209,7 +210,7 @@ public class AddressUtils {
 
 				} else {
 
-					return "获取地址失败�??";
+					return "获取地址失败�??";
 
 				}
 
@@ -297,11 +298,11 @@ public class AddressUtils {
 
 			connection = (HttpURLConnection) url.openConnection();// 新建连接实例
 
-			connection.setConnectTimeout(6000);// 设置连接超时时间，单位毫�??
+			connection.setConnectTimeout(6000);// 设置连接超时时间，单位毫�??
 
-			connection.setReadTimeout(6000);// 设置读取数据超时时间，单位毫�??
+			connection.setReadTimeout(6000);// 设置读取数据超时时间，单位毫�??
 
-			connection.setDoInput(true);// 是否打开输出�?? true|false
+			connection.setDoInput(true);// 是否打开输出�?? true|false
 
 			connection.setDoOutput(true);// 是否打开输入流true|false
 
