@@ -109,7 +109,7 @@ public class UsersServiceImpl implements UsersService {
 		for (int i = 0; i < role.length; i++) {
 			RoleRelation roleRelation=new RoleRelation();
 			roleRelation.setCreatetime(new Date());
-			roleRelation.setRelationId(Integer.parseInt(role[i]));
+			roleRelation.setRelationId(Integer.parseInt(role[i]));  
 			roleRelation.setRoleId(user.getRoleId());
 			roleRelation.setUserId(user.getUserid());
 			roleRelationMapper.insertSelective(roleRelation);

@@ -113,7 +113,7 @@ public class CR4 {
 	
 	
 	public static void main(String[] args) {
-		System.out.println(encry_RC4_string("admintesas", StringUnits.getUUID()));
+		System.out.println(StringUnits.genRandomNum());
 	}
 	
 }

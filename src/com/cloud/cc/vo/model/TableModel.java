@@ -1,19 +1,16 @@
 package com.cloud.cc.vo.model;
 
+import java.util.List;
+
 public class TableModel {
 	
-	private String type;
-	private String field;
-	public String getType() {
-		return type;
+	List<TableJsonModel> ui;
+
+	public List<TableJsonModel> getUi() {
+		return ui;
 	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getField() {
-		return field;
-	}
-	public void setField(String field) {
-		this.field = field;
+
+	public void setUi(List<TableJsonModel> ui) {
+		this.ui = ui;
 	}
 }

@@ -7,8 +7,10 @@ import com.cloud.cc.vo.model.TableModel;
 import com.cloud.cc.vo.model.TableProp;
 
 public interface UserTableService {
-
-	int createTable(List<TableModel> tableModel,UserTable userTable);
+	
+	UserTable selectUserTableByTableId(Integer tableId);
+	
+	int createTable(TableModel tableModel,UserTable userTable);
 	
 	int delTable(Integer tableId);
 	

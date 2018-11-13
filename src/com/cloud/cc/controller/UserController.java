@@ -2,6 +2,7 @@ package com.cloud.cc.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.cloud.cc.service.LogsService;
 import com.cloud.cc.service.UsersService;
 import com.cloud.cc.tools.PageHelper;
 import com.cloud.cc.tools.StringUnits;
 import com.cloud.cc.vo.Logs;
 import com.cloud.cc.vo.Users;
+import com.cloud.cc.vo.model.JsonModel;
+import com.cloud.cc.vo.model.TableModel;
 
 @Controller
 public class UserController {
@@ -59,7 +64,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("addUser")
+	@RequestMapping("/addUser")
 	@ResponseBody
 	public Map<String,Object> addUser(HttpServletRequest request,Users user,String[] roleId){
 		Map<String,Object> resultMap=new HashMap<String, Object>();
@@ -157,5 +162,11 @@ public class UserController {
 		resultMap.put("code", 1);
 		resultMap.put("data",pageHelper);
 		return resultMap;
+	}
+	
+	public static void main(String[] args) {
+		String str="{\"ui\":[{\"type\":\"int\",\"field\":\"121312\"},{\"type\":\"int\",\"field\":\"3111\"},{\"type\":\"int\",\"field\":\"23123\"}]}";
+		TableModel tableModel=JSON.parseObject(str,  new TypeReference<TableModel>() {});
+		System.out.println(tableModel.getUi());
 	}
 }
