@@ -57,4 +57,12 @@ public class CloudProjectController {
 	}
 	
 	
+	@RequestMapping("/getAllProject")
+	@ResponseBody
+	public Map<String,Object> getAllProject(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		Users user=(Users)request.getSession().getAttribute("user");
+		resultMap.put("data", cloudProjectService.selectByUserId(user.getUserid()));
+		return resultMap;
+	}
 }
