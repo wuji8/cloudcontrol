@@ -9,9 +9,9 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
     <association property="relation" javaType="com.cloud.cc.vo.Relation">
     	<id column="relation_Id" property="relationId" jdbcType="INTEGER"/>
-    	<result column="relation_name" property="relationName" jdbcType=""/>
-    	<result column="relation_url" property="relationUrl" jdbcType=""/>
-    	<result column="relation_description" property="relationDescription" jdbcType=""/>
+    	<result column="relation_name" property="relationName" jdbcType="VARCHAR"/>
+    	<result column="relation_url" property="relationUrl" jdbcType="VARCHAR"/>
+    	<result column="relation_description" property="relationDescription" jdbcType="VARCHAR"/>
     </association>
      <association property="RoleRelation" javaType="com.cloud.cc.vo.RoleRelation">
     	<id column="rl_id" property="rlId" jdbcType="INTEGER"/>
