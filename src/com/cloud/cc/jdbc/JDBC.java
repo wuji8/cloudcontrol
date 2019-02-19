@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.lucene.search.spell.NGramDistance;
+
+import com.cloud.cc.tools.StringUnits;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
@@ -121,10 +124,27 @@ public class JDBC {
 	}
 	
 	public static void main(String[] args) {
-		Object c=new Object();
-		Object a=new Object();
-		System.out.println(c.equals(a));
-		System.out.println(c==a);
+		String arr="123aasf123dafas123aa3absfag123dd";
+		String str="123a";
+		NGramDistance ng=new NGramDistance();
+		float score=ng.getDistance(arr, str);
+		System.out.println(arr.equals(str));
+		System.out.println(score);
+		System.out.println(searchStr(arr,str));
 	}
 
+	
+	
+	public static boolean searchStr(String arr,String str) {
+		if(StringUnits.isEmpty(str)&&StringUnits.isEmpty(arr)) {
+			return false;
+		}
+		if(arr.length()<str.length()) {	//当前字符串长度小于要查找的字符串返回null
+			return false;
+		}
+		if(arr.lastIndexOf(str,arr.length()-1)!=-1 && arr.indexOf(str, 1)!=-1) {
+			return true;
+		}
+		return false;
+	}
 }
