@@ -1,0 +1,17 @@
+﻿.qr-form{
+    margin: 10px 0;
+}
+
+.qr-box .qr-item{
+    /*width: 200px;*/
+    /*height: 260px;*/
+    float: left;
+    /*margin: 12px;*/
+}
+.qr-box .qr-item .qr-item-img{
+ text-align: center;
+}
+.qr-box .qr-item .qr-item-img img{
+    width: 173px;
+    height: 174px;
+}

@@ -1,0 +1,299 @@
+<link href="../../Content/View/CloudService.css" rel="stylesheet" />
+<link href="../../Plugin/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script src="../../Scripts/View/CloudService.js"></script>
+<script src="../../Plugin/bootstrap/bootstrap.min.js"></script>
+
+<div class="table-box">
+    <div class="position-box">
+        <p>位置：<a href="">云控储存</a></p>
+    </div>
+    <div class="inner-table">
+        <div class="table-head">
+            <p class="top-title">云控储存</p>
+        </div>
+        <div class="table-tool">
+            <button class="appy-for" id="appy-for" ng-click="newItem()">新建</button>
+            <button class="manage-btn" id="manage-btn" ng-click="delItem()">管理</button>
+            <p class="nice-select-title btn-first">项目</p>
+            <div class="nice-select-box">
+                <div class="nice-select nice-select-blue project-select" name="nice-select" style="width: 280px;position: relative;" id="pname-box">
+                    <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333" str="{{CurrentProjectID}}" data-puid="CurrentPuid" data-str="{{CurrentProjectID}}" id="InputProjectName">
+                    <ul>
+                        <li ng-repeat="i in cloudprojectdata" data-puid="{{i.cuid}}" data-value="{{i.CloudID}}">{{i.cloudname}}</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="nice-select-title">&nbsp;&nbsp;&nbsp;&nbsp;CUID:</p>
+            <div class="nice-select-box">
+                <div class="nice-select nice-select-nosanjiao" name="nice-select" id="pname-box" style="width: 200px;border: none;">
+                    <input type="text" readonly value="{{CurrentPuid}}" placeholder="" style="color: #333333">
+                </div>
+            </div>
+        </div>
+        <div class="table-tool">
+            <p class="script-p">云控用户链接：<a target="_blank" class="long-href" ng-if="NoProject==0" style="color: #5792f7;" href="http://cloud.mall-software.net/Home/Login/{{CurrentPuid}}">http://cloud.mall-software.net/Home/Login/{{CurrentPuid}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;短链接：<a target="_blank" ng-if="NoProject==0" class="short-href" style="color: #5792f7;" href=""></a></p>
+        </div>
+        <table class="table" cellspacing="0" cellpadding="0" id="table">
+            <tr>
+                <td class="right-btn-group" style="padding-bottom:0;">
+                    <div class="nice-select-box">
+                        <a href="javascript:;" class="tab-btn tab-active" data-tab="1" id="createUiTable">设置UI表</a>
+                        <!--<button class="search-btn" data-tab="1" id="createUiTable">设置UI表</button>-->
+                    </div>
+                    <div class="nice-select-box">
+                        <a href="javascript:;" class="tab-btn" data-tab="2" id="createDataTable">数据表</a>
+                        <!--<button class="search-btn" data-tab="2" id="createDataTable">数据表</button>-->
+                    </div>
+                    <div class="nice-select-box">
+                        <a href="javascript:;" class="tab-btn" data-tab="3" id="cloudUsers">云控用户</a>
+<!--                         <button class="search-btn" data-tab="3" id="cloudUsers">添加用户账号</button>
+ -->                    </div>
+                    <div class="nice-select-box">
+                        <a href="javascript:;" class="tab-btn" data-tab="4" id="openAPI">开发API</a>
+                        <!--<button class="search-btn" data-tab="4" id="openAPI">开发API</button>-->
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!--ui表-->
+        <div class="tableWrap">
+            <div class="tableBox tableBox1">
+                <table class="table-top table-botm" border="0">
+                    <tr>
+                        <th>UI表名</th>
+                        <th>添加时间</th>
+                        <th>版本</th>
+                        <th>平台</th>
+                        <th>操作</th>
+                        <th>API</th>   
+                    </tr>
+                    <tr class="data-tr" ng-repeat="i in uitablelist" data-id="{{i.UitID}}">
+                        <td>{{i.UitName}}</td>
+                        <td>{{i.CreateTime}}</td>
+                        <td>{{i.Version}}</td>
+                        <td>{{i.PlatformName}}</td>
+                        <td>
+                            <a class="btn btn-default btn-xs btn-primary" href="#/ModifyUITable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}&UiTableId={{i.UitID}}">编辑</a>
+                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="deluitable($event)">删除</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="add-box">
+                    <p style="text-align: center;"><a href="#/CreateUITable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;">添加</a></p>
+                </div>
+                <div class="table-bottom-tip table-bottom-ui" id="table-bottom-ui">
+                    <img src="../../Images/tan.png" alt="" /><span id="bottom-tip-ui"></span>
+                </div>
+            </div>
+
+            <!--数据表-->
+            <div class="tableBox tableBox2">
+                <table class="table-top table-botm" border="0">
+                    <tr>
+                        <th>表名</th>
+                        <th>操作时间</th>
+                        <th>数据条数</th>
+                        <th>数据大小</th>
+                        <th>操作</th>
+                        <th>API</th>
+                    </tr>
+                    <tr class="data-tr" ng-repeat="i in usertablelist" data-id="{{i.TableID}}">
+                        <td>{{i.TableName}}({{i.DbTable}})</td>
+                        <td>{{i.CreateTime}}</td>
+                        <td>{{i.Counts}}</td>
+                        <td></td>
+                        <td>
+                            <a class="btn btn-default btn-xs btn-primary" href="#/DetailDataTable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}&DataTableId={{i.TableID}}&DataTableName={{i.TableName}}">查看</a>
+                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="delusertable($event)">删除</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="add-box">
+                    <p style="text-align: center;"><a href="#/CreateDataTable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;">添加</a></p>
+                </div>
+                <div class="table-bottom-tip table-bottom-data" id="table-bottom-data">
+                    <img src="../../Images/tan.png" alt="" /><span id="bottom-tip-data"></span>
+                </div>
+            </div>
+
+            <!--用户账号表-->
+            <div class="tableBox tableBox3">
+                <table class="table-top table-botm" border="0">
+                    <tr>
+                        <th>用户名</th>
+                        <th>所在项目</th>
+                        <th>状态</th>
+                        <th>设备数</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr class="data-tr" ng-repeat="i in userlist" data-id="{{i.UserID}}">
+                        <td>{{i.UserName}}</td>
+                        <td>{{i.CloudName}}</td>
+                        <td>{{i.Status==0?"停用":"启用"}}</td>
+                        <td>{{i.Device}}</td>
+                        <td>{{i.Remark}}</td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-if="i.Status==1" ng-click="stopuser($event)">停用</button>
+                            <button type="button" class="btn btn-default btn-xs btn-primary" ng-if="i.Status==0" ng-click="openuser($event)">启用</button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="add-box">
+                   <p style="text-align: center;"><a id="addUser" ng-click="addCloudUser()"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;">添加</a></p>
+                </div>
+                <div class="table-bottom-tip table-bottom-user" id="table-bottom-user">
+                    <img src="../../Images/tan.png" alt="" /><span id="bottom-tip-user"></span>
+                </div>
+            </div>
+
+            <!--开发API表-->
+            <div class="tableBox tableBox4">
+                <table class="table-top table-botm" border="0">
+                    <tr>
+                        <th>序号</th>
+                        <th>表名</th>
+                        <th>API名</th>
+                        <th>类型</th>
+                        <th>API标识</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr class="data-tr" ng-repeat="i in apiList" data-id="{{i.ApiID}}">
+                        <td>{{i.ApiID}}</td>
+                        <td>{{i.TableName}}({{i.DbTable}})</td>
+                        <td>{{i.APIName}}</td>
+                        <td><span ng-if="i.Type == 1">查询</span><span ng-if="i.Type == 2">删除</span><span ng-if="i.Type == 3">增加</span><span ng-if="i.Type == 4">修改</span></td>
+                        <td>{{i.guid}}</td>
+                        <td>{{i.CreateTime}}</td>
+                        <td data-api="http://cloud.mall-software.net{{i.API}}">
+                            <button type="button" class="btn btn-default btn-xs btn-primary" ng-click="lookapi($event)">查看</button>
+                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="delapi($event)">删除</button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="add-box">
+                    <p style="text-align: center;"><a href="#/CreateDeveloperApi?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;">添加</a></p>
+                </div>
+                <div class="table-bottom-tip table-bottom-api" id="table-bottom-api">
+                    <img src="../../Images/tan.png" alt="" /><span id="bottom-tip-api"></span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="table-bottom2" id="table-bottom2">
+            <img src="../../Images/tan.png" alt="" /><span id="bottom-tip2"></span>
+        </div>-->
+        <!--分页-->
+        <!--<ul class="pagination" style="margin-top: 20px;" id="page1">
+            <li ng-class="{true:'disabled'}[p_current==1]"><a href="javascript:void(0);" ng-click="p_index()">首页</a></li>
+            <li ng-class="{true:'disabled'}[p_current==1]"><a href="javascript:void(0);" ng-click="p_prev()">上一页</a></li>
+            <li ng-repeat="page in pages" ng-class="{true:'active'}[p_current==page]"><a href="javascript:void(0);" ng-click="load_page(page)">{{ page }}</a></li>
+            <li ng-class="{true:'disabled'}[p_current==p_all_page]"><a href="javascript:void(0);" ng-click="p_next()">下一页</a></li>
+            <li ng-class="{true:'disabled'}[p_current==p_all_page]"><a href="javascript:void(0);" ng-click="p_last()">尾页</a></li>
+            <li>
+                <input type="text" name="name" value="" id="selectPage" />
+                <input type="button" name="name" value="确定" ng-click="select_load_page()" />
+            </li>
+            <li>共 {{pageCount}} 页</li>
+        </ul>
+        <div class="table-bottom2" id="table-bottom2">
+            <img src="../../Images/tan.png" alt="Alternate Text" /><span id="bottom-tip2">您还没有项目订单！</span>
+        </div>-->
+
+        <div class="FixedPopupMask" style="display:none;"></div>
+    </div>
+</div>
+
+
+<!--添加用户-->
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">用户</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户名:</label>
+                        <input type="text" class="form-control" id="username">
+                        <span class="help-block">注：用户的账号</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">备注:</label>
+                        <input type="text" class="form-control" id="remark">
+                    </div>
+                    <p class="tip" style="color: red; text-align: center;"></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submit-user" ng-click="submitAddCloudUser()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--添加项目-->
+<div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">添加项目</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">项目名称:</label>
+                        <input type="text" class="form-control" id="projectname">
+                        <!--<select class="form-control" id="additem-select">
+                            <option ng-repeat="i in originalproject" value="{{i.ProjectID}}">{{i.ProjectName}}</option>
+                        </select>-->
+                        <!--<span class="help-block">注：用户的账号</span>-->
+                    </div>
+                    <p class="tip" style="color: red;display: none; text-align: center;"></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submit-additem" ng-click="submitNewCloudItem()">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除项目-->
+<div class="modal fade" id="delItemModal" tabindex="-1" role="dialog" aria-labelledby="delItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">删除项目</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">项目名称:</label>
+                        <select class="form-control" id="delitem-select">
+                            <option ng-repeat="i in cloudprojectdata" value="{{i.cloudid}}">{{i.cloudname}}</option>
+                        </select>
+                        <!--<span class="help-block">注：用户的账号</span>-->
+                    </div>
+                    <p class="tip" style="color: red;display: none; text-align: center;"></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary btn-danger" id="submit-delitem" ng-click="submitDeleteCloudItem()">删除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var token = '@Commons.CurrentToken()';
+</script>

@@ -1,0 +1,173 @@
+
+<style>
+    .photo-box img {
+        display: none;
+    }
+</style>
+<link href="../../Content/View/PersonalCenter.css" rel="stylesheet" />
+<link href="../../Plugin/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+<div class="personal-content">
+    <div class="head-title">
+        <p>
+            <img src="../../Images/ren.png" alt="个人中心" />
+            <span>个人中心</span>
+        </p>
+    </div>
+	<div class="personal-info table-left" style="width: 40%;min-width:418px;margin-top: 10px;">
+        <div class="table-head">
+            <p style="font-weight: blod;">用户资料</p>
+        </div>
+        <div style="width: 90%; margin: 10px auto 0;">
+            <div class="photo-box">
+                <img src="http://dev.mall-software.net/@ViewBag.Ulogo" />
+            </div>
+            <div class="info-box">
+                <p>账户: <input type="text" value="@ViewBag.UserName" disabled="disabled"></p>
+                <p>昵称: <input type="text" value="@ViewBag.NickName" disabled="disabled"></p>
+                <p>注册时间: <input type="text" value="@ViewBag.RegTime" disabled="disabled"></p>
+                <p>您账号的安全程度: <em></em><span>@ViewBag.Degree</span></p>
+                <p>会员状态: <span id="vipStatus">@ViewBag.VIPDate</span><a href="javascript:;" onclick="show()" style="padding-left: 5px; color: #ff8401;">立即开通</a></p>
+            </div>
+        </div>
+	</div>
+    <div class="table-left" style="margin: 10px 25px 0;min-width:314px;">
+        <div class="table-head">
+            <p>账户余额</p>
+        </div>
+        <div class="table-body" style=" margin-top: 10px;">
+            <p>@ViewBag.Balance</p>
+            <input type="button" name="recharge" id="recharge" value="提现" />
+        </div>
+        <div class="table-foot">
+            <p>支付宝账号:<span id="zhifubao">@ViewBag.Alipay</span></p>
+        </div>
+    </div>
+
+
+	
+	<div class="table-box">
+	    
+	    <div class="table-right">
+	    	<div class="table-head" style="">
+	    		<p class="lfloat" style="margin-bottom: 0;">交易记录</p>
+                <p class="rfloat all-exchange" style="margin-bottom: 0;"><a href="#/TransactionDetails">查看所有交易记录</a></p>
+	    	</div>
+	    	<div class="table-body">
+                @{
+                    if(orders!=null)
+                    {
+                        <table class="table" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="th">
+                                    <th>订单号</th>
+                                    <th>服务名称</th>
+                                    <th>购买数量</th>
+                                    <th>金额</th>
+                                    <th>有效期/值</th>
+                                    <th>支付方式</th>
+                                    <th>购买时间</th>
+                                </tr>
+                                @{
+                                    foreach (var item in orders)
+                                    {
+                                        <tr>
+                                            <td>@item.OrderCode</td>
+                                            <td>@item.AdditName</td>
+                                            <td>@item.Num</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.PropNum</td>
+                                            <td>@(item.PayType == 1 ? "支付宝" : "微信")</td>
+                                            <td>@item.PayTime</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="no-exchange">
+	    			        <p><img src="../../Images/note.jpg"/><span>您最近没有交易记录</span></p>
+	    		        </div>
+                    }
+                }
+	    	</div>
+	    </div>
+	</div>
+	<div class="table-bottom">
+		<div class="table-head">
+    		<p class="balance">我的项目</p>
+    	</div>
+		<table class="table" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr class="th">
+					<th>项目名称</th>
+					<th>技术平台</th>
+					<th>创建时间</th>
+				</tr>
+				<tr ng-repeat="i in data">
+					<td><a href="/#/ProjectDetails?ProjectID={{i.ProjectID}}">{{i.ProjectName}}</a></td>
+					<td>{{i.PlatformName}}</td>
+					<td>{{i.CreateDate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+    <!--提现弹框-->
+    <div class="modal fade" id="tiXianModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">账户余额提现</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <p>余额：<span id="yuE">@ViewBag.Balance</span>元</p>
+                        </div>
+                        <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="zhifubao-input" value="option1" checked>
+                                    <span>支付宝账号：</span><span id="zhifubao-num">@ViewBag.Alipay</span>
+                                </label>
+                            </div>
+                            
+                            <p class="tixian-tip">提现每笔至少100元</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">提现金额:</label>
+                            <input type="text" class="form-control" id="tixian-num" style="display: inline; width: 14%;">
+                            <span>元</span><span id="tixian-tip" style="display: none;"><i class="tip-icon"></i><em>请输入0.01元以上的金额</em></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="submit-tixian">申请</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript">var token = '@Commons.CurrentToken()';</script>
+<script src="../../Plugin/bootstrap/bootstrap.min.js"></script>
+<script src="../../Scripts/View/PersonalCenter.js"></script>
+<script>
+    function show() {
+        $(".vip-p").trigger("click");
+    }
+
+    //会员状态显示
+    var _html ,status = $("#vipStatus").html();
+    if(status != "未开通"){
+        _html = "到期时间 " + status;
+        $("#vipStatus").html(_html);
+        $("#vipStatus").next().html("续费");
+    }
+    
+</script>

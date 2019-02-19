@@ -1,0 +1,224 @@
+.pay {
+	position: fixed;
+	left: 50%;
+	margin-left: -335px;
+	top: 0;
+	z-index: 999;
+}
+
+.dialogs-box {
+	width: 670px;
+	height: 514px;
+	margin: 0 auto;
+	margin-top: 172px;
+	z-index: 10;
+	background: #fff;
+	border-radius: 3px;
+}
+
+.dialogs-box .dialogs-head {
+	height: 30px;
+	line-height: 30px;
+	background-color: #d0e4fd;
+	font-size: 12px;
+	color: #1a1a1a;
+}
+
+.title-open {
+	float: left;
+	padding-left: 18px;
+}
+
+.close-x {
+	float: right;
+	padding-right: 18px;
+}
+
+.close-x a {
+	/*text-decoration: none;*/
+
+    width: 20px;
+    text-decoration: none;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.dialogs-content {
+	margin-left: 48px;
+}
+
+.dialogs-content .content-tips {
+	height: 60px;
+	line-height: 60px;
+}
+
+.server-style p,
+.pay-style p,
+.order-total {
+	font-size: 14px;
+	clear: both;
+}
+
+.server-style p,
+.pay-style p {
+	margin-bottom: 12px;
+}
+
+.huiyuan-box {
+	width: 620px;
+	padding-left: 0;
+}
+
+.huiyuan-box ul {
+	padding-left: 0;
+}
+
+.huiyuan-box .huiyuan-item {
+	width: 130px;
+	height: auto;
+	float: left;
+	list-style: none;
+	border: 1px solid #acb7c0;
+	margin-right: 18px;
+	background: #fff;
+	border-radius: 3px;
+}
+
+.server-style .huiyuan-item a,
+.pay-style .huiyuan-item a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #1a1a1a;
+}
+
+.server-style .huiyuan-item a:hover,
+.pay-style .huiyuan-item a:hover {
+	background-color: #539bfa;
+	color: white;
+}
+
+.huiyuan-box .active a {
+	background-color: #539bfa;
+	color: white;
+}
+
+.server-style .huiyuan-item img {
+	display: block;
+	margin: 0 auto;
+	padding: 6px 0;
+}
+
+.server-style .huiyuan-item span {
+	font-size: 10px;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+
+.pay-style {
+	margin-top: 100px;
+}
+
+.pay-style .huiyuan-item {
+	line-height: 60px;
+	border-radius: 3px;
+}
+
+.pay-style .huiyuan-item a {
+	margin: 0 auto;
+}
+
+.pay-style .huiyuan-item span {
+	font-size: 14px;
+	padding: 0 2px;
+}
+
+.pay-style .huiyuan-item img {
+	vertical-align: middle;
+	margin-left: 28px;
+}
+
+.order-total {
+	height: 90px;
+	width: 576px;
+	border: 1px solid #999999;
+	margin-top: 100px;
+}
+
+.order-total p {
+	/*float: left;*/
+	color: #666;
+	padding: 6px 8px;
+	line-height: 1.6;
+}
+
+.order-total p:last-child {
+    line-height: 1;
+    float: right;
+}
+
+.order-total span {
+	font-size: 18px;
+	color: red;
+}
+
+.dialogs-foot {
+	position: relative;
+}
+
+.dialogs-foot button {
+	width: 190px;
+	height: 40px;
+	margin-top: 14px;
+	position: absolute;
+	left: 50%;
+	margin-left: -95px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #539bfa;
+	border-radius: 3px;
+	border-color: transparent;
+	cursor: pointer;
+}
+
+#total-money-s,#order-pay-way{
+	font-style: normal;
+}
+
+.weixinpay {
+   width:738px;
+   height:369px;
+   position:fixed;
+   top:50%;
+   left:50%;
+   margin-top:-190px;
+   margin-left:-369px;
+   background:url("/Images/zhifubg.png");
+   background-size:100% 100%;
+   display:none;
+   z-index:11;
+}
+.weixinpay-mask {
+   width:100%;
+   height:100%;
+   position:relative;
+}
+
+.FixedPopupMask {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+    z-index: 10;
+    display: block;
+}

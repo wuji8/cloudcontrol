@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>长城云控</title>
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!--no cache-->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="./Plugins/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./Plugins/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- page specific plugin styles -->
+    <!-- text fonts -->
+    <link rel="stylesheet" href="./Plugins/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="./Plugins/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="./Plugins/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+    <link rel="stylesheet" href="./Plugins/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="./Plugins/css/ace-rtl.min.css" />
+
+    <!--common css-->
+    <link rel="stylesheet" href="./Content/myStyleSheet.css" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="./Plugins/css/ace-ie.min.css" />
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+    <script src="./Plugins/js/ace-extra.min.js"></script>
+
+    <!--[if !IE]> -->
+    <script src="./Plugins/js/jquery-2.1.4.min.js"></script>
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="./Plugins/js/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="./Plugins/js/html5shiv.min.js"></script>
+    <script src="./Plugins/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="no-skin">
+
+
+
+<!--Top nav-->
+<!--<div id="navbar" class="navbar navbar-default ace-save-state">-->
+    <!--<div class="navbar-container ace-save-state" id="navbar-container">-->
+        <!--<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">-->
+            <!--<span class="sr-only">Toggle sidebar</span>-->
+
+            <!--<span class="icon-bar"></span>-->
+
+            <!--<span class="icon-bar"></span>-->
+
+            <!--<span class="icon-bar"></span>-->
+        <!--</button>-->
+
+        <!--<div class="navbar-header pull-left">-->
+            <!--<a href="" class="navbar-brand">-->
+                <!--<small>-->
+                    <!--&lt;!&ndash;<img src="./Images/logo.png" alt="Logo" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;<i class="fa fa-leaf"></i>&ndash;&gt;-->
+                    <!--长城云控-->
+                <!--</small>-->
+            <!--</a>-->
+            <!--<span style="font-size: 20px; color: #fff; line-height:40px;">CCID：<span id="ccid">104066</span></span>-->
+        <!--</div>-->
+
+        <!--<div class="navbar-buttons navbar-header pull-right" role="navigation">-->
+            <!--<ul class="nav ace-nav">-->
+                <!--<li class="vipimg"><a href="#modal-form" role="button" class="blue" data-toggle="modal" style="background:none;"><img src="./Images/isvip.png" alt="VIP" /></a></li>-->
+                <!--<li class="light-blue dropdown-modal" style="border-left: none;">-->
+                    <!--<a data-toggle="dropdown" href="#" class="dropdown-toggle">-->
+                        <!--<img class="nav-user-photo" src="./Images/user.jpg" alt="Jason's Photo">-->
+                        <!--<span class="user-info">-->
+                            <!--<small>欢迎您,</small>-->
+                            <!--<em style="font-style: normal;">ciscovlan</em>-->
+                        <!--</span>-->
+
+                        <!--<i class="ace-icon fa fa-caret-down"></i>-->
+                    <!--</a>-->
+
+                    <!--<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">-->
+                        <!--&lt;!&ndash;<li>-->
+                            <!--<a href="#">-->
+                                <!--<i class="ace-icon fa fa-cog"></i>-->
+                                <!--设置-->
+                            <!--</a>-->
+                        <!--</li>-->
+
+                        <!--<li>-->
+                            <!--<a href="#">-->
+                                <!--<i class="ace-icon fa fa-user"></i>-->
+                                <!--个人-->
+                            <!--</a>-->
+                        <!--</li>&ndash;&gt;-->
+
+                        <!--<li class="divider"></li>-->
+
+                        <!--<li>-->
+                            <!--<a href="">-->
+                                <!--<i class="ace-icon fa fa-power-off"></i>-->
+                                <!--退出-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>&lt;!&ndash; /.navbar-container &ndash;&gt;-->
+<!--</div>-->
+<!-- /.Top nav end-->
+
+<script type="text/javascript">
+    $(function () {
+        if ("True" == "False") {
+            $("#modal-form").modal('show');
+
+            $(document).on('click', ':not(.btn-buy)', function () {
+                $("#modal-form").modal('show');
+                return;
+            })
+        }
+    })
+</script>
+
+<div class="main-container ace-save-state" id="main-container">
+
+   <!--  <div id="sidebar" class="sidebar responsive ace-save-state">
+        <script type="text/javascript">
+            try { ace.settings.loadState('sidebar') } catch (e) { }
+        </script>
+
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="menu-icon fa fa-tachometer"></i>
+                </button>
+    
+                <button class="btn btn-info">
+                    <i class="menu-icon fa fa-list-alt"></i>
+                </button>
+    
+                <button class="btn btn-warning">
+                    <i class="menu-icon fa fa-calendar"></i>
+                </button>
+    
+                <button class="btn btn-danger">
+                    <i class="menu-icon fa fa-pencil-square-o"></i>
+                </button>
+            </div>
+    
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+    
+                <span class="btn btn-info"></span>
+    
+                <span class="btn btn-warning"></span>
+    
+                <span class="btn btn-danger"></span>
+            </div>
+        </div>--><!-- /.sidebar-shortcuts
+
+        <ul class="nav nav-list">
+            <li class="">
+                <a href="./yunkong.html">
+                    <i class="menu-icon fa fa-tachometer"></i>
+                    <span class="menu-text"> 云控台 </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="./datacenter.html">
+                    <i class="menu-icon fa fa-list-alt"></i>
+                    <span class="menu-text"> 数据中心 </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="./loglists.html">
+                    <i class="menu-icon fa fa-calendar"></i>
+
+                    <span class="menu-text">
+                    数据日志
+                </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+        </ul>/.nav-list
+
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+ -->
+
+
+
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="#">主页</a>
+                    </li>
+                    <li class="active">日志列表</li>
+                </ul><!-- /.breadcrumb -->
+            </div>
+            <div class="page-content">
+                <div class="page-header">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="">项目</label>
+                            <select class="form-control" id="select-project">
+
+                            </select>
+                        </div>
+                        <!--<div class="form-group">
+                            <label for="deviceid">设备号</label>
+                            <input type="text" class="form-control" id="input-udid" placeholder="">
+                        </div>-->
+                        <div class="form-group">
+                            <label for="">日志类型</label>
+                            <select class="form-control" id="select-type">
+                                <option value=" ">默认</option>
+                                <option value="1,2,3,5">系统日志</option>
+                                <option value="4">任务日志</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-info btn-sm btn-search">搜索</button>
+                    </form>
+                </div><!-- /.page-header -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <!--<th><input type="checkbox" name="checkboxAll" id="checkboxAll" value="" /></th>-->
+                                    <th>序号</th>
+                                    <th>时间</th>
+
+                                    <th>日志内容</th>
+                                </tr>
+                                </thead>
+                                <tbody class="content-box">
+
+                                </tbody>
+                            </table>
+                            <!-- click load-->
+                            <p><button class="btn btn-white btn-default btn-block btn-loadmore">点击加载更多...</button></p>
+                            <!-- /.click load-->
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    <script type="text/javascript" src="./Scripts/logLists.js"></script>
+
+    <!--footer-->
+    <!-- <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content" style="padding: 0;font-size: 12px;">
+            <span class="bigger-120">
+                
+                长城云控 &copy; 2018-2020
+            </span>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a> -->
+    <!-- /.footer-->
+
+</div>
+
+<!--buy modal-->
+
+
+
+<!--buy modal-->
+<style type="text/css">
+    .paystyle{
+        width: 20px;
+        display: inline-block;
+        margin: 0 3px 0 6px;
+    }
+    .paystylel{
+        width: 16px;
+    }
+
+</style>
+<div id="modal-form" class="modal in" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="blue bigger">开通服务</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 widget-container-col ui-sortable" id="widget-container-col-10">
+                        <div class="widget-box ui-sortable-handle" id="widget-box-10">
+                            <div class="widget-header widget-header-small">
+                                <h5 class="widget-title smaller">选择套餐</h5>
+
+                                <div class="widget-toolbar no-border">
+                                    <ul class="nav nav-tabs buy-type" id="myTab">
+                                        <li class="active" data-sid="1">
+                                            <a data-toggle="tab" href="#yuecard" aria-expanded="false">软猫云控会员</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main padding-6">
+                                    <div class="tab-content">
+
+
+
+                                        <ul id="yuecard" class="list-unstyled tab-pane active">
+                                            <li class="price">
+                                                <i class="glyphicon glyphicon-yen red"></i>
+                                                <span><b>0.01</b></span>
+                                            </li>
+                                            <li class="descript">
+                                                <i class="ace-icon fa fa-check green"></i>
+                                                <span>软猫云控会员</span>
+                                            </li>
+                                        </ul>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--支付方式选项-->
+                    <div class="col-sm-12 widget-container-col ui-sortable" id="widget-container-col-10">
+                        <div class="widget-box ui-sortable-handle" id="widget-box-10">
+                            <div class="widget-header widget-header-small">
+                                <h5 class="widget-title smaller">选择支付方式</h5>
+                            </div>
+
+                            <div class="widget-body">
+                                <div class="widget-main padding-6">
+                                    <div class="control-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input name="form-field-radio" type="radio" class="ace pay-type" value="0" checked>
+                                                <span class="lbl"><img src="./Images/zhifubao.png" class="paystyle paystylel" alt="支付宝" />支付宝</span>
+                                            </label>
+                                        </div>
+                                        <!--<div class="radio">
+                                            <label>
+                                                <input name="form-field-radio" type="radio" class="ace pay-type" value="1">
+                                                <span class="lbl"><img src="./Images/weixin.png" class="paystyle" alt="微信" />微信</span>
+                                            </label>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    取消
+                </button>
+
+                <button class="btn btn-sm btn-primary btn-buy">
+                    <i class="ace-icon fa fa-check"></i>
+                    购买
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal end-->
+
+
+<script type="text/javascript" src="./Scripts/buymodal.js"></script>
+<!--modal end-->
+
+<!--tips modal-->
+<div class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="smallModal">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <p class="tip-content"></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--/.modal end-->
+<!--tips has button modal-->
+<div class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="smallModalClick" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mySmallModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <p class="tip-content"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary btn-xs btn-queding">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--/.modal end-->
+
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='./Plugins/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="./Plugins/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<!--[if lte IE 8]>
+<script src="./Plugins/js/excanvas.min.js"></script>
+<![endif]-->
+<script src="./Plugins/js/jquery-ui.custom.min.js"></script>
+<script src="./Plugins/js/jquery.ui.touch-punch.min.js"></script>
+
+<!-- ace scripts -->
+<script src="./Plugins/js/ace-elements.min.js"></script>
+<script src="./Plugins/js/ace.min.js"></script>
+
+<!--common JS-->
+<script type="text/javascript">var token = 'DD5F8707156D7426_3040_54206B10DECF4B2D_1542209229994';</script>
+<script type="text/javascript" src="./Scripts/common.js"></script>
+</body>
+
+</html>

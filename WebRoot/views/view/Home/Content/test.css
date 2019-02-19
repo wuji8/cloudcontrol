@@ -1,0 +1,20 @@
+﻿.table-devices .panel{
+    margin-bottom: 0px;
+}
+.table-devices .panel-body{
+    padding: 0px;
+}
+.table-task {
+    table-layout: fixed;
+}
+
+.table-task tr td:nth-child(2) {
+    width: 200px !important;
+    word-wrap: break-word;
+}
+.handleRemark .btn{
+    margin-left: 8px;
+}
+.handleRemark .btn-cancel{
+    display: none;
+}

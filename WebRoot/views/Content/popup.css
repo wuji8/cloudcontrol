@@ -1,0 +1,27 @@
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,div{margin:0;padding:0}
+/*body,button,input,select,textarea{font:12px/1.5 tahoma,\5b8b\4f53}*/
+h1,h2,h3,h4,h5,h6{font-size:100%}address,cite,dfn,em,var{font-style:normal}
+small{font-size:12px}
+ul,ol{list-style:none}
+a:hover{color:#f60;text-decoration:none}
+a:focus{outline:none;-moz-outline:none}
+img{ border:0;}
+
+/* 普通信息提示层 */
+.popupLayer{position:relative;text-align:center}
+.popupCon:after, .popupLayerbox:after {content:'\0020';display:block;height:0;clear:both;}
+.popupCon, .popupLayerbox{ *zoom:1;} 
+.popupBox{background:url(./img/tip/g_bg_center.png) repeat-x;}
+.g_left,.g_right{position:absolute;overflow:hidden;width:7px; }
+.g_left{background:url(./img/tip/g_l.png) no-repeat; left:-7px;top:0px;height:56px}
+.g_right{background:url(./img/tip/g_r.png) no-repeat; right:-7px; top:0px;height:56px}
+.popupLayerbox{ height:32px; line-height:32px;padding:11px 5px 11px 10px;}
+.popupLayerbox .g_ok,.popupLayerbox .g_error,.popupLayerbox .g_sigh,.popupLayerbox .g_query{ display:inline-block;font-weight:bold;font-size:14px;color:#606060;background-image:url("./img/tip/g_icon.png");_background-image:url("../img/tip/g_icon.png");background-repeat:no-repeat; padding-left:36px;}
+.popupLayerbox .g_ok{background-position:0 0}
+.popupLayerbox .g_error{background-position:0 -32px}
+.popupLayerbox .g_sigh{background-position:0 -64px}
+.popupLayerbox .g_query{background-position:0 -97px}
+.popupLayerbox .g_integral{color:#666;display:inline-block}
+.popupLayerbox .g_integral strong{font-size:16px;color:#f60;margin:0 4px}
+.popupLayerbox .feedDialogBox{text-align:center}
+.popupLayerbox .feedDialogBox span{font-size:14px;color:#666;font-weight:bold}

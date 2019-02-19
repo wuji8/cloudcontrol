@@ -1,0 +1,140 @@
+﻿
+.content-top {
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 16px;
+    min-width: 800px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0px;
+}
+
+    .content-top a {
+        color: #528FF7;
+        cursor: pointer;
+    }
+
+.table-box {
+    width: 100%;
+    min-width: 800px;
+    overflow: hidden;
+    padding: 38px 16px 0px 16px;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.inner-table {
+    border: 1px solid #E4E4E4;
+    width: 100%;
+    border-radius: 10px;
+    background: #ffffff;
+    height: auto;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+.table-head {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    font-size: 16px;
+    color: #5792F7;
+    position: relative;
+}
+
+    .table-head .login-box {
+        position: absolute;
+        top: 50px;
+        left: 166px;
+        width: 450px;
+        height: auto;
+        border: 1px solid #CECECE;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #CECECE;
+        padding: 0px 10px 10px 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        display: none;
+        z-index: 1;
+    }
+
+        .table-head .login-box .login-box-title {
+            height: 27px;
+            width: 200px;
+            line-height: 27px;
+            font-size: 14px;
+            color: #000000;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .table-head .login-box .login-box-x {
+            width: 15px;
+            height: 27px;
+            float: right;
+            line-height: 27px;
+            font-size: 21px;
+            color: #9B9B9B;
+            cursor: pointer;
+        }
+
+        .table-head .login-box table {
+            width: 100%;
+            background: #F9F9F9;
+        }
+
+            .table-head .login-box table tr {
+                height: 40px;
+                line-height: normal;
+                font-size: 12px;
+                color: #000000;
+                border: 1px solid #E4E4E4;
+            }
+
+            .table-head .login-box table th, td {
+                font-weight: normal;
+            }
+
+    .table-head .more {
+        color: #F57937;
+        margin-left: 42px;
+        font-size: 12px;
+    }
+
+    .table-head .sanjiao {
+        position: absolute;
+        top: 14px;
+        left: 172px;
+        width: 40px;
+        height: 20px;
+        display: none;
+        z-index: 2;
+    }
+
+        .table-head .sanjiao img {
+            width: 100%;
+            height: 100%;
+        }
+.inner-table .detail-title {
+   width:100%;
+   height:auto;
+   padding:10px 15px 10px 15px;
+   background:#f6faff;
+   box-sizing:border-box;
+   border-bottom:1px solid #E4E4E4;
+   border-top:1px solid #E4E4E4;
+}
+.inner-table .detail-content{
+   width:100%;
+   height:auto;
+   padding:15px;
+   background:#ffffff;
+   box-sizing:border-box;
+}
+

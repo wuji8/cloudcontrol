@@ -1,0 +1,304 @@
+
+<link href="../../Content/View/CreateDeveloperApi.css" rel="stylesheet" />
+<script src="../../Scripts/View/CreateDeveloperApi.js"></script>
+
+<div class="table-box">
+    <div class="position-box">
+        <p>位置：<a href="">云控储存</a></p>
+    </div>
+    <div class="inner-table">
+        <div class="table-head">
+            <p class="top-title">新建API</p>
+        </div>
+        <div class="table-tool">
+            <p class="nice-select-title btn-first">项目</p>
+            <div class="nice-select-box">
+                <div class="nice-select nice-select-blue project-select" name="nice-select" style="width: 180px; background: none;" id="pname-box">
+                    <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333" data-str="{{CurrentProjectID}}" id="InputProjectName">
+                    <ul>
+                        <li ng-repeat="i in cloudprojectdata" data-value="{{i.ProjectID}}">{{i.ProjectName}}</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="nice-select-title btn-first">&nbsp;&nbsp;&nbsp;&nbsp;数据表</p>
+            <div class="nice-select-box">
+                <div class="nice-select project-select" style="width: 100px; background: #fff; border: none; padding: 0;">
+                    <select class="ui-select" id="datatable-select" style="width: 100%; height: 100%;">
+                        <option ng-repeat="i in userTableList" value="{{i.TableID}}">{{i.TableName}}</option>
+                    </select>
+                </div>
+            </div>
+            <p class="nice-select-title btn-first">&nbsp;&nbsp;&nbsp;&nbsp;API名称</p>
+            <div class="nice-select-box">
+                <div class="nice-select project-select" style="width: 100px; background: #fff; padding: 0;">
+                    <input type="text" value="" style="color: #333333" id="apiName">
+                </div>
+            </div>
+            <p class="nice-select-title btn-first">&nbsp;&nbsp;&nbsp;&nbsp;API类型</p>
+            <div class="nice-select-box">
+                <div class="nice-select project-select" style="width: 100px; background: #fff; border: none; padding: 0;">
+                    <select class="ui-select" id="apitype-select" style="width: 100%; height: 100%;">
+                        <option value="1">查询</option>
+                        <option value="2">删除</option>
+                        <option value="3">增加</option>
+                        <option value="4">修改</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--<div class="table-tool"><p class="nice-select-title btn-first" style="font-size:12px;">注：单选框/下拉框内容用“|”符号分隔，示例：data1|data2|data3，第一个为默认选中值</p></div>-->
+        <div class="table-fields-wrap">
+            <div class="table-fields-box table-fields-box1">
+                <!--查询类api操作-->
+                <table class="table-top table-botm table-dom" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">查询字段：</p>
+
+                            <div class="nice-select-box">
+                                <div class="check-select" name="nice-select" id="search-field-box" style="width: 100%; background:none;border: none;padding: 0;">
+                                    <input type="checkbox" class="checkboxAll" name="checkall" value="" />
+                                    <label for="checkAll">全选</label>
+                                    <span ng-repeat="i in fieldsList">
+                                        <input type="checkbox" class="checkboxOnly" name="{{i.COLUMN_NAME}}" value="{{i.DATA_TYPE}}" id="field{{$index}}" />
+                                        <label for="field{{$index}}">{{i.COLUMN_NAME}}</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table-top table-botm" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">查询条数：</p>
+                            <div class="nice-select-box">
+                                <div class="nice-select search-number-box" name="nice-select" id="" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                    <input type="number" name="name" placeholder="输入值" value="" min="1" maxlength="6" class="condition-input number-input" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </table>
+                    <table ng-if="lockTime == 1" class="table-top table-botm" border="0">
+                        <tr>
+                            <td class="right-btn-group">
+                                <p class="nice-select-title title-b">数据每次查询后的锁定时长(秒)：</p>
+                                <div class="nice-select-box">
+                                    <div class="nice-select search-number-box" name="nice-select" id="" style="width: 40px; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                        <input type="number" name="name" placeholder="输入值" value="0" min="0" maxlength="100" class="condition-input time-input" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table-top table-botm table-dom" border="0">
+                        <tr>
+                            <td class="right-btn-group">
+                                <p class="nice-select-title title-b">查询条件：</p>
+                                <div class="nice-select-box">
+                                    <div class="nice-select search-condition-box" name="nice-select" id="search-condition-box" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                        <select class="ui-select condition-field" style="width: 80px;height: 100%;">
+                                            <option ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                        </select>
+                                        <select class="ui-select condition-symbol" style="width: 80px; height: 100%;">
+                                            <option class="hasif" value=">">></option>
+                                            <option class="hasif" value="<"><</option>
+                                            <option value="=">=</option>
+                                            <option class="hasif" value=">=">>=</option>
+                                            <option class="hasif" value="<="><=</option>
+                                            <option value="!=">!=</option>
+                                        </select>
+                                        <select class="ui-select condition-by" style="width: 80px; height: 100%;">
+                                            <!--<option value="1">自定义值</option>-->
+                                            <option value="2">自定义参数</option>
+                                        </select>
+                                        <input type="text" name="name" placeholder="输入值" readonly value="{{firstcolname}}" class="condition-input" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="div-empty"></tr>
+                    </table>
+                    <div class="Specifications-bottom">
+                        <span style="cursor: pointer;margin-left: 15px;" id="tianjia" ng-click="addData()"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;vertical-align: middle;">添加条件</span>
+                    </div>
+</div>  <!--查询类api结束-->
+            <div class="table-fields-box table-fields-box2"> 
+                <!--删除类api操作-->
+                <table class="table-top table-botm table-dom-del" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <!--<p class="nice-select-title title-b">删除字段：</p>-->
+
+                            <!--<div class="nice-select-box">
+                                <div class="check-select" name="nice-select" id="search-field-box" style="width: 100%; background:none;border: none;padding: 0;">
+                                    <span ng-repeat="i in fieldsList">
+                                        <input type="checkbox" name="{{i.COLUMN_NAME}}" value="{{i.DATA_TYPE}}" id="field{{$index}}" />
+                                        <label for="field{{$index}}">{{i.COLUMN_NAME}}</label>
+                                    </span>
+                                </div>
+                            </div>-->
+                        </td>
+                    </tr>
+                </table>
+                <table class="table-top table-botm table-dom-del" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">删除条件：</p>
+                            <div class="nice-select-box">
+                                <div class="nice-select search-condition-box" name="nice-select" id="search-condition-box" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                    <select class="ui-select condition-field" style="width: 80px;height: 100%;">
+                                        <option ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                    </select>
+                                    <select class="ui-select condition-symbol" style="width: 80px; height: 100%;">
+                                        <option class="hasif" value=">">></option>
+                                        <option class="hasif" value="<"><</option>
+                                        <option value="=">=</option>
+                                        <option class="hasif" value=">=">>=</option>
+                                        <option class="hasif" value="<="><=</option>
+                                        <option value="!=">!=</option>
+                                    </select>
+                                    <select class="ui-select condition-by" style="width: 80px; height: 100%;">
+                                        <!--<option value="1">自定义值</option>-->
+                                        <option value="2">自定义参数</option>
+                                    </select>
+                                    <input type="text" name="name" placeholder="输入值" value="{{firstcolname}}" readonly class="condition-input" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="div-empty-del"></tr>
+                </table>
+                <div class="Specifications-bottom">
+                    <span style="cursor: pointer;margin-left: 15px;" id="tianjia1" ng-click="addDataDelete()"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;vertical-align: middle;">添加控件</span>
+                </div>
+            </div> <!--删除类api结束-->
+            <div class="table-fields-box table-fields-box3">
+                <!--增加类api操作-->
+                <table class="table-top table-botm table-dom-only-fields" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">数据唯一字段：</p>
+
+                            <div class="nice-select-box">
+                                <div class="check-select" name="nice-select" id="only-field-box" style="width: 100%; background:none;border: none;padding: 0;">
+                                    <input type="checkbox" class="checkboxAll" name="checkall" value="" />
+                                    <label for="checkAll">全选</label>
+                                    <span ng-repeat="i in fieldsList">
+                                        <input type="checkbox" class="checkboxOnly" name="{{i.COLUMN_NAME}}" value="{{i.DATA_TYPE}}" id="onlyfield{{$index}}" />
+                                        <label for="onlyfield{{$index}}">{{i.COLUMN_NAME}}</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table-top table-botm table-dom-add" border="0">
+                    <tr ng-repeat="i in fieldsList" ng-if="$index > 0">
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">增加字段值：</p>
+                            <div class="nice-select-box">
+                                <div class="nice-select search-condition-box" name="nice-select" id="search-condition-box" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                    <div class="nice-select" name="nice-select" style="width: 80px; background:#fff;margin-top: 0; margin-bottom: 0;box-shadow: none;">
+                                        <input type="text" name="fields" class="add-fileds" readonly value="{{i.COLUMN_NAME}}" data-type="{{i.DATA_TYPE}}" />
+                                    </div>
+                                    <select class="ui-select condition-by" style="width: 80px; height: 100%;">
+                                        <!--<option value="1">自定义值</option>-->
+                                        <option value="2">自定义参数</option>
+                                    </select>
+                                    <input type="text" name="name" placeholder="输入值" value="@Html.Raw("@"){{i.COLUMN_NAME}}" readonly class="condition-input" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div> <!--增加类api结束-->
+            <div class="table-fields-box table-fields-box4">
+            <!--修改类api操作-->
+                <table ng-if="lockTime == 1" class="table-top table-botm" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">数据每次修改后的锁定时长(秒)：</p>
+                            <div class="nice-select-box">
+                                <div class="nice-select search-number-box" name="nice-select" id="" style="width: 40px; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                    <input type="number" name="name" placeholder="输入值" value="0" min="0" maxlength="100" class="condition-input time-input" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table-top table-botm table-dom-modify-field" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">修改字段：</p>
+                            <div class="nice-select-box">
+                                <div class="nice-select search-field-box" name="nice-select" id="" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                    <select class="ui-select condition-field" style="width: 80px;height: 100%;">
+                                        <option ng-if="$index > 0" ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                    </select>
+                                    <select class="ui-select condition-by" style="width: 80px; height: 100%;">
+                                        <!--<option value="1">自定义值</option>-->
+                                        <option value="2">自定义参数</option>
+                                        <option class="selfadd" value="3">自增</option>
+                                        <option class="selfreduce" value="4">自减</option>
+                                    </select>
+                                    <input type="text" name="name" placeholder="输入值" value="{{secondcolname}}" readonly class="condition-input" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="div-empty-modify-field"></tr>
+                </table>
+                <div class="Specifications-bottom">
+                    <span style="cursor: pointer;margin-left: 15px;" id="tianjia2" ng-click="addDataModifyField()"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;vertical-align: middle;">添加字段</span>
+                </div>
+                <table class="table-top table-botm table-dom-modify-condition" border="0">
+                    <tr>
+                        <td class="right-btn-group">
+                            <p class="nice-select-title title-b">修改条件：</p>
+                            <div class="nice-select-box">
+                                <div class="nice-select search-modify-box" name="nice-select" id="" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
+                                    <select class="ui-select condition-field" style="width: 80px;height: 100%;">
+                                        <option ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                    </select>
+                                    <select class="ui-select condition-symbol" style="width: 80px; height: 100%;">
+                                        <option class="hasif" value=">">></option>
+                                        <option class="hasif" value="<"><</option>
+                                        <option value="=">=</option>
+                                        <option class="hasif" value=">=">>=</option>
+                                        <option class="hasif" value="<="><=</option>
+                                        <option value="!=">!=</option>
+                                    </select>
+                                    <select class="ui-select condition-by" style="width: 80px; height: 100%;">
+                                        <!--<option value="1">自定义值</option>-->
+                                        <option value="2">自定义参数</option>
+                                    </select>
+                                    <input type="text" name="name" placeholder="输入值" readonly value="{{firstcolname}}" class="condition-input" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="div-empty-modify-condition"></tr>
+                </table>
+                <div class="Specifications-bottom">
+                    <span style="cursor: pointer;margin-left: 15px;" id="tianjia3" ng-click="addDataModifyCondition()"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;vertical-align: middle;">添加条件</span>
+                </div>
+            </div> <!--修改类api结束-->
+        </div>
+        <div class="add-box">
+            <p style="text-align: center;"><button class="search-btn" ng-click="submitData($event)">提交</button></p>
+        </div>
+
+        <div class="table-bottom2" id="table-bottom2">
+            <img src="../../Images/tan.png" alt="" /><span id="bottom-tip2"></span>
+        </div>
+
+        <div class="FixedPopupMask" style="display:none;"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var token = '@Commons.CurrentToken()';
+</script>

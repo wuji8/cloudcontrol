@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        .uploadify-queue-item .cancel a {
+            background: url('/Plugin/uploadify/uploadify-cancel.png') 0 0 no-repeat;
+            float: right;
+            height: 16px;
+            text-indent: -9999px;
+            width: 16px;
+        }
+    </style>
+    <link href="/Plugin/uploadify/uploadify.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.11.3.js"></script>
+    <script src="/Plugin/uploadify/jquery.uploadify.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#btn_upload').uploadify({
+
+                uploader: 'http://192.168.0.160:26001/api/Project/UploadScriptFile',// 服务器处理地址
+                swf: '/Plugin/uploadify/uploadify.swf',
+                buttonText: "选择文件",                  //按钮文字
+                height: 28,                             //按钮高度
+                width: 104,                              //按钮宽度
+                fileTypeExts: "*.exe;*.zip;*.lua;*.e;*.pkg;*.apk,*.mq,*.e2,*.se,*.xxt",           //允许的文件类型
+                fileTypeDesc: "请选择图片文件",           //文件说明   
+                formData: { "token": "AAAAAAAAAAAAAAAAAAA", "projectid": 52, "version": 1.001 }, //提交给服务器端的参数
+                onUploadSuccess: function (file, data, response) {   //一个文件上传成功后的响应事件处理
+                    var data = $.parseJSON(data);
+                    alert(data.message);
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server" style="width:104px;height:28px">
+        <div style="width:50px;height:100px">
+            <span style="width:100%;height:100%" id="btn_upload" ></span>
+        </div>
+    </form>
+</body>
+</html>

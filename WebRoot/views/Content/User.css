@@ -1,0 +1,46 @@
+﻿
+
+@media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0){
+.myInfo{height:133px}} /*opera css hack */
+.upimg img{vertical-align:bottom}
+.upimg{float:left}
+.upimgbox{overflow:hidden;border:5px solid #fff;box-shadow:1px 1px 3px #ccc;border-radius:5px;margin-bottom:8px}
+.upsm{text-align:center;margin-bottom:20px}
+.upimg p{font-size:12px;color:#999;text-align:center}
+.upbig{margin-right:60px}
+.upPhoto{width:400px;}
+.upPhoto,.upPhotolist{float:left}
+.upcon{width:300px;height:300px;background:url(/Content/img/upload.png) no-repeat;margin-bottom:40px}
+.upPhoto{margin-right:50px;position:relative}
+.upPhoto-bg{position:absolute;left:-85px;top:-44px;z-index:-1;width:450px;height:450px; background:#FFFEF8;border-radius:10px;box-shadow: 0 0 20px #E3DDCE;}
+.phototxt{font-size:14px;padding:190px 0 0 0;color:#fff;text-align:center}
+.upfile{position:relative;}
+.upimgbtn{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9',endColorstr='#eeeeee');
+		  background:-webkit-gradient(linear, left top, left bottom, from(#f9f9f9),to(#eeeeee));
+          background:-moz-linear-gradient(top,#f9f9f9,#eeeeee);*background:#f4f4f4;_background:#f4f4f4;
+		  width:125px;height:40px;line-height:40px;color:#666;border-radius:3px;box-shadow:1px 1px 4px #666;
+		  border:none;cursor:pointer;font:20px 'Microsoft YaHei','SimSun';position:absolute;left:87px;top:5px;z-index:9}
+.filebtn{position:absolute;left:80px;z-index:10;width:140px;padding:20px 0;opacity:0;filter:alpha(opacity=0);height:55px;cursor:pointer;outline:none}
+.up_1{width:180px;height:180px}
+.up_2{width:75px;height:75px}
+.up_3{width:50px;height:50px;margin-left:10px}
+.up_4{width:25px;height:25px;margin-left:22px}
+
+
+.btnyes,.btnno{box-shadow:1px 1px 2px #eee;border-radius:3px;border:none;font:20px 'Microsoft YaHei','SimSun';
+color:#fff;cursor:pointer;width:105px;height:36px;border-bottom:1px solid #ff9b1d;_border-bottom:none}
+.btnyes{background:#ffa921;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab12', endColorstr='#ffa921');
+background: -webkit-gradient(linear, left top, left bottom, from(#ffab12), to(#ffa921));
+background: -moz-linear-gradient(top,#ffab12,#ffa921);*background:#ffa921;_background:#ffa921;margin-right:10px}
+.btnno{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#eeeeee');
+background:-webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#eeeeee));
+background:-moz-linear-gradient(top,#f4f4f4,#eeeeee);*background:#f9f9f9;_background:#f9f9f9;color:#666;border:1px solid #d9d9d9;box-shadow:none}
+@media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0){
+.btnyes{background:#ffbe45}.morebox{background:#f4f4f4}} /*opera css hack */
+.ftadd{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffbe45', endColorstr='#ff9b2e');
+background:-webkit-gradient(linear, left top, left bottom, from(#ffbe45), to(#ff9b2e));
+background:-moz-linear-gradient(top,#ffbe45,#ff9b2e);*background:#ffbe45;_background:#ffbe45}
+.morebox{border-radius:5px;border:1px solid #d4d4d4;text-align:center;border-bottom-width:2px;margin-bottom:50px;
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f4f4f4');
+background:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f4f4f4));
+background:-moz-linear-gradient(top,#ffffff,#f4f4f4);*background:#f4f4f4;_background:#f4f4f4}

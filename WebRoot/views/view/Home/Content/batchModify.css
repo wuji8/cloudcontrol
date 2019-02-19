@@ -1,0 +1,10 @@
+﻿.table-responsive{
+    overflow-x: hidden;
+}
+
+.table-devices .table .thead-box tr th.hidden{
+    display: none !important;
+}
+.table-devices .table .content-box .textarea-box td.hidden{
+    display: none !important;
+}

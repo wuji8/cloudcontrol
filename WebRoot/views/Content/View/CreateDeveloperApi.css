@@ -1,0 +1,347 @@
+﻿.market-container{
+	margin-left: 15px;
+	margin-right: 30px;
+	margin-top: 15px;
+}
+.lfloat{
+	float: left;
+}
+.rfloat{
+	float: right;
+}
+.table-box {
+    width: 100%;
+    min-width: 800px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.position-box p{
+	height: 16px;
+	line-height: 16px;
+	margin-bottom: 8px;
+}
+.position-box a{
+	color: #0d66bf;
+}
+
+.table-bottom2 {
+    height: 30px;
+    width: 280px;
+    color: #000000;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: none;
+}
+.table-bottom2 img {
+    margin-bottom: 2px;
+    margin-right: 5px;
+}
+.table-top {
+	padding-top: 10px;
+    padding-bottom: 10px;
+    /*margin-bottom: 20px;*/
+    width: 100%;
+    min-width: 890px;
+   	border-left: 1px solid #e4e4e4;
+	/*border-top: 1px solid #e4e4e4;*/
+    position: relative;
+    border-radius: 8px;
+}
+.table-top td,.table-top th{
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.table-botm th,.table-botm td{
+	padding-top: 10px;
+	padding-bottom: 10px !important;
+	text-align: center;
+}
+.table-top .last-td{
+	border-left: none;
+}
+.nice-select-title{
+	color: #3175fe;
+    float: left;
+    margin-top: 18px;
+    width: auto;
+    height: 22px;
+    line-height: 15px;
+    font-size: 16px;
+}
+.nice-select {
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 6px;
+}
+.nice-select-nosanjiao{
+	background: none;
+}
+.title-b{
+	color: #000;
+	font-size: 14px;
+	margin-left: 6px;
+}
+.search-btn{
+	width: 100px;
+	height: 30px;
+	background: #2359bb;
+	border-color: #2359bb;
+	color: #fff;
+	border-radius: 5px;
+	margin-top: 9px;
+    margin-bottom: 9px;
+	margin-left: 54px;
+}
+.btn-first{
+	/*border-right: 1px solid #e4e4e4;*/
+}
+
+.left-btn-group{
+	width: 480px;
+}
+
+
+.table-top tr:last-child td{
+	padding-bottom: 0;
+}
+
+
+/*云控新样式*/
+.script-p{
+    margin-top: 10px;
+    line-height: 16px;
+}
+.nice-select-box{
+    float: left;
+}
+.Specifications-bottom{
+    margin-top: 20px;
+}
+
+
+
+.check-select input,.check-select label {
+    display: inline;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: #757575;
+    margin-top: 20px;
+}
+
+.condition-input{
+    display: inline-block !important; 
+    margin-left: 5px; 
+    width: 100px !important; 
+    height: 100% !important;
+    border: 1px solid #a9a9a9 !important;
+    padding-left: 3px;
+}
+
+.table-fields-box{
+    display: none;
+}
+.table-fields-box1{
+    display: block;
+}
+
+
+.table-box {
+    width: 100%;
+    min-width: 1080px;
+    overflow: hidden;
+    padding: 38px 16px 0px 16px;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.inner-table {
+    border: 1px solid #E4E4E4;
+    width: 100%;
+    border-radius: 10px;
+    background: #ffffff;
+    height: auto;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+.table-head {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    border-bottom: 1px solid #E4E4E4;
+    font-size: 16px;
+    color: #5792F7;
+    position: relative;
+}
+
+.table-tool {
+    height: 50px;
+    padding-left: 30px;
+    border-bottom: 1px solid #E4E4E4;
+    color: #5792F7;
+    position: relative;
+}
+
+
+    .table-head .login-box {
+        position: absolute;
+        top: 50px;
+        left: 166px;
+        width: 450px;
+        height: auto;
+        border: 1px solid #CECECE;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #CECECE;
+        padding: 0px 10px 10px 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        display: none;
+        z-index: 1;
+    }
+
+        .table-head .login-box .login-box-title {
+            height: 27px;
+            width: 200px;
+            line-height: 27px;
+            font-size: 14px;
+            color: #000000;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .table-head .login-box .login-box-x {
+            width: 15px;
+            height: 27px;
+            float: right;
+            line-height: 27px;
+            font-size: 21px;
+            color: #9B9B9B;
+            cursor: pointer;
+        }
+
+        .table-head .login-box table {
+            width: 100%;
+            background: #F9F9F9;
+        }
+
+            .table-head .login-box table tr {
+                height: 40px;
+                line-height: normal;
+                font-size: 12px;
+                color: #000000;
+                border: 1px solid #E4E4E4;
+            }
+
+            .table-head .login-box table th, td {
+                font-weight: normal;
+            }
+
+    .table-head .more {
+        color: #F57937;
+        margin-left: 42px;
+        font-size: 12px;
+    }
+
+    .table-head .sanjiao {
+        position: absolute;
+        top: 14px;
+        left: 172px;
+        width: 40px;
+        height: 20px;
+        display: none;
+        z-index: 2;
+    }
+
+        .table-head .sanjiao img {
+            width: 100%;
+            height: 100%;
+        }
+
+.table {
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+    .table .th {
+        background: #F6FAFF;
+    }
+
+    .table tr {
+        text-align: center;
+        border-bottom: 1px solid #E4E4E4;
+        height: 30px;
+    }
+
+        .table tr th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .table tr td {
+            width: 125px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+    .table .check {
+        float: left;
+        margin-left: 15px;
+        margin-top: 3px;
+    }
+
+    .table tr .detail {
+        width: 60px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        cursor: pointer;
+        color: #ffffff;
+        background: #508EF8;
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+.table-bottom {
+    height: 30px;
+    width: 280px;
+    border: 1px solid #B5BFC7;
+    color: #B4BEC7;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    margin: 10px auto;
+}
+.table-bottom2 {
+    height: 30px;
+    width: 280px;
+    color: #000000;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    margin: 10px auto;
+    display:none;
+}
+    .table-bottom2 img {
+       margin-bottom:2px;
+       margin-right:5px;
+    }
+.top-title {
+    width: 72px;
+    height: 100%;
+    float: left;
+}

@@ -1,0 +1,24 @@
+﻿/**
+    自定义通用css*/
+.tisi{
+    color: #ff0000 !important;
+    font-size: 12px;
+}
+
+.i-rotate{
+    animation: rotating 0.7s linear infinite;
+}
+
+.geetest_wind {
+    width: 291px !important;
+}
+
+.my-btn-g .btn{
+
+}
+
+
+@keyframes rotating{
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
+}

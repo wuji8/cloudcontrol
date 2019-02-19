@@ -1,0 +1,313 @@
+﻿html,body{
+	width: 100%;
+	height: 100%;
+	background:url("../../Images/bg.jpg");
+	background-size: cover;
+	background-repeat:no-repeat ;
+}
+.content{
+	padding-top: 58px;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;	
+	position: relative;
+    overflow: hidden;
+}
+.content .IndexTop{
+	height: 58px;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	min-width: 1000px;
+}
+.content .IndexTop .IndexTop-img{
+	float: left;
+	width: 200px;
+	height: 58px;
+	cursor: pointer;
+}
+.content .IndexTop .IndexTop-img img{
+	width: 100%;;height: 100%;cursor: pointer;
+}
+.content .IndexTop .IndexTop-title{
+	float: left;
+	width: auto;
+	height: 58px;
+	line-height: 58px;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: bold;
+}
+.content .IndexTop .IndexTop-account{
+	float: right;
+	width: auto;	
+	height: 58px;
+	line-height: 58px;
+	font-size: 12px;
+	color: #ffffff;
+    cursor:pointer;
+    position:relative;
+}
+    .content .IndexTop .IndexTop-account .Account-hover {
+       position:absolute;
+       top:58px;
+       right:0;
+       background:#ffffff;
+       width:200px;
+       height:110px;
+       box-shadow:-2px 2px 2px #DEDEDE;
+       display:none;
+    }
+        .content .IndexTop .IndexTop-account .Account-hover .Account-hover-detail {
+           width:68px;
+           height:68px;
+           float:left;
+           margin-left:6px;
+        }
+        .content .IndexTop .IndexTop-account .Account-hover .Account-hover-detail .img{
+           width:68px;
+           /*height:42x;*/
+           text-align:center;
+        }
+        .content .IndexTop .IndexTop-account .Account-hover .Account-hover-detail .p{
+           width:68px;
+           height:14px;
+           text-align:center;
+           line-height:26px;
+           color:#000000;
+        }
+        .content .IndexTop .IndexTop-account .Account-hover .button {
+           width:168px;
+           height:30px;
+           line-height:30px;
+           color:#ffffff;
+           text-align:center;
+           border:0;
+           background:#FF5759;
+           border-radius:2px;
+           float:left;
+           margin-left:16px;
+           margin-top:6px;
+           cursor:pointer;
+        }
+.content .IndexTop .IndexTop-account .touxiang{
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: url(/Images/touxiangbg.png);
+	background-size: 100% 100%;
+	float: right;
+	margin-right:10px ;
+	margin-top: 12px;
+}
+.content .IndexTop .IndexTop-account .nickname{
+	font-size: 12px;
+	line-height: 58px;
+	color: #ffffff;
+	float: right;
+	margin-right:20px ;
+	max-width: 120px;
+	display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.content .IndexTop .IndexTop-account .vip-p{
+	font-size: 12px;
+	line-height: 58px;
+	color: #ffffff;
+	float: right;
+	margin-right:20px ;
+	max-width: 120px;
+	display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.content .IndexLeft{
+	height: auto;
+	width: 200px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-top: 58px;
+	box-sizing: border-box;
+	
+}
+.IndexLeftRight{
+	height: 100%;
+	width: 150px;
+	position: absolute;
+	top: 0px;
+	left: 50px;
+	box-sizing: border-box;
+	z-index: 1;
+	background: #ffffff;
+	margin-top: 58px;
+	display: none;
+	padding-bottom: 58px;
+	overflow: hidden;
+}
+.IndexLeftRight .title{
+	height: 40px;
+	line-height: 40px;
+	padding-left: 45px;
+	font-size: 14px;
+	cursor: pointer;
+	position: relative;
+	-moz-user-select: none; /*火狐*/
+    -webkit-user-select: none; /*webkit浏览器*/
+    -ms-user-select: none; /*IE10*/
+    -khtml-user-select: none; /*早期浏览器*/
+    user-select: none;
+    /**/
+	width: 100%;
+}
+.IndexLeftRight .title .sanjiao{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.IndexLeftRight  .title-first{
+	background: #e4e9ec;
+	padding-left: 0px;
+	text-align: center;
+	font-weight: bold;
+}
+.IndexLeftRight  .title-first a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.IndexLeftRight .details{
+	width: 150px;
+	height: 0;
+	overflow: hidden;
+	-moz-user-select: none; /*火狐*/
+    -webkit-user-select: none; /*webkit浏览器*/
+    -ms-user-select: none; /*IE10*/
+    -khtml-user-select: none; /*早期浏览器*/
+    user-select: none;
+}
+.IndexLeftRight .details a{
+	display: block;
+	width: 150px;
+	/*height: 30px;*/
+	padding-left: 45px;
+	font-size: 12px;
+	line-height: 30px;
+	cursor: pointer;	
+}
+.IndexLeftRight .details .details-a:hover{
+	background: #e4e9ec!important;
+}
+.IndexLeftRight .title .details-a:hover{
+	background: #e4e9ec!important;
+}
+.IndexLeftRight .details-icon{
+    height: 12px;
+    width: 12px;
+    vertical-align: middle;
+    line-height: 30px;
+    margin: 0 5px;
+}
+#PersonalCenter-ul .details a,#MarketCenter-ul .details a{
+	display: inline-block;
+}
+.content .IndexLeft .IndexLeft-p{
+	width: 200px;
+	height: 50px;
+	line-height: 50px;
+	color: #ffffff;
+	cursor: pointer;
+}
+.content .IndexLeft .IndexLeft-p a{
+	color: #ffffff;
+}
+.content .IndexLeft .IndexLeft-p:hover{
+	background: #5da8f1!important;
+}
+.content .IndexRight{
+	width: 100%;
+	height: 100%;	
+	padding-left: 200px;
+	box-sizing: border-box;	
+}
+.FixedPopupTransparent{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:58px;
+    left:200px;
+    z-index:10;
+    display:none;
+}
+.FixedPopupMask {
+    width:100%;
+    height:100%;
+    background:#000000;
+    position:fixed;
+    top:0px;
+    left:0px;
+    filter:alpha(opacity=30);   
+    -moz-opacity:0.3;   
+    -khtml-opacity: 0.3;   
+    opacity: 0.3;   
+    z-index:10;
+    display:none;
+}
+.FixedPopup {
+    width:100%;
+    height:100%;
+    background:#000000;
+    position:fixed;
+    top:58px;
+    left:200px;
+    filter:alpha(opacity=30);   
+    -moz-opacity:0.3;   
+    -khtml-opacity: 0.3;   
+    opacity: 0.3;   
+    z-index:11;
+    display:none;
+}
+.FixedPopupLoading {
+    display:block;
+    margin:350px auto;
+}
+.content .IndexRight .view{
+	width: 100%;
+	height: 100%;
+	background: #f8f8f8;
+	overflow: auto;
+}
+.rotate{
+    transform-origin:center center; 
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: transform 0.25s; 
+    -moz-transition: -moz-transform 0.25s; 
+    -moz-transition: -moz-transform 0.25s; 
+    -o-transition: -o-transform 0.25s; 
+    -ms-transition: -ms-transform 0.25s; 
+}
+.rotate1{
+    transform-origin:center center;
+    transform: rotate(0deg); //返回原点
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transition: transform 0.25s; 
+    -moz-transition: -moz-transform 0.25s; 
+    -moz-transition: -moz-transform 0.25s; 
+    -o-transition: -o-transform 0.25s; 
+    -ms-transition: -ms-transform 0.25s; 
+}
+
+
+.common-mask{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background: rgba(0,0,0,.3);
+	z-index: 999;
+}

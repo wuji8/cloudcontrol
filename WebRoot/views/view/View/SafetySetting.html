@@ -1,0 +1,295 @@
+<!-- @{
+    Layout = null;
+    ViewBag.CallBack = "ChangePhoto()";
+} -->
+<style>
+    .modal{
+        display: none;
+    }
+</style>
+<link href="../../Content/View/SafetySetting.css" rel="stylesheet" />
+<link href="../../Plugin/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+<div class="Cut-box" id="Cut-box" style="display: none;">
+    @Html.Partial("_Camara")
+</div>
+<div class="FixedPopupMask" style="display: none;"></div>
+<div class="personal-content">
+    <div class="head-title">
+        <p>
+            <img src="../../Images/safety.png" alt="安全设置" />
+            <span>账号安全设置</span>
+        </p>
+    </div>
+
+	<div class="table-box">
+	    
+	</div>
+	<div class="table-bottom">
+		<table class="table" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+                    <td class="th">登录密码</td>
+					<td>安全性高的密码可以使帐号更安全。建议您定期更换密码，设置一个包含字母，符号或数字中至少两项且长度超过6位的密码。</td>
+					<td><p><img src="../../Images/safeicon_03.png" alt="" /><span>已设置</span><a id="change-pswd" class="change-a">修改</a></p></td>
+				</tr>
+				<tr>
+                    @if(String.IsNullOrEmpty(ViewBag.Email))
+                    {
+                        <td class="th">绑定邮箱</td>
+                        <td>你未绑定邮箱，请点击设置绑定邮箱。</td>
+                        <td><p><img src="../../Images/safeicon_06.png" alt="" /><span>未设置</span><a id="change-email" class="change-a">设置</a></p></td>
+                    }
+                    else
+                    {
+                        <td class="th">绑定邮箱</td>
+                        <td>你已绑定了<span class="tel">@Commons.MaskEmail(ViewBag.Email)</span>,您的邮箱可以直接登录平台。</td>
+                        <td><p><img src="../../Images/safeicon_03.png" alt="" /><span>已设置</span><a id="change-email" class="change-a">修改</a></p></td>
+                    }
+				</tr>
+				<tr>
+                    @{
+                        if (ViewBag.QuestionID1==0)
+                        {
+                            <td class="th">密保问题</td>
+					        <td>建议您设置三个容易记住，且最不容易被他人获取的问题及答案，更有效保障您的密码安全。</td>
+                            <td><p><img src="../../Images/safeicon_06.png" alt="" /><span>未设置</span><a id="setting-question" class="change-a">设置</a></p></td>
+                        }
+                        else
+                        {
+                            <td class="th">密保问题</td>
+					        <td>建议您设置三个容易记住，且最不容易被他人获取的问题及答案，更有效保障您的密码安全。</td>
+                            <td><p><img src="../../Images/safeicon_03.png" alt="" /><span>已设置</span><a id="change-question" class="change-a">修改</a></p></td>
+                        }
+                    }
+                    
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!--改密码模态框-->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">旧密码:</label>
+                        <input type="password" class="form-control" id="old-pswd">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">新密码:</label>
+                        <input type="password" class="form-control" id="new-pswd">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">确认密码:</label>
+                        <input type="password" class="form-control" id="again-pswd">
+                    </div>
+                    <p class="tip" style="color: red;display: none; text-align: center;"></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submit-pswd">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--绑定邮箱模态框-->
+<div class="modal fade" id="styleModal" tabindex="-1" role="dialog" aria-labelledby="styleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">修改邮箱</h4>
+            </div>
+            <div class="modal-body">
+                <div class="select-box" style="margin-left: 24%;">
+                    <div class="email-box select-hover">
+                        <img src="../../Images/yx.png" alt="邮箱验证" />
+                        <span>邮箱验证</span>
+                    </div>
+                    <div class="question-box">
+                        <img src="../../Images/sz.png" alt="密保问题验证" />
+                        <span>密保问题验证</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="verify-style">下一步</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="verifyEmailModal" tabindex="-1" role="dialog" aria-labelledby="verifyEmailModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">修改邮箱</h4>
+            </div>
+            <div class="modal-body">
+                <p>你已绑定了<span class="tel">@Commons.MaskEmail(ViewBag.Email)</span></p>
+                <form>
+                    <div class="form-group">
+                        <div class="box">
+                            <div class="InputZh InputYx" style="width: 240px;float: left;">
+                                <img src="../../Images/yx.png" alt="">
+                                <input type="text" class="zhm" placeholder="请输入验证码" id="verifyCode" maxlength="6" style="width: 148px;height: 32px; border-radius: 5px;margin-right: 8px;padding-left: 3px;" />
+                            </div>
+                            <input type="button" value="获取验证码" class="Code" id="Code" style="margin-top: 8px;" />
+                        </div>
+                    </div>
+                    <p class="tip" style="color: red;display: none;"></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="verify-email">下一步</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="verifyQuestionModal" tabindex="-1" role="dialog" aria-labelledby="verifyQuestionModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">校验密保</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label" id="question-txt"></label>
+                    <input type="text" class="form-control" id="anwser-txt">
+                </div>
+                <p class="tip" style="color: red;display: none; text-align: center;"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="verify-question">下一步</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newEmailModal" tabindex="-1" role="dialog" aria-labelledby="newEmailModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">修改邮箱</h4>
+            </div>
+            <div class="modal-body">
+                <form style="width: 50%; margin: 0 auto;">
+                    <div class="form-group">
+                        <div class="box">
+                            <div class="InputZh InputYx" style="width: 160px;float: left;">
+                                <input type="email" class="zhm" placeholder="请输入新绑定的邮箱" id="email" style="width: 148px;height: 32px; border-radius: 5px;margin-right: 8px;padding-left: 3px;">
+                            </div>
+                            <input type="button" value="获取验证码" class="Code" id="Code1">
+                        </div>
+                    </div>
+                    <div class="form-group" style="clear: both;">
+                        <input type="text" name="code" placeholder="请输入验证码" value="" id="verify-code" style="width: 148px; height: 32px; border-radius: 5px; margin-right: 8px; padding-left: 3px;" />
+                        <span>输入验证码</span>
+                    </div>
+                    <p class="email-tips" style="color: #b86765;display: none;">请输入有效邮箱号！</p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submit-email">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--绑定密保模态框-->
+<div class="modal fade" id="wayModal" tabindex="-1" role="dialog" aria-labelledby="wayModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">修改密保</h4>
+            </div>
+            <div class="modal-body">
+                <div class="select-box" style="margin-left: 24%;">
+                    <div class="email-box email-box1 select-hover">
+                        <img src="../../Images/yx.png" alt="邮箱验证" />
+                        <span>邮箱验证</span>
+                    </div>
+                    <div class="question-box question-box1">
+                        <img src="../../Images/sz.png" alt="密保问题验证" />
+                        <span>密保问题验证</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="verify-way">下一步</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">设置密保</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">问题一:</label>
+                        <select class="form-control" id="question1">
+                            <option ng-repeat="i in questionData" value="{{i.QuestionID}}">{{i.SafetyQuestion}}</option>
+                        </select>
+                        <label for="recipient-name" class="control-label">答案:</label>
+                        <input type="text" class="form-control" id="answer1">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">问题二:</label>
+                        <select class="form-control" id="question2">
+                            <option ng-repeat="i in questionData" value="{{i.QuestionID}}">{{i.SafetyQuestion}}</option>
+                        </select>
+                        <label for="recipient-name" class="control-label">答案:</label>
+                        <input type="text" class="form-control" id="answer2">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">问题三:</label>
+                        <select class="form-control" id="question3">
+                            <option ng-repeat="i in questionData" value="{{i.QuestionID}}">{{i.SafetyQuestion}}</option>
+                        </select>
+                        <label for="recipient-name" class="control-label">答案:</label>
+                        <input type="text" class="form-control" id="answer3">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submit-question">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function ChangePhoto() {
+        console.log(token);
+        var sessionid = $("#sessionid").val();
+        $.post("/api/Account/ModifyULogo", { token: token, sessionid: sessionid }, function (json) {
+            console.log(json);
+        });
+    }
+</script>
+<script type="text/javascript">var token = '@Commons.CurrentToken()';</script>
+<script src="../../Scripts/View/SafetySetting.js"></script>
+<script src="../../Plugin/bootstrap/bootstrap.min.js"></script>

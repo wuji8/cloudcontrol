@@ -1,0 +1,191 @@
+html,body {
+    width:100%;
+    height:100%;
+    background:url("/Images/login.jpg") no-repeat bottom center;
+    background-size:cover;
+}
+
+
+.RegisterBody{
+	height:100%;
+}
+
+.RegisterBody .bj{
+    height:100%;
+    width:100%;
+}
+.RegisterRight{
+	width:332px;
+	height:430px;
+	position:absolute;
+	left:50%;	
+	top:50%;
+	margin-left:-166px;
+	margin-top:-215px;
+}
+.RegisterSuccess {
+    width:400px;
+	height:137px;
+	position:absolute;
+	left:50%;	
+	top:50%;
+	margin-left:-200px;
+	margin-top:-68.5px;
+    box-shadow: 0px 0px 20px #cccccc;
+}
+.SuccessInner {
+   width:100%;
+   height:100%;
+   position:relative;
+}
+    .SuccessInner p {
+        position:absolute;
+        font-size:12px;
+        left:132px;top:78px;
+    }
+    .RegisterSuccess img {
+       width:100%;
+       height:100%;
+    }
+.RegisterBody .bt{
+	width:230px;
+	height:70px;
+	position:absolute;
+	top:50px;
+	left:50px;
+}
+.RegisterRight h1{
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	color:#000000;
+}
+.RegisterRight .LoginTitle{
+	text-align:center;
+}
+.RegisterRight .InputBox{
+	width:330px;
+	height:400px;
+	box-shadow: 0px 0px 20px #cccccc;
+	background:rgba(255,255,255,0.75);
+}
+.RegisterRight .InputLogin{
+	border:0;
+	background:rgba(255,255,255,0);
+}
+.RegisterRight .InputBox .InputXs{
+	width:280px;
+	height:390px;
+	margin:0 auto;
+	padding-top:10px;
+}
+.RegisterRight .InputBox .InputXs h2{
+	height:30px;
+	color:#000000;
+	font-size:12px;
+	line-height:30px;
+}
+.RegisterRight .InputBox .InputXs .InputZh{
+	width:276px;
+	height:28px;	
+	border:1px solid #D2D2D2;
+	background:#ffffff;
+}
+.RegisterRight .InputBox .InputXs .InputZh img{
+	width:28px;
+	height:28px;
+	float:left;
+}
+.RegisterRight .InputBox .InputXs .InputZh .zhm{
+	height:28px;
+	float:left;
+	width:225px;
+	border:0;
+	padding-left:20px;
+	font-size:12px;	
+	border-radius:3px;	
+}
+.RegisterRight .InputBox .InputXs .InputYx{
+	width:200px;
+	float:left;
+}
+.RegisterRight .InputBox .InputXs .InputYx .zhm{
+	width:150px;
+	
+}
+.RegisterRight .InputBox .InputXs .box{
+	width:100%;
+	height:30px;
+}
+.RegisterRight .InputBox .InputXs .box .Code{
+	width:76px;
+	height:100%;
+	padding:0;
+	background:#1D92EC;
+	font-size:12px;
+	color:#ffffff;
+	border:0;
+	float:left;
+	cursor:pointer;
+}
+.RegisterRight .InputBox .InputXs .button{
+	width:100%;
+	height:30px;
+	font-size:16px;
+	background:#1D92EC;
+	text-align:center;
+	line-height:30px;
+	color:#ffffff;
+	cursor:pointer;
+    border:0;
+	border-radius:3px;
+}
+.RegisterRight .InputBox .InputXs .tisi{
+	height:30px;
+	width:100%;
+	text-align:center;
+	line-height:30px;
+	color:#FF5957;
+}
+.footer{
+	font-size:12px;
+	width:100%;
+	position:absolute;
+	left:0;
+	bottom:20px;
+	color:#ffffff;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	z-index:1;
+}
+
+.BackLogin{
+	position:absolute;
+	top:30px;
+	right:50px;
+	margin-right:5px;
+	font-size:14px;
+	color:#1d93ec;
+}
+.logo{
+	width:200px;
+	height:60px;
+	position:absolute;
+	left:10px;
+	top:10px;
+}
+
+
+
+#tiaozhuan{
+    width: 72px;
+    background: #1D91EC;
+    border-radius: 5px;
+    border-color: #1D91EC;
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -36px;
+}

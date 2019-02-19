@@ -1,0 +1,75 @@
+
+<link href="../../Content/View/CreateDataTable.css" rel="stylesheet" />
+<script src="../../Scripts/View/CreateDataTable.js"></script>
+
+
+<div class="table-box">
+    <div class="position-box">
+        <p>位置：<a href="">云控储存</a></p>
+    </div>
+    <div class="inner-table">
+        <div class="table-head">
+            <p class="top-title">新建数据表</p>
+        </div>
+        <div class="table-tool">
+            <p class="nice-select-title btn-first">数据表名</p>
+            <div class="nice-select-box">
+                <div class="nice-select project-select" style="width: 200px; background: #fff;">
+                    <input type="text" value="" style="color: #333333" id="InputTableName">
+                </div>
+            </div>
+            <p class="nice-select-title btn-first">&nbsp;&nbsp;&nbsp;&nbsp;项目</p>
+            <div class="nice-select-box">
+                <div class="nice-select nice-select-blue project-select" name="nice-select" style="width: 280px;background: none;" id="pname-box">
+                    <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333" data-str="{{CurrentProjectID}}" id="InputProjectName">
+                    <ul>
+                        <li ng-repeat="i in cloudprojectdata" data-value="{{i.ProjectID}}">{{i.ProjectName}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <table class="table-top table-botm table-dom" border="0">
+            <tr>
+                <td class="right-btn-group">
+                    <p class="nice-select-title title-b">列字段</p>
+                    <div class="nice-select-box">
+                        <div class="nice-select" name="nice-select" style="width: 180px; background:#fff;">
+                            <input type="text" value="" placeholder="" maxlength="16" onkeyup="value=value.replace(/[^a-zA-Z0-9_]/g, '')" style="color: #333333" data-str="" class="field-input">
+                        </div>
+                    </div>
+                    <p class="nice-select-title title-b">类型</p>
+                    <div class="nice-select-box">
+                        <div class="nice-select" name="nice-select" style="width: 180px;background:#fff;border:none;padding:0;">
+                            <select class="field-select" style="width: 100%;height: 100%;">
+                                <option value="int">整数类型</option>
+                                <option value="nvarchar(max)">字符串类型</option>
+                                <option value="datetime">时间类型</option>
+                                <option value="decimal">小数类型</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr id="div-empty"></tr>
+        </table>
+
+        <div class="Specifications-bottom">
+            <span style="cursor: pointer;margin-left: 15px;" id="tianjia" ng-click="addData()"><img src="../../Images/add.png" alt="添加" style="padding-right:2px;vertical-align: middle;">添加字段</span>
+        </div>
+        <div class="add-box">
+            <p style="text-align: center;"><button class="search-btn" ng-click="submitData()">提交</button></p>
+        </div>
+
+        <div class="FixedPopupMask" style="display:none;"></div>
+    </div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+    var token = '@Commons.CurrentToken()';
+</script>

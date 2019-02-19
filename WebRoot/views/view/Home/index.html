@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>软猫云控</title>
+
+    <link rel="stylesheet" href="../../Content/Home/animate.css">
+    <link rel="stylesheet" href="../../Content/Home/dialog.css">
+    <link rel="stylesheet" href="../../Content/base.css" />
+    <link rel="stylesheet" href="../../Content/common.css" />
+    <link href="../../Content/View/Datepicker/foundation-datepicker.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../Content/Home/index.css" />
+    <style>
+        #swal2-content ul li{
+            text-align: left;
+        }
+        p{
+            margin:0
+        }
+        html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img, figure {
+    margin: 0;
+    padding: 0;
+}
+#yunkong,#datacenter,#loglists,#PromotoRebate,#DataService,#userCenter{
+  margin:0;
+  font-size:13px
+}
+#yunkong:hover,#datacenter:hover,#loglists:hover,#PromotoRebate:hover,#DataService:hover,#userCenter:hover{
+   text-decoration: none;
+}
+    </style>
+    <script src="../../Scripts/jquery.1.11.3.js"></script>
+    <script src="../../Scripts/Home/index.js"></script>
+    <script src="../../Scripts/common.js"></script>
+</head>
+<body ng-app='routingDemoApp'>
+
+    <div class="content">
+        <!--top区块-->
+        <div class="IndexTop">
+            <div class="IndexTop-img" id="IndexTop-img">
+                <a href="#/">
+                    <img src="../../Images/index.png" alt="" /></a>
+                </div>
+            <div class="IndexTop-title" id="IndexTop-title">
+            </div>
+            <div class="IndexTop-account" id="IndexTop-account">
+                <p class="nickname">
+                  <!--   @ViewBag.UserName -->
+                </p>
+             <!--    <div class="touxiang" style="background: url('http://dev.mall-software.net/@ViewBag.ULogo');background-size: 36px;">
+                </div> -->
+            <!--     @if (ViewBag.IsVIP == true)
+                {
+                    <p class="vip-p" onclick="ShowVip()"><img src="../../Images/isvip.png" alt="" /></p>
+                }
+                else
+                {
+                    <p class="vip-p" onclick="ShowVip()"><img src="../../Images/novip.png" alt="" /></p>
+                } -->
+                <div class="Account-hover" id="Account-hover">
+                    <div class="Account-hover-detail">
+
+                        <a href="#/PersonalCenter">
+                            <!--<div class="img">
+                                <img src="../../Images/ziliao.png" alt="" />
+                            </div>
+                            <p class="p">基本资料</p>-->
+                            <p class="img" id="PersonalCenter-Top">
+                                <img src="../../Images/ziliao.png" alt="个人中心" />
+                                <span class="p" style="display:block;line-height:0;">个人中心</span>
+                            </p>
+                        </a>
+                    </div>
+                    <div class="Account-hover-detail">
+                        <a href="#/SafetySetting">
+                            <p class="img" id="SafetySetting-Top">
+                                <img src="../../Images/anquan.png" alt="安全设置" />
+                                <span class="p" style="display:block;line-height:0;">安全设置</span>
+                            </p>
+                        </a>
+                    </div>
+                    <input type="button" name="name" value="退出登录" class="button" id="SignOut" />
+                </div>
+            </div>
+        </div>
+        <!--中间过度区块-->
+        <ul class="IndexLeftRight" id="AuthService-ul">
+            <li class="title title-first"><a href="#/ServiceOverview" class="details-a details-a-first" id="ServiceOverview">验证服务概况</a></li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="MyProject" />我的项目</li>
+            <li class="details">
+                <a href="#/Project" class="details-a" id="Project">项目</a>
+                <a href="#/AuthCode" class="details-a" id="AuthCode">激活码</a>
+                <a href="#/Device" class="details-a" id="Device">设备列表</a>
+                <a href="#/ProjectLog" class="details-a" id="ProjectLog">项目日志</a>
+                <a href="#/WhiteAndBlackList" class="details-a" id="WhiteAndBlackList">黑白名单</a>
+            </li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="API-example" />API示例</li>
+            <li class="details">
+                <a href="#/API_Interface" class="details-a" id="API_Interface">API接口</a>
+                <a href="#/Sample" class="details-a" id="Sample">示例下载</a>
+            </li>
+        </ul>
+        <!--<ul class="IndexLeftRight" id="LoginVerify-ul">
+            <li class="title title-first"><a href="#/ServiceOverview" class="details-a details-a-first" id="ServiceOverview">验证服务概况</a></li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="MyProject-verify" />我的项目
+            </li>
+            <li class="details">
+                <a href="#/Project" class="details-a" id="Project-verify">项目</a>
+                <a href="#/AuthCode" class="details-a" id="AuthCode-verify">激活码</a>
+                <a href="#/Device" class="details-a" id="Device-verify">用户列表</a>
+                <a href="#/ProjectLog" class="details-a" id="ProjectLog-verify">项目日志</a>
+            </li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="API-example-verify" />API示例
+            </li>
+            <li class="details">
+                <a href="#/API_Interface" class="details-a" id="API_Interface-verify">API接口</a>
+                <a href="#/Sample" class="details-a" id="Sample-verify">示例下载</a>
+            </li>
+        </ul>-->
+        <!--用户登录验证-->
+        <ul class="IndexLeftRight" id="UserLoginVerify-ul">
+            <li class="title title-first"><a href="#/Project?type=1" class="details-a details-a-first">软猫用户登录验证</a></li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="MyProject-verify" />我的项目
+            </li>
+            <li class="details">
+                <a href="#/Project?type=1" class="details-a" id="ProjectVerfiy">项目</a>
+                <a href="#/AuthCode?type=1" class="details-a" id="AuthCodeVerify">激活码</a>
+                <a href="#/Device_verify" class="details-a" id="DeviceVerify">用户列表</a>
+                <a href="#/ProjectLog?type=1" class="details-a" id="ProjectLogVerify">项目日志</a>
+            </li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="API-example-verify" />API示例
+            </li>
+            <li class="details">
+                <a href="#/API_Interface_verify" class="details-a">API接口</a>
+                <!--<a href="#/Sample_verify" class="details-a">示例下载</a>-->
+            </li>
+        </ul>
+        <!--用户登录验证结束-->
+        <ul class="IndexLeftRight" id="API_Database-ul">
+            <li class="title title-first"><a href="#/ServiceOverview" class="details-a details-a-first">待定10</a></li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="MyProject" />待定11</li>
+            <li class="details">
+                <a href="#/Project" class="details-a">待定12</a>
+                <a href="#/AuthCode" class="details-a">待定13</a>
+                <a href="#/Device" class="details-a">待定14</a>
+                <a href="#/ProjectLog" class="details-a">待定15</a>
+            </li>
+            <li class="title click-title">
+                <img src="../../Images/sanjiao.png" alt="" class="sanjiao" id="API-example" />待定16</li>
+            <li class="details">
+                <a href="#/API_Interface" class="details-a">待定17</a>
+                <a href="#/Sample" class="details-a">待定18</a>
+            </li>
+        </ul>
+        <ul class="IndexLeftRight" id="PersonalCenter-ul">
+            <li class="title" style="font-weight: blod;"><span>账号管理</span></li>
+            <li class="details">
+                <a href="#/PersonalCenter" class="details-a" id="PersonalCenter"><img src="../../Images/ren-s.png" alt="个人中心" class="details-icon" /><span>个人中心</span></a>
+                <a href="#/BindAccount" class="details-a" id="BindAccount"><img src="../../Images/pro.png" alt="用户资料" class="details-icon" /><span>用户资料</span></a>
+                <a href="#/SafetySetting" class="details-a" id="SafetySetting"><img src="../../Images/anquan-s.png" alt="安全设置" class="details-icon" /><span>安全设置</span></a>
+            </li>
+        </ul>
+        <ul class="IndexLeftRight" id="MarketCenter-ul">
+            <li class="title" style="font-weight:bold;"><span>营销中心</span></li>
+            <li class="details" style="overflow: visible">
+                <a href="#/MarketCenter" class="details-a" id="MarketCenter"><img src="../../Images/anquan-s.png" alt="平台推广" class="details-icon" /><span>平台推广</span></a>
+                <a href="#/ProjectNeigou" class="details-a" id="ProjectNeigou"><img src="../../Images/ren-s.png" alt="项目内购" class="details-icon" /><span>项目内购</span></a>
+               <!--<a href="#/ProjectManage" class="details-a" id="ProjectManage"><img src="../../Images/project-s.png" alt="项目管理" class="details-icon" /><span>项目管理</span></a>-->
+            </li>
+        </ul>
+
+        <!--左边选项区块-->
+        <div class="IndexLeft">
+            <!--<a href="#/ServiceOverview">
+                <p class="IndexLeft-p" id="AuthService">
+                    <img src="../../Images/1.png" alt="" title="软猫验证授权服务" /><span>软猫验证授权服务</span></p>
+            </a>
+            <a href="#/MarketCenter">
+                <p class="IndexLeft-p" id="MarketCenter-Left">
+                    <img src="../../Images/market_03.png" alt="" title="营销中心" /><span>营销中心</span>
+                </p>
+            </a>-->
+          <!--   <a href="#/">
+                <p class="IndexLeft-p" id="userCenter">
+                    <img src="../../Images/icon_userCenter.png" alt="" title="个人中心" /><span>个人中心</span>
+                </p>
+            </a> -->
+            <a href="#/CloudService">
+                <p class="IndexLeft-p" id="DataService">
+                    <img src="../../Images/2.png" alt="" title="云控储存" /><span>云控储存</span>
+                </p>
+            </a>
+            <!--<a href="#/PromotoRebate">
+                <p class="IndexLeft-p" id="PromotoRebate">
+                    <img src="../../Images/fanli.png" alt="" title="推广返利" /><span>推广返利</span>
+                </p>
+            </a>-->
+            <a href="#/API_Interface">
+                <p class="IndexLeft-p" id="PromotoRebate">
+                    <img src="../../Images/3.png" alt="" title="API示例" /><span>API示例</span>
+                </p>
+            </a>
+            <a href="#/yunkong">
+                <p class="IndexLeft-p" id="yunkong">
+                    <img src="../../Images/3.png" alt="" title="云控台" /><span>云控台</span>
+                </p>
+            </a>
+            <a href="#/datacenter">
+                <p class="IndexLeft-p" id="datacenter">
+                    <img src="../../Images/3.png" alt="" title="数据中心" /><span>数据中心</span>
+                </p>
+            </a>
+            <a href="#/loglists">
+                <p class="IndexLeft-p" id="loglists">
+                    <img src="../../Images/3.png" alt="" title="数据日志" /><span>数据日志</span>
+                </p>
+            </a>
+           <!--<a href="#/ServiceOverview">
+                <p class="IndexLeft-p" id="UserLoginVerify">
+                    <img src="../../Images/3.png" alt="" title="软猫用户登录验证" /><span>软猫用户登录验证</span>
+                </p>
+            </a>-->
+        </div>
+
+        <!--右边主内容区块-->
+        <div class="IndexRight">
+            <div class="FixedPopupTransparent">
+            </div>
+            <!--<div class="FixedPopupMask">
+            </div>-->
+            <div class="FixedPopup">
+                <img src="../../Images/recloading.gif" alt="" class="FixedPopupLoading" />
+            </div>
+            <div ng-view class="view {{ pageClass }}">
+
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- <div class="showvip" style="display: none;">
+        @Html.Action("BuyVIP", "Home")
+    </div> -->
+
+    <script src="../../Scripts/dialog.js"></script>
+    <script src="../../Scripts/angular1.5.8.min.js"></script>
+    <script src="../../Scripts/angular-animate.min.js"></script>
+    <script src="../../Scripts/angular-route.js"></script>
+    <script type="text/javascript" src="../../Plugin/sweet/sweetalert2.all.js"></script>
+    <script type="text/javascript">
+
+
+    //应用路由和控制器
+
+
+    var routingDemoApp = angular.module('routingDemoApp', ['ngRoute', 'ngAnimate']);
+    routingDemoApp.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+        $routeProvider.when('/', {
+            //              templateUrl: '/Home/InnerIndex',
+            templateUrl: '../View/CloudService.html',
+            controller: 'CloudService',
+        })
+        /*  $routeProvider.when('/', {
+            templateUrl: '../View/PersonalCenter.html',
+            controller: 'PersonalCenter',
+        }) */
+        $routeProvider.when('/CloudService', {
+            templateUrl: '../View/CloudService.html',
+            controller: 'CloudService',
+        })
+        $routeProvider.when('/PersonalCenter', {
+            templateUrl: '../View/PersonalCenter.html',
+            controller: 'PersonalCenter',
+        })
+         $routeProvider.when('/BindAccount', {
+            templateUrl: '../View/BindAccount.html',
+            controller: 'BindAccount',
+        })
+        $routeProvider.when('/SafetySetting', {
+            templateUrl: '../View/SafetySetting.html',
+            controller: 'SafetySetting',
+        })
+         $routeProvider.when('/API_Interface', {
+            templateUrl: '../View/API_Interface.html',
+        })
+        $routeProvider.when('/CreateUITable', {
+            templateUrl: '../View/CreateUITable.html',
+            controller: 'CreateUITable',
+        })
+        
+        $routeProvider.when('/CreateDeveloperApi', {
+            templateUrl: '../View/CreateDeveloperApi.html',
+            controller: 'CreateDeveloperAPI',
+        })
+        $routeProvider.when('/CreateDataTable', {
+            templateUrl: '../View/CreateDataTable.html',
+            controller: 'CreateDataTable',
+        })
+         $routeProvider.when('/yunkong', {
+            templateUrl: '../View/yunkong.html',
+        })
+         $routeProvider.when('/datacenter', {
+            templateUrl: '../View/datacenter.html',
+        })
+         $routeProvider.when('/loglists', {
+            templateUrl: '../View/loglists.html',
+        })
+        
+        
+        
+        
+        
+        
+        
+         $routeProvider.when('/DetailDataTable', {
+            templateUrl: '../View/DetailDataTable.html',
+            controller: 'DetailDataTable',
+        })
+        $routeProvider.when('/Project', {
+            templateUrl: '/View/Project',
+            controller: 'ProjectController',
+        })
+        $routeProvider.when('/AuthCode', {
+            templateUrl: '/View/AuthCode',
+            controller: 'AuthCodeController',
+        })
+        $routeProvider.when('/Device', {
+            templateUrl: '/View/Device',
+            controller: 'DeviceController',
+        })
+        $routeProvider.when('/DeviceDetail', {
+            templateUrl: '/View/DeviceDetail',
+            controller: 'DeviceDetailController',
+        })
+        $routeProvider.when('/ProjectLog', {
+            templateUrl: '/View/ProjectLog',
+            controller: 'ProjectLogController',
+        })
+       
+        $routeProvider.when('/Sample', {
+            templateUrl: '/View/Sample',
+        })
+        $routeProvider.when('/ServiceOverview', {
+            templateUrl: '/View/ServiceOverview',
+        })
+        $routeProvider.when('/ProjectDetails', {
+            templateUrl: '/View/ProjectDetails',
+            controller: 'ProjectDetailsController',
+        })
+        $routeProvider.when('/CreateProject', {
+            templateUrl: '/View/CreateProject',
+        })
+        $routeProvider.when('/WhiteAndBlackList', {
+            templateUrl: '/View/WhiteAndBlackList',
+            controller: 'WhiteAndBlackController',
+        })
+        
+        
+        $routeProvider.when('/CloudDatasApi', {
+            templateUrl: '/View/CloudDatasApi',
+        })
+        $routeProvider.when('/OpenServiceResult', {
+            templateUrl: '/View/OpenServiceResult',
+        })
+        $routeProvider.when('/MarketCenter', {
+            templateUrl: '/View/MarketCenter',
+            controller: 'MarketCenter',
+        })
+        $routeProvider.when('/ProjectNeigou', {
+            templateUrl: '/View/ProjectNeigou',
+            controller: 'ProjectNeigou',
+        })
+        $routeProvider.when('/ProjectTuiguangManage', {
+            templateUrl: '/View/ProjectTuiguangManage',
+            controller: 'ProjectTuiguangManage',
+        })
+        $routeProvider.when('/ProjectNeigouManage', {
+            templateUrl: '/View/ProjectNeigouManage',
+            controller: 'ProjectNeigouManage',
+        })
+        $routeProvider.when('/TransactionDetails', {
+            templateUrl: '/View/TransactionDetails',
+        })
+       
+        $routeProvider.when('/PromotoRebate', {
+            templateUrl: '/View/PromotoRebate',
+            controller: 'PromotoRebate',
+        })
+        
+        
+        $routeProvider.when('/ModifyUITable', {
+            templateUrl: '/View/ModifyUITable',
+            controller: 'ModifyUITable',
+        })
+        $routeProvider.when('/Sample_verify', {
+            templateUrl: '/View/Sample_verify',
+        })
+        $routeProvider.when('/API_Interface_verify', {
+            templateUrl: '/View/API_Interface_verify',
+        })
+        $routeProvider.when('/Device_verify', {
+            templateUrl: '/View/Device_verify',
+            controller: 'DeviceControl_verify',
+        })
+        $routeProvider.when('/DeviceDetail_verify', {
+            templateUrl: '/View/DeviceDetail_verify',
+            controller: 'DeviceDetailController_verify',
+        })
+
+    }]);
+
+    //点击vip显示购买
+  /*   ShowVip = function () {
+        $(".pay").show();
+        $(".showvip").show();
+        $(".open-mask").show();
+        $(".dialogs-box").show();
+        $(".FixedPopupMask").show();
+    }; */
+
+/* 
+    if('@ViewBag.Protocol' == 0)
+    {
+        swal({
+            title: '用户协议',
+            type: 'info',
+            confirmButtonText: "已阅读并同意",
+            html:
+              '<ul style="padding: 0;">'+
+                '<li style="list-style: none;">软猫应用中心（以下简称“甲方”）为满足用户对于多元化项目验证接入需求，规范完整业务运作和风险管控模式，建立标准、统一、完善、高效、安全的开发者应用中心平台，自主研发了本系统.甲方依照本协议及其相关操作规则提供基于互联网的软件验证以及客户统计销售服务（以下简称“服务”），为申请获得此服务，服务使用人（以下称“乙方”）须同意本协议的全部条款并按照甲方的提示完成全部的注册程序。</li>'+
+                '<li style="font-size: 16px;list-style: none;">一、 声明与承诺？</li>'+
+                '<li style="list-style: none;">1. 乙方在进行注册程序过程中完成账户注册流程即表示用户完全同意接受本协议项下的全部条款。</li>'+
+                '<li style="list-style: none;">2. 乙方确认，在您注册成为该系统用户以及接受本服务之前，你已充分阅读、理解并接受本协议的全部内容，一旦您使用本服务，即表示您同意遵循本协议之所有约定。</li>'+
+                '<li style="list-style: none;">3. 乙方同意，本公司有权随时对本协议内容进行单方面的变更，并以在本网站公告的方式予以公布，无需另行单独通知您；若您在本协议内容公告变更后继续使用本服务的，表示您已充分阅读、理解并接受修改后的协议内容，也将遵循修改后的协议内容使用本服务；若您不同意修改后的协议内容，您应停止使用本服务。</li>'+
+                '<li style="list-style: none;">4. 乙方声明，在您同意接受本协议并注册成为该系统用户时，您是具有法律规定的完全民事权利能力和民事行为能力，能够独立承担民事责任的自然人、法人或其他组织；本协议内容不受您所属国家或地区的排斥。不具备前述条件的，您应立即终止注册或停止使用本服务。</li>'+
+                '<li style="font-size: 16px;list-style: none;">二、 甲方权利和义务</li>'+
+                '<li style="list-style: none;">1、甲方有义务对为开发的功能进行维护、升级，并保证该服务的稳定运行；</li>'+
+                '<li style="list-style: none;">2、对于乙方项目的客户第三方等与乙方之间涉及的利益事宜甲方不负任何责任；</li>'+
+                '<li style="list-style: none;">3、甲方有权对乙方项目与客户第三方乙方之间产生的交易纠纷进行调解或仲裁，并在乙方承担部分或全部责任的情况下，甲方有权撤消相应的服务有效状态；</li>'+
+                '<li style="list-style: none;">4、在乙方违反甲方服务协议或遭到国家职能部门的调查行为的情况下，甲方有权单方面暂停服务及暂扣乙方押金；</li>'+
+                '<li style="list-style: none;">5、在发生信用卡诈骗、被盗用、洗钱、偷税等涉嫌违法犯罪行为时，双方有义务随时配合、协助对方或司法、职能行政部门调查可疑交易、冻结可疑账户，并向司法、职能部门提供完整的客户资料和交易数据。</li>'+
+                '<li style="font-size: 16px;list-style: none;">三、 乙方权利和义务</li>'+
+                '<li style="list-style: none;">1. 乙方有权在甲方授权的情况下合理使用本服务功能；</li>'+
+                '<li style="list-style: none;">2. 乙方有权向甲方获取本服务功能范围内的技术支持；</li>'+
+                '<li style="list-style: none;">3. 乙方有义务保证其接入的项目质量，并向其客户提供到位的售后服务；</li>'+
+                '<li style="list-style: none;">4. 乙方有义务保证接入项目的合法性，不得接入违反国家法律法规禁止的项目，如有违反的独立承担其责任；</li>'+
+                '<li style="font-size: 16px;list-style: none;">四、 违约责任</li>'+
+                '<li style="list-style: none;">1. 乙方因违法经营、侵害消费者、用户合法权益等原因所引起的任何行政处罚、民事赔偿，以及其他法律责任，均由该方自行承担，甲方不承担任何责任。</li>'+
+                '<li style="list-style: none;">2. 乙方因未及时、妥善处理与消费者、用户之间的任何投诉和纠纷而影响甲方的声誉和形象，或造成任何损失，应由乙方赔偿，甲方有权解除本协议。</li>'+
+                '<li style="list-style: none;">3. 乙方实际接入的项目内容与协议中乙方声明的项目内容不符，甲方有权解除本协议。</li>'+
+                '<li style="list-style: none;">4. 因不可抗力因素造成甲方不能正常提供服务或造成信息数据泄露、丢失、被盗用或被篡改等的，双方均不承担责任；因甲方、消费者或用户、银行、电信、网络、设备及供电故障、不可抗力或甲方以外的其他原因，导致甲方的支付产品不能正常运营或甲方不能及时履行本协议规定义务的，甲方不承担相关的法律责任。</li>'+
+                '<li style="list-style: none;">5. 甲方根据业务整体运作、风险管理、外部环境等情况，享有选择暂停、终止本协议全部或者部分产品服务之权利，而不承担违约责任。</li>'+
+                '<li style="list-style: none;">6. 如乙方严重违反本协议的约定，给甲方、用户造成经济损失的，乙方应进行赔偿，甲方有权从乙方账户中直接扣除相关损失。</li>'+
+                '<li style="font-size: 16px;list-style: none;">>五、 争议处理</li>'+
+                '<li style="list-style: none;">1. 双方对于“目前国内电子商务环境尚未成熟，电子商务立法以及信用体制还不完善”的现状以及从事电子商务所存在的风险均完全知悉，并愿意承担各自的商业或法律风险；双方均承诺采取相关风险防范措施，以尽量避免或减小风险。</li>'+
+                '<li style="list-style: none;">2. 乙方涉嫌从事诈骗、洗钱、赌博、传播淫秽色情等违法犯罪活动；</li>'+
+                '<li style="list-style: none;">3. 乙方拒绝对通过使用甲方提供的服务而产生的交易进行售后服务；</li>'+
+                '<li style="list-style: none;">4. 乙方未通过网站提供真实有效的联系方式；</li>'+
+                '<li style="list-style: none;">5. 因乙方发生业务变更、终止等情况而未及时通知甲方，或甲方在1个工作日内无法联系到乙方；</li>'+
+                '<li style="list-style: none;">6. 银行、电信或行政、司法等部门出具了要求终止乙方交易的书面通知。</li>'+
+                '<li style="list-style: none;">乙方在以下情况下，有权解除本协议：</li>'+
+                '<li style="list-style: none;">1. 甲方超过本协议规定的结算期限，经乙方通知给予正常的补款时间仍未补款的，但甲方根据法律或本协议规定有权扣款时的情况除外；</li>'+
+                '<li style="list-style: none;">2. 甲方存在严重财务危机致使付款能力严重不足，或有破产、清算、解散等情况，且甲方具有足够证据证明的。</li>'+
+                '<li style="list-style: none;">附： 根据本条规定解除协议时，甲方已收取的成功交易的服务费用不再退还. 甲乙双方在本协议解除后7个工作日内甲方对乙方的剩余资金进行清算，但配合司法等部门进行冻结等处理行为的除外。如因用户投诉导致的协议解除，乙方需将所有用户投诉处理完毕，否则清算将顺延至用户投诉处理完毕后。</li>'+
+                '<li style="font-size: 16px;list-style: none;">六、 协议解除</li>'+
+                '<li style="list-style: none;">甲方在以下情况下，有权解除本协议：</li>'+
+                '<li style="list-style: none;">1. 乙方在项目中存在过多的法律纠纷或过大的法律风险，经双方协商无法解决；</li>'+
+                '<li style="list-style: none;">3. 乙方同意，本公司有权随时对本协议内容进行单方面的变更，并以在本网站公告的方式予以公布，无需另行单独通知您；若您在本协议内容公告变更后继续使用本服务的，表示您已充分阅读、理解并接受修改后的协议内容，也将遵循修改后的协议内容使用本服务；若您不同意修改后的协议内容，您应停止使用本服务。</li>'+
+                '<li style="list-style: none;">4. 乙方声明，在您同意接受本协议并注册成为该系统用户时，您是具有法律规定的完全民事权利能力和民事行为能力，能够独立承担民事责任的自然人、法人或其他组织；本协议内容不受您所属国家或地区的排斥。不具备前述条件的，您应立即终止注册或停止使用本服务。</li>'+
+                '<li style="font-size: 16px;list-style: none;">七、 隐私权保护</li>'+
+                '<li style="list-style: none;">1. 甲乙双方应对彼此信息进行谨慎、妥善持有，并严格保密，没有提供方事先书面同意，不得向任何第三方披露；</li>'+
+                '<li style="list-style: none;">2. 为更为有效的向乙方提供服务，乙方同意甲方有权将乙方注册及使用本服务过程中所提供、形成的信息提供给甲方的关联公司。除本协议另有规定外，甲方不得不对外公开或向第三方提供乙方的信息，但以下情况除外：</li>'+
+                '<li style="list-style: none;">A、事先获得乙方的明确授权；</li>'+
+                '<li style="list-style: none;">B、只有披露乙方的个人资料，才能提供乙方需要的产品和（或）服务；</li>'+
+                '<li style="list-style: none;">C、按照本协议的要求进行的披露；</li>'+
+                '<li style="list-style: none;">D、根据法律法规的规定；</li>'+
+                '<li style="list-style: none;">E、按照政府主管部门的要求；</li>'+
+                '<li style="list-style: none;">F、为维护本公司及其关联公司的合法权益；</li>'+
+                '<li style="list-style: none;">G、乙方使用本系统账户成功登录过的其他网站。</li>'+
+                '<li style="font-size: 16px;list-style: none;">八、 其它</li>'+
+                '<li style="list-style: none;">1. 甲方仅对本协议中列明的责任承担范围负责。</li>'+
+                '<li style="list-style: none;">2. 尊重知识产权是您应尽的义务，如有违反，您应承担损害赔偿责任。</li>'+
+                '<li style="list-style: none;">3. 非经本公司或本公司关联企业书面同意，任何人不得擅自使用、修改、复制、公开传播、改变、散布、发行或公开发表本网站程序或内容。</li>' +
+            '</ul>'
+        }).then((result) => {
+            if (result.value) {
+                 $.get("/api/Account/AgreeProtocol?token=" + token, function(data){
+                     console.log(data.data);
+                 });
+            }
+        });
+    }
+ */
+
+
+    </script>
+    <script src="../../Scripts/controller.js"></script>
+    <script type="text/javascript">
+    /*     $(function(){
+           if('@ViewBag.RunoutFee'==1)
+            {
+               ShowVip();
+            }
+        }) */
+    </script>
+    <!--统计代码-->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a190d2cb98e661c75bd041d9929fd7df";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</body>
+</html>
+
+
+
+<!-- 
+$http({
+        	method:"post",
+        	url:el+'/getTableField.action',
+        	data:{tableId:tableid ? tableid : defualtTableId },
+           	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+        	transformRequest: function(obj) {
+        		var str = [];
+        		for(var p in obj){
+        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        		}
+        		return str.join("&");
+        		}
+//              data: { token: token, pindex: 1, pagesize: 999 }
+          }).then(function(json){
+        	  var data = json.data;
+              if (data.code == 1) {
+                  $scope.userTableList = data.data;
+              } else if (data.code == 2) {
+                 alert("参数错误！")
+              } else if (data.code == 3) {
+                  alert("表不存在!")
+               } 
+//              else {
+//                  tip(data.data);
+//              }
+          })
+
+ -->
+

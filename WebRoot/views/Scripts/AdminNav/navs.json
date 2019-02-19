@@ -1,0 +1,41 @@
+[{
+	"title" : "后台首页",
+	"icon" : "icon-computer",
+	"href" : "/Admin/main",
+	"spread" : false
+},{
+	"title" : "查询商家",
+	"icon" : "icon-text",
+	"href" : "/Admin/seller",
+	"spread" : false
+},{
+	"title" : "查询用户",
+	"icon" : "&#xe64c;",
+	"href" : "/Admin/user",
+	"spread" : false
+},{
+	"title" : "修改密码",
+	"icon" : "&#xe631;",
+	"href" : "/Admin/modify",
+	"spread" : false
+},{
+	"title" : "其他页面",
+	"icon" : "&#xe630;",
+	"href" : "",
+	"spread" : false,
+	"children" : [
+		{
+			"title" : "404页面",
+			"icon" : "&#xe61c;",
+			"href" : "",
+			"spread" : false
+		},
+		{
+			"title" : "登录",
+			"icon" : "&#xe609;",
+			"href" : "",
+			"spread" : false,
+			"target" : "_blank"
+		}
+	]
+}]

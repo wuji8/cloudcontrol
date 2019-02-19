@@ -1,0 +1,176 @@
+<!-- @{
+    Layout = null;
+    ViewBag.CallBack = "ChangePhoto()";
+    var orders = ViewData["orders"] as List<CloudAdmin.Controllers.ServerOrders>;
+} -->
+<style>
+    .photo-box img {
+        display:none;
+    }
+</style>
+<link href="../../Content/View/BindAccount.css" rel="stylesheet" />
+
+<div class="Cut-box" id="Cut-box" style="display:none;">
+    @Html.Partial("_Camara")
+</div>
+<div class="FixedPopupMask" style="display: none;"></div>
+<div class="personal-content">
+    <div class="head-title">
+        <p>
+            <img src="../../Images/pro.png" alt="用户资料" />
+            <span>用户资料</span>
+        </p>
+    </div>
+	
+    <div class="personal-info table-left" style="width: 50%; min-width: 640px; margin: 20px auto 0;">
+        <div class="table-head">
+            <p style="font-weight: blod;">基本资料</p>
+        </div>
+        <div style="width: 80%; margin: 10px auto 0;">
+            <div class="photo-box">
+                <img src="http://dev.mall-software.net/@ViewBag.Ulogo" id="StoreLogo" />
+                <span id="change-photo">修改头像</span>
+            </div>
+            <div class="info-box">
+                <p>账户: <input type="text" value="@ViewBag.UserName" disabled="disabled" /></p>
+                <p>昵称: <input type="text" value="@ViewBag.NickName" disabled="disabled" id="username" style="width: 84px; height: 20px;"><span id="change-user" style="cursor: pointer;" ng-click="Xiugai()">修改</span><span class="baocun" style="display: none;padding-left: 5px;"><span ng-click="Tbaocun()" style="cursor: pointer;">保存</span>　<span ng-click="Tquxiao()" style="cursor: pointer;">取消</span></span></p>
+                <p>注册时间: <input type="text" value="@ViewBag.RegTime" disabled="disabled" style="width: 160px;"></p>
+                <p>您账号的安全程度: <em></em><span>@ViewBag.Degree</span></p>
+            </div>
+        </div>
+    </div>
+
+	<div class="table-box"></div>
+
+    <div class="table-bottom bind-table">
+        <div class="table-head">
+            <p class="balance"><img src="../../Images/bind_03.png" alt="" /><span>绑定账户提现信息</span><a href="javascript:;" class="modify">修改</a></p>
+        </div>
+        <table class="table" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td colspan="4">
+                        <div class="input-box tixian-style">
+                            <span>提现渠道：</span>
+                            <img src="../../Images/tixianstyle_03.png" alt="支付宝渠道" />
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="input-box">
+                            <span>到账账户：</span>
+                            <input type="text" name="name" value="@ViewBag.Alipay" disabled id="account" class="account" />
+                        </div>
+                    <td colspan="2">
+                        <div class="input-box">
+                            <span>账户持有人：</span>
+                            <input type="text" name="name" value="@ViewBag.Official" placeholder="请填写账户持有人" style="border:none; background: none;" disabled="disabled">
+                        </div>
+                    </td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="input-box tixian-txt">
+                            <span>提现说明：</span>
+                            <span>账户申请提现需要用到您账户绑定的安全手机接收验证码来进行安全验证，所以请勿将账户登录密码与安全手机告知他人，否则造成的损失平台将保留最终解析权。提现到账时间一般为24小时内到账，节假日不到账。</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+	<div class="table-bottom change-table" style="display: none;">
+		<div class="table-head">
+    		<p class="balance"><img src="../../Images/bind_03.png" alt="" /><span>绑定账户提现信息</span></p>
+    	</div>
+		<table class="table" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+                    <td colspan="2">
+                        <div class="input-box tixian-style">
+                            <span style="float: left; line-height: 38px;">提现渠道：</span>
+                            @*<input type="text" name="name" value="" placeholder="请选择提现渠道" id="tixian" />*@
+                            
+                            <div class="nice-select" name="nice-select" id="tixianstyle-box">
+                                <input type="text" value="支付宝" disabled placeholder="请选择提现渠道" readonly="readonly" id="contactType" str="" style="padding-left:0;">
+                                @*<ul style="display: none;">
+                                    <li data-value="1">QQ号</li>
+                                    <li data-value="2">QQ群</li>
+                                    <li data-value="3">微信</li>
+                                    <li data-value="4">邮箱</li>
+                                    <li data-value="5">手机号</li>
+                                </ul>*@
+                            </div>
+
+                        </div>
+                    </td>
+					<td colspan="2">
+                        <div class="input-box">
+                            <span>到账账户：</span>
+                            <input type="text" name="name" value="@ViewBag.Alipay" placeholder="请填写账户" id="account-apily" />
+                        </div>
+                    </td>
+				</tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="input-box">
+                            <span>账户持有人：</span>
+                            <input type="text" name="name" value="@ViewBag.Official" placeholder="请填写账户持有人" id="account-name">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="input-box">
+                            <span>验证安全：账号安全邮箱</span>
+                            <input type="text" name="name" value="@ViewBag.Email" disabled  id="tel" />
+                        </div>
+                    </td>
+                    <td colspan="1"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="input-box">
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;验证码:</span>
+                            <input type="text" name="name" value="" id="verifycode" />
+                            <a href="javascript:;" id="code-btn">发送验证码</a>
+                        </div>
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="input-box tixian-txt">
+                            <span>提现说明：</span>
+                            <span>账户申请提现需要用到您账户绑定的安全手机接收验证码来进行安全验证，所以请勿将账户登录密码与安全手机告知他人，否则造成的损失平台将保留最终解析权。提现到账时间一般为24小时内到账，节假日不到账。</span>
+                        </div>
+                        <div class="btn-box">
+                            <button class="submit-btn" ng-click="BindZhifubao()">确认提交</button>
+                            <button class="cancel-btn" ng-click="CancelBind()">取消绑定</button>
+                        </div>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript"> 
+    var token = '@Commons.CurrentToken()';
+    function ChangePhoto() {
+        var sessionid = $("#sessionid").val();
+        $.post("/api/Account/ModifyULogo", { token: token, sessionid: sessionid }, function (json) {
+            if(json.code==1){
+                tipReload(json.data);
+            } else {
+                tip(json.data);
+            }
+        });
+    }
+</script>
+<script src="../../Scripts/View/BindAccount.js"></script>
+<script src="../../Scripts/View/SafetySetting.js"></script>
