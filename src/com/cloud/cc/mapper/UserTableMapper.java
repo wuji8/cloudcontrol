@@ -26,4 +26,6 @@ public interface UserTableMapper {
     List<TableProp> selectTablePropByTableName(String tableName);
     
     List<UserTable> selectUserTable(@Param("cloudId")Integer cloudId,@Param("userId")Integer userId);
+    
+    int countUserTable(@Param("cloudId")Integer cloudId,@Param("userId")Integer userId);
 }

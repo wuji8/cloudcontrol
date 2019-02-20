@@ -148,7 +148,11 @@
   </select>
   
   <select id="selectUserTable" resultMap="BaseResultMap">
-  	select *,count(tableId) as `count` from usertable where userId=#{userId} and cloudId=#{cloudId} and deleted=1
+  	select *,(SELECT COUNT(tableId) FROM usertable AS ut WHERE userId=#{userId} AND cloudId=#{cloudId} AND deleted=0) AS `count` from usertable where userId=#{userId} and cloudId=#{cloudId} and deleted=0
+  </select>
+  
+  <select id="countUserTable" resultType="int">
+  	select count(tableId) from usertable where userId=#{userId} and cloudId=#{cloudId} and deleted=0
   </select>
   
 </mapper>

@@ -36,6 +36,7 @@ public class UserTableController {
 			return resultMap;
 		}
 		Users user=(Users)request.getSession().getAttribute("user");
+		System.out.println(user.getUserid());
 		resultMap.put("code",1);
 		resultMap.put("data",userTableService.selectUserTable(user.getUserid(), Integer.parseInt(cloudId)));
 		return resultMap;
