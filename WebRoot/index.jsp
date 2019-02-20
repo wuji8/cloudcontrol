@@ -15,12 +15,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<script type="text/javascript" charset="utf-8">var el = "<%=basePath%>";</script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
   
   <body>
-    This is my JSP page. <br>
+    
   </body>
+  <script>
+    window.onload=function(){
+      window.location.href=el+'views/view/Home/Login.html';
+    }
+  </script>
 </html>
