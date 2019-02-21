@@ -17,8 +17,8 @@
     <result column="prop" property="prop" jdbcType="VARCHAR" />
     <result column="limitTop" property="limitTop" jdbcType="INTEGER"/>
     <association property="userTable" javaType="com.cloud.cc.vo.UserTable">
-    	<id column="tableid" property="tableId" jdbcType="INTEGER"/>
-  		<result column="tableName" property="tableName" jdbcType="VARCHAR"/>
+    	<id column="tableid" property="tableid" jdbcType="INTEGER"/>
+  		<result column="tableName" property="tablename" jdbcType="VARCHAR"/>
   	</association>
   	<association property="cloudProject" javaType="com.cloud.cc.vo.CloudProjects">
   		<id column="cloudId" property="cloudid" jdbcType="INTEGER"/>
