@@ -19,5 +19,5 @@ public interface UiTableMapper {
 
     int updateByPrimaryKey(UiTable record);
     
-    List<UiTable> selectByUserId(@Param("userId")Integer userId,@Param("cloudId'")Integer cloudId);
+    List<UiTable> selectByUserId(@Param("userId")Integer userId,@Param("cloudId")Integer cloudId);
 }
