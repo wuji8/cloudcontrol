@@ -81,7 +81,7 @@ public class UserTableController {
 			return resultMap;
 		}
 		resultMap.put("code", 1);
-		resultMap.put("data", userTableService.selectTableFieldList(userTable.getTablename()));
+		resultMap.put("data", userTableService.selectTableFieldList(userTable.getDbtable()));
 		return resultMap;
 	}
 	
