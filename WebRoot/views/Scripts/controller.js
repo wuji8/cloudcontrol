@@ -6618,7 +6618,7 @@ routingDemoApp.controller('CreateDeveloperAPI', ['$scope', '$http', '$location',
         $.post(el+"/addApi.action", { apiname: $("#apiName").val(), tableid: $("#datatable-select option:selected").val(), apiType: $("#apitype-select option:selected").val(), json: JSON.stringify(dataJson), limit: $(".number-input").val() ? $(".number-input").val() : 0, blockTime: $(".time-input:visible").val() ? $(".time-input:visible").val() : 0 }, function (res) {
             var json=JSON.parse(res);
         	if (json.code == 1) {
-                tip(json.data);
+                tip("添加成功!");
                 $(".danger").click(function () {
                     //console.log("return");
                     window.history.back(-1);

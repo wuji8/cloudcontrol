@@ -1,0 +1,84 @@
+<link href="../../Content/View/CreateUITable.css" rel="stylesheet" />
+<script src="../../Scripts/View/CreateUITable.js"></script>
+
+<div class="table-box">
+    <div class="position-box">
+        <p>位置：<a href="">云控储存</a></p>
+    </div>
+    <div class="inner-table">
+        <div class="table-head">
+            <p class="top-title">编辑UI表</p>
+        </div>
+        <div class="table-tool">
+            <p class="nice-select-title btn-first">UI表名</p>
+            <div class="nice-select-box">
+                <div class="nice-select project-select" style="width: 200px; background: #fff;">
+                    <input type="text" value="{{UitName}}" style="color: #333333" id="InputTableName">
+                </div>
+            </div>
+            <p class="nice-select-title btn-first">&nbsp;&nbsp;&nbsp;&nbsp;项目</p>
+            <div class="nice-select-box">
+                <div class="nice-select nice-select-blue project-select" name="nice-select" style="width: 280px; background: none;" id="pname-box">
+                    <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333" data-str="{{CurrentProjectID}}" id="InputProjectName">
+                    <ul>
+                        <li ng-repeat="i in cloudprojectdata" data-value="{{i.ProjectID}}">{{i.ProjectName}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="table-tool"><p class="nice-select-title btn-first" style="font-size:12px;">注：单选框/下拉框内容用“|”符号分隔，示例：data1|data2|data3，第一个为默认选中值</p></div>
+        <table class="table-top table-botm table-dom" border="0">
+            <tr ng-repeat="i in UiData">
+                <td class="right-btn-group">
+                    <p class="nice-select-title title-b title-number">控件（{{$index+1}}）</p>
+                    <p class="nice-select-title title-b">类型</p>
+                    <div class="nice-select-box">
+                        <div class="nice-select" name="nice-select" id="pname-box" style="width: 80px; background:#fff;border: none;padding: 0;">
+                            <select class="ui-select" style="width: 100%;height: 100%;" ng-model="i.type">
+                                <option ng-repeat="item in options" value="{{item.ovalue}}" ng-selected="item.ovalue==i.type">{{item.otext}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="nice-select-title title-b">控件标题</p>
+                    <div class="nice-select-box">
+                        <div class="nice-select" name="nice-select" id="pname-box" style="width: 140px; background:#fff;">
+                            <input type="text" value="{{i.title}}" maxlength="32" placeholder="" style="color: #333333" data-str="" class="title-input">
+                        </div>
+                    </div>
+                    <p class="nice-select-title title-b">控件名</p>
+                    <div class="nice-select-box">
+                        <div class="nice-select" name="nice-select" id="pname-box" style="width: 140px; background:#fff;">
+                            <input type="text" value="{{i.content}}" ng-disabled="i.type==1" maxlength="16" onkeyup="value = value.replace(/[^a-zA-Z0-9_]/g, '')" placeholder="" style="color: #333333" data-str="" class="content-input">
+                        </div>
+                    </div>
+                    <p class="nice-select-title title-b">内容</p>
+                    <div class="nice-select-box">
+                        <div class="nice-select" name="nice-select" id="pname-box" style="width: 180px; background:#fff;">
+                            <input type="text" value="{{i.default}}" placeholder="" style="color: #333333" data-str="" class="default-input">
+                        </div>
+                    </div>
+                    <p ng-if="$index != 0" class="nice-select-title del" ng-click="deleteRow($event)" style="color: red;font-size: 12px;padding-left: 5px;">删除</p>
+                    <p ng-if="$index != 0" class="nice-select-title insert insert' + index + '" ng-click="insertElement($event)" style="color: blue;font-size: 12px;padding-left: 5px;">插入</p>
+                </td>
+            </tr>
+            <tr id="div-empty"></tr>
+        </table>
+        
+        <div class="Specifications-bottom">
+            <span style="cursor: pointer;margin-left: 15px;" id="tianjia" ng-click="addUI()"><img src="/Images/add.png" alt="添加" style="padding-right:2px;vertical-align: middle;">添加控件</span>
+        </div>
+        <div class="add-box">
+            <p style="text-align: center;"><button class="search-btn" ng-click="submitUi()">提交</button></p>
+        </div>
+
+        <div class="table-bottom2" id="table-bottom2">
+            <img src="/Images/tan.png" alt="" /><span id="bottom-tip2"></span>
+        </div>
+
+        <div class="FixedPopupMask" style="display:none;"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var token = '@Commons.CurrentToken()';
+</script>
