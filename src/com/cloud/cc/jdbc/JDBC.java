@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.lucene.search.spell.NGramDistance;
 
 import com.cloud.cc.tools.StringUnits;
 import com.mysql.jdbc.Connection;
@@ -124,13 +123,7 @@ public class JDBC {
 	}
 	
 	public static void main(String[] args) {
-		String arr="123aasf123dafas123aa3absfag123dd";
-		String str="123a";
-		NGramDistance ng=new NGramDistance();
-		float score=ng.getDistance(arr, str);
-		System.out.println(arr.equals(str));
-		System.out.println(score);
-		System.out.println(searchStr(arr,str));
+		
 	}
 
 	

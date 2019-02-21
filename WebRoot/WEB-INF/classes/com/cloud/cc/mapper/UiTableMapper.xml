@@ -104,7 +104,7 @@
     where uitId = #{uitid,jdbcType=INTEGER}
   </update>
   
-  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+  <select id="selectByUserId" resultMap="BaseResultMap">
   	select * from uitable where userId=#{userId} and cloudId=#{cloudId}
   </select>
   

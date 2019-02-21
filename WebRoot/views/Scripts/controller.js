@@ -5279,6 +5279,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             //失败时执行
             $(".FixedPopup").hide();
             tip("网络连接错误！");
+            window.location.href=el+"/";
         });
     };
     _getcloudproject();  //获取云控项目
@@ -5302,21 +5303,46 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
 //                 $("#bottom-tip-ui").html("您还没有UI表数据！");
 //             }
 //        })
-        $http.post("/api/cloud/GetUITableList", { token: token, cloudid: id ? id : 0, pindex: 1, pagesize: 999 }).then(function (json) {
-            var data = json.data;
-            if (data.code == 1) {
-                $scope.uitablelist = data.data;  //UI表列表数据
-            } else if (data.code == 2) {
-                OtherPlace();
-            } else {
-                //tip(data.data);
-                $scope.uitablelist = "";
-                $("#table-bottom-ui").show();
-                $("#bottom-tip-ui").html("您还没有UI表数据！");
-            }
-        }, function (err) {
-            console.log(err);
-        });
+    	$http({
+        	method:"post",
+        	url:el+"/getUiTableList.action",
+        	data:{cloudId: id ? id : 0},
+           	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+        	transformRequest: function(obj) {
+        		var str = [];
+        		for(var p in obj){
+        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        		}
+        		return str.join("&");
+        		}
+          }).then(function(json){
+        	  var data = json.data;
+              if (data.code == 1) {
+                  $scope.uitablelist = data.data;  //UI表列表数据
+              } else if (data.code == 2) {
+                  alert("参数错误")
+              } else {
+                  //tip(data.data);
+                  $scope.uitablelist = "";
+                  $("#table-bottom-ui").show();
+                  $("#bottom-tip-ui").html("您还没有UI表数据！");
+              }
+          })
+//        $http.post(el+"/getUserApiByUserId.action", { token: token, cloudid: id ? id : 0, pindex: 1, pagesize: 999 }).then(function (json) {
+//            var data = json.data;
+//            if (data.code == 1) {
+//                $scope.uitablelist = data.data;  //UI表列表数据
+//            } else if (data.code == 2) {
+//                OtherPlace();
+//            } else {
+//                //tip(data.data);
+//                $scope.uitablelist = "";
+//                $("#table-bottom-ui").show();
+//                $("#bottom-tip-ui").html("您还没有UI表数据！");
+//            }
+//        }, function (err) {
+//            console.log(err);
+//        });
     };
     //删除ui表
     $scope.deluitable = function ($event) {
@@ -5574,13 +5600,15 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
 
     //获取开发API
     var _getapilist = function (pid) {
-        $http.post("/api/cloud/GetAPIList", { token: token, cloudid: pid ? pid : 0, pindex: 1, pagesize: 999 }).then(function (json) {
+        $http.post(el+"/getUserApiByUserId.action").then(function (json) {
             var data = json.data;
             if (data.code == 1) {
                 $scope.apiList = data.data;
-            } else if (data.code == 2) {
-                OtherPlace();
-            } else {
+            } 
+//            else if (data.code == 2) {
+//                OtherPlace();
+//            } 
+            else {
                 $scope.apiList = "";
                 //tip(data.data);
                 $("#table-bottom-api").show();
@@ -5762,6 +5790,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
     });
 
     $scope.addCloudUser = function () {
+    
         $("#addUserModal").modal('show');
     };
 
@@ -5809,14 +5838,16 @@ routingDemoApp.controller('CreateUITable', ['$scope', '$http', '$location', func
         });
         dataJson.ui = arr;
         if ($("#InputTableName").val()) {
-            $.post("/api/Cloud/CreateUITable", { token: token, cloudid: $("#InputProjectName").attr("data-str"), name: $("#InputTableName").val(), controls: JSON.stringify(dataJson) }, function (json) {
-                if (json.code == 1) {
-                    tip(json.data);
+            $.post(el+"/addUiTable.action", { cloudId: $("#InputProjectName").attr("data-str"), uitName: $("#InputTableName").val(), uiJson: JSON.stringify(dataJson) }, function (res) {
+                var json=JSON.parse(res);
+            	if (json.code == 1) {
+                    tip("添加成功！");
+                    window.history.back(-1);
                     $(".danger").click(function () {
                         window.history.back(-1);
                     });
                 }else if (json.code == 2) {
-                    OtherPlace();
+                    alert(json.msg)
                 } else{
                     tip(json.data);
                 }
@@ -6260,13 +6291,12 @@ routingDemoApp.controller('CreateDeveloperAPI', ['$scope', '$http', '$location',
     		return str.join("&");
     		}
 //          data: { token: token, pindex: 1, pagesize: 999 }
-      }).then(function(res){
-    	  console.log(res)
-    	  var json=JSON.parse(res);
+      }).then(function(json){
     	  var data = json.data;
-          if (json.code == 1) {
+          if (json.data.code == 1) {
               $scope.userTableList = data.data;
-          } else if (json.code == 2) {
+              console.log($scope.userTableList)
+          } else if (json.data.code == 2) {
              alert("参数错误！")
           } 
 //          else {
@@ -6305,7 +6335,14 @@ routingDemoApp.controller('CreateDeveloperAPI', ['$scope', '$http', '$location',
           }).then(function(json){
         	  var data = json.data;
               if (data.code == 1) {
-                  $scope.userTableList = data.data;
+                if (data.data[1].DATA_TYPE != 'int') {
+                $(".selfadd").hide();
+                $(".selfreduce").hide();
+            }
+            $scope.fieldsList = data.data;
+            $scope.firstcolname = "@" + data.data[0].COLUMN_NAME;
+            $scope.secondcolname = "@" + data.data[1].COLUMN_NAME;
+            $scope.lockTime = data.hasblock;
               } else if (data.code == 2) {
                  alert("参数错误！")
               } else if (data.code == 3) {
