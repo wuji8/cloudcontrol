@@ -17,7 +17,7 @@
             <p class="nice-select-title btn-first">项目</p>
             <div class="nice-select-box">
                 <div class="nice-select nice-select-blue project-select" name="nice-select" style="width: 280px;position: relative;" id="pname-box">
-                    <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333" str="{{CurrentProjectID}}" data-puid="CurrentPuid" data-str="{{CurrentProjectID}}" id="InputProjectName">
+                    <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333;width:93%" str="{{CurrentProjectID}}" data-puid="CurrentPuid" data-str="{{CurrentProjectID}}" id="InputProjectName">
                     <ul>
                         <li ng-repeat="i in cloudprojectdata" data-puid="{{i.cuid}}" data-value="{{i.CloudID}}">{{i.cloudname}}</li>
                     </ul>
@@ -98,13 +98,13 @@
                         <th>操作</th>
                         <th>API</th>
                     </tr>
-                    <tr class="data-tr" ng-repeat="i in usertablelist" data-id="{{i.TableID}}">
-                        <td>{{i.TableName}}({{i.DbTable}})</td>
-                        <td>{{i.CreateTime}}</td>
-                        <td>{{i.Counts}}</td>
+                    <tr class="data-tr" ng-repeat="i in usertablelist" data-id="{{i.tableid}}">
+                        <td>{{i.tablename}}({{i.dbtable}})</td>
+                        <td>{{i.createtime}}</td>
+                        <td>{{i.count}}</td>
                         <td></td>
                         <td>
-                            <a class="btn btn-default btn-xs btn-primary" href="#/DetailDataTable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}&DataTableId={{i.TableID}}&DataTableName={{i.TableName}}">查看</a>
+                            <a class="btn btn-default btn-xs btn-primary" href="#/DetailDataTable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}&DataTableId={{i.tableid}}&DataTableName={{i.tablename}}">查看</a>
                             <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="delusertable($event)">删除</button>
                         </td>
                         <td></td>

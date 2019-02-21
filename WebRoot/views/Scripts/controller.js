@@ -5354,21 +5354,50 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
 
     //获取数据表列表
     var _getusertablelist = function (id) {
-        $http.post("/api/cloud/GetUserTableList", { token: token, cloudid: id ? id : 0, pindex: 1, pagesize: 999 }).then(function (json) {
-            var data = json.data;
-            if (data.code == 1) {
-                $scope.usertablelist = data.data;
-            } else if (data.code == 2) {
-                OtherPlace();
-            } else {
-                //tip(data.data);
-                $scope.usertablelist = "";
-                $("#table-bottom-data").show();
-                $("#bottom-tip-data").html("您还没有数据表数据！");
-            }
-        }, function (err) {
-            console.log(err);
-        });
+//        $http.post(el+"/showMyTables.action", {cloudid: id ? id : 0 }).then(function (json) {
+//            var data = json.data;
+//            if (data.code == 1) {
+//                $scope.usertablelist = data.data;
+//            } else if (data.code == 2) {
+//                tip("缺少参数!")
+//            } else {
+//                //tip(data.data);
+//                $scope.usertablelist = "";
+//                $("#table-bottom-data").show();
+//                $("#bottom-tip-data").html("您还没有数据表数据！");
+//            }
+//        }, function (err) {
+//            console.log(err);
+//        });
+        $http({
+        	method:"post",
+        	url:el+'/showMyTables.action',
+        	data:{cloudId: id ? id : 0},
+           	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+        	transformRequest: function(obj) {
+        		var str = [];
+        		for(var p in obj){
+        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        		}
+        		return str.join("&");
+        		}
+//              data: { token: token, pindex: 1, pagesize: 999 }
+          }).then(function(json){
+        	  var data = json.data;
+              if (data.code == 1) {
+                  $scope.usertablelist = data.data;
+              } else if (data.code == 2) {
+                  tip("缺少参数!")
+              } else {
+                  //tip(data.data);
+                  $scope.usertablelist = "";
+                  $("#table-bottom-data").show();
+                  $("#bottom-tip-data").html("您还没有数据表数据！");
+              }
+//              else {
+//                  tip(data.data);
+//              }
+          })
     };
     //删除数据表
     $scope.delusertable = function ($event) {
@@ -5389,7 +5418,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             	$http({
                 	method:"post",
                 	url:el+'/delTable.action',
-                	data:{tableId:tableid ? tableid : defualtTableId },
+                	data:{tableId:ustid },
                    	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
                 	transformRequest: function(obj) {
                 		var str = [];
@@ -5402,7 +5431,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
                   }).then(function(json){
                 	  var data = json.data;
                       if (data.code == 1) {
-                    	  tip(json.data.data);
+                    	  tip("删除成功！");
                           _getusertablelist(pid);
                           $("#createDataTable").click();
                       } else if (data.code == 2) {
@@ -5436,7 +5465,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
     var _getuserlist = function (id) {
     	$http({
           method: 'post',
-          url: el+'/showMyTables.action',
+          url: el+'/huoquyonghu',
           data:{cloudId:id},
        	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
     	transformRequest: function(obj) {
@@ -6179,15 +6208,35 @@ routingDemoApp.controller('DetailDataTable', ['$scope', '$http', '$location', fu
     $scope.CurrentUserTableName = $location.search().DataTableName;
 
     //获取表详情
-    $http.post("/api/Cloud/GetTableField", { token: token, tableid: $scope.CurrentUserTableID }).then(function (json) {
-        var json = json.data;
-        //console.log(json);
-        if (json.code == 1) {
-            $scope.fieldList = json.data;
-        }
-    }, function (err) {
-        console.log(err);
-    });
+//    $http.post("/api/Cloud/GetTableField", { token: token, tableid: $scope.CurrentUserTableID }).then(function (json) {
+//        var json = json.data;
+//        //console.log(json);
+//        if (json.code == 1) {
+//            $scope.fieldList = json.data;
+//        }
+//    }, function (err) {
+//        console.log(err);
+//    });
+    $http({
+    	method:"post",
+    	url:el+'/getTableField.action',
+    	data:{tableId: $scope.CurrentUserTableID},
+       	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+    	transformRequest: function(obj) {
+    		var str = [];
+    		for(var p in obj){
+    		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    		}
+    		return str.join("&");
+    		}
+//          data: { token: token, pindex: 1, pagesize: 999 }
+      }).then(function(json){
+    	  var json = json.data;
+          //console.log(json);
+          if (json.code == 1) {
+              $scope.fieldList = json.data;
+          }
+      })
 }])
 
 //新建开发API控制器
@@ -6211,11 +6260,13 @@ routingDemoApp.controller('CreateDeveloperAPI', ['$scope', '$http', '$location',
     		return str.join("&");
     		}
 //          data: { token: token, pindex: 1, pagesize: 999 }
-      }).then(function(json){
+      }).then(function(res){
+    	  console.log(res)
+    	  var json=JSON.parse(res);
     	  var data = json.data;
-          if (data.code == 1) {
+          if (json.code == 1) {
               $scope.userTableList = data.data;
-          } else if (data.code == 2) {
+          } else if (json.code == 2) {
              alert("参数错误！")
           } 
 //          else {
