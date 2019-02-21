@@ -6340,8 +6340,8 @@ routingDemoApp.controller('CreateDeveloperAPI', ['$scope', '$http', '$location',
                 $(".selfreduce").hide();
             }
             $scope.fieldsList = data.data;
-            $scope.firstcolname = "@" + data.data[0].COLUMN_NAME;
-            $scope.secondcolname = "@" + data.data[1].COLUMN_NAME;
+            $scope.firstcolname = "@" + data.data[0].columnName;
+            $scope.secondcolname = "@" + data.data[1].columnName;
             $scope.lockTime = data.hasblock;
               } else if (data.code == 2) {
                  alert("参数错误！")
@@ -6615,7 +6615,7 @@ routingDemoApp.controller('CreateDeveloperAPI', ['$scope', '$http', '$location',
         }
 
         console.log(dataJson);
-        $.post(el+"/addApi.action", { token: token, apiname: $("#apiName").val(), tableid: $("#datatable-select option:selected").val(), apitype: $("#apitype-select option:selected").val(), json: JSON.stringify(dataJson), limit: $(".number-input").val() ? $(".number-input").val() : 0, blocktime: $(".time-input:visible").val() ? $(".time-input:visible").val() : 0 }, function (res) {
+        $.post(el+"/addApi.action", { apiname: $("#apiName").val(), tableid: $("#datatable-select option:selected").val(), apiType: $("#apitype-select option:selected").val(), json: JSON.stringify(dataJson), limit: $(".number-input").val() ? $(".number-input").val() : 0, blockTime: $(".time-input:visible").val() ? $(".time-input:visible").val() : 0 }, function (res) {
             var json=JSON.parse(res);
         	if (json.code == 1) {
                 tip(json.data);

@@ -60,8 +60,8 @@
                                     <input type="checkbox" class="checkboxAll" name="checkall" value="" />
                                     <label for="checkAll">全选</label>
                                     <span ng-repeat="i in fieldsList">
-                                        <input type="checkbox" class="checkboxOnly" name="{{i.COLUMN_NAME}}" value="{{i.DATA_TYPE}}" id="field{{$index}}" />
-                                        <label for="field{{$index}}">{{i.COLUMN_NAME}}</label>
+                                        <input type="checkbox" class="checkboxOnly" name="{{i.columnName}}" value="{{i.dataType}}" id="field{{$index}}" />
+                                        <label for="field{{$index}}">{{i.columnName}}</label>
                                     </span>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                 <div class="nice-select-box">
                                     <div class="nice-select search-condition-box" name="nice-select" id="search-condition-box" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
                                         <select class="ui-select condition-field" style="width: 80px;height: 100%;">
-                                            <option ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                            <option ng-repeat="i in fieldsList" value="{{i.dataType}}">{{i.columnName}}</option>
                                         </select>
                                         <select class="ui-select condition-symbol" style="width: 80px; height: 100%;">
                                             <option class="hasif" value=">">></option>
@@ -134,8 +134,8 @@
                             <!--<div class="nice-select-box">
                                 <div class="check-select" name="nice-select" id="search-field-box" style="width: 100%; background:none;border: none;padding: 0;">
                                     <span ng-repeat="i in fieldsList">
-                                        <input type="checkbox" name="{{i.COLUMN_NAME}}" value="{{i.DATA_TYPE}}" id="field{{$index}}" />
-                                        <label for="field{{$index}}">{{i.COLUMN_NAME}}</label>
+                                        <input type="checkbox" name="{{i.columnName}}" value="{{i.dataType}}" id="field{{$index}}" />
+                                        <label for="field{{$index}}">{{i.columnName}}</label>
                                     </span>
                                 </div>
                             </div>-->
@@ -149,7 +149,7 @@
                             <div class="nice-select-box">
                                 <div class="nice-select search-condition-box" name="nice-select" id="search-condition-box" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
                                     <select class="ui-select condition-field" style="width: 80px;height: 100%;">
-                                        <option ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                        <option ng-repeat="i in fieldsList" value="{{i.dataType}}">{{i.columnName}}</option>
                                     </select>
                                     <select class="ui-select condition-symbol" style="width: 80px; height: 100%;">
                                         <option class="hasif" value=">">></option>
@@ -186,8 +186,8 @@
                                     <input type="checkbox" class="checkboxAll" name="checkall" value="" />
                                     <label for="checkAll">全选</label>
                                     <span ng-repeat="i in fieldsList">
-                                        <input type="checkbox" class="checkboxOnly" name="{{i.COLUMN_NAME}}" value="{{i.DATA_TYPE}}" id="onlyfield{{$index}}" />
-                                        <label for="onlyfield{{$index}}">{{i.COLUMN_NAME}}</label>
+                                        <input type="checkbox" class="checkboxOnly" name="{{i.columnName}}" value="{{i.dataType}}" id="onlyfield{{$index}}" />
+                                        <label for="onlyfield{{$index}}">{{i.columnName}}</label>
                                     </span>
                                 </div>
                             </div>
@@ -201,13 +201,13 @@
                             <div class="nice-select-box">
                                 <div class="nice-select search-condition-box" name="nice-select" id="search-condition-box" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
                                     <div class="nice-select" name="nice-select" style="width: 80px; background:#fff;margin-top: 0; margin-bottom: 0;box-shadow: none;">
-                                        <input type="text" name="fields" class="add-fileds" readonly value="{{i.COLUMN_NAME}}" data-type="{{i.DATA_TYPE}}" />
+                                        <input type="text" name="fields" class="add-fileds" readonly value="{{i.columnName}}" data-type="{{i.dataType}}" />
                                     </div>
                                     <select class="ui-select condition-by" style="width: 80px; height: 100%;">
                                         <!--<option value="1">自定义值</option>-->
                                         <option value="2">自定义参数</option>
                                     </select>
-                                    <input type="text" name="name" placeholder="输入值" value="@Html.Raw("@"){{i.COLUMN_NAME}}" readonly class="condition-input" />
+                                    <input type="text" name="name" placeholder="输入值" value="@Html.Raw("@"){{i.columnName}}" readonly class="condition-input" />
                                 </div>
                             </div>
                         </td>
@@ -236,7 +236,7 @@
                             <div class="nice-select-box">
                                 <div class="nice-select search-field-box" name="nice-select" id="" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
                                     <select class="ui-select condition-field" style="width: 80px;height: 100%;">
-                                        <option ng-if="$index > 0" ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                        <option ng-if="$index > 0" ng-repeat="i in fieldsList" value="{{i.dataType}}">{{i.columnName}}</option>
                                     </select>
                                     <select class="ui-select condition-by" style="width: 80px; height: 100%;">
                                         <!--<option value="1">自定义值</option>-->
@@ -261,7 +261,7 @@
                             <div class="nice-select-box">
                                 <div class="nice-select search-modify-box" name="nice-select" id="" style="width: 100%; background:#fff;border: none; box-shadow: none;padding: 0;">
                                     <select class="ui-select condition-field" style="width: 80px;height: 100%;">
-                                        <option ng-repeat="i in fieldsList" value="{{i.DATA_TYPE}}">{{i.COLUMN_NAME}}</option>
+                                        <option ng-repeat="i in fieldsList" value="{{i.dataType}}">{{i.columnName}}</option>
                                     </select>
                                     <select class="ui-select condition-symbol" style="width: 80px; height: 100%;">
                                         <option class="hasif" value=">">></option>
