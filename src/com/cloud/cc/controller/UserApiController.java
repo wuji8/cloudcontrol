@@ -246,4 +246,14 @@ public class UserApiController {
 		resultMap.put("code", result);
 		return resultMap;
 	}
+	
+	
+	@RequestMapping("/getUserApiByUserId")
+	@ResponseBody
+	public Map<String,Object> getUserApiByUserId(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		Users user=(Users)request.getSession().getAttribute("user");
+		resultMap.put("data", userApiService.selectByUserId(user.getUserid()));
+		return resultMap;
+	}
 }

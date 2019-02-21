@@ -210,7 +210,15 @@
 	FROM UserAPI AS api
 	INNER JOIN UserTable AS ut
 	ON api.TableID=ut.TableID
-	WHERE ut.CloudID=10 AND ut.Deleted!=1
+	WHERE ut.tableid=#{tableId} AND ut.Deleted!=1
+  </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="string">
+  	SELECT api.*,ut.TableName
+	FROM UserAPI AS api
+	INNER JOIN UserTable AS ut
+	ON api.TableID=ut.TableID
+	WHERE api.userId=#{userId} AND ut.Deleted!=1
   </select>
   
   <select id="selectUserApiByGUID" resultMap="BaseResultMap">

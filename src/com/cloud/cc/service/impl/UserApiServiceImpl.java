@@ -44,4 +44,12 @@ public class UserApiServiceImpl implements UserApiService {
 		// TODO Auto-generated method stub
 		return userApiMapper.selectUserApiByGUID(guid, cuId);
 	}
+
+
+
+	@Override
+	public List<UserApi> selectByUserId(Integer userId) {
+		// TODO Auto-generated method stub
+		return userApiMapper.selectByUserId(userId);
+	}
 }

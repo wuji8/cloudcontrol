@@ -22,4 +22,6 @@ public interface UserApiMapper {
     List<UserApi> selectByTableId(Integer tableId);
     
     UserApi selectUserApiByGUID(@Param("guid")String guid,@Param("cuId")String cuId);
+    
+    List<UserApi> selectByUserId(Integer userId);
 }
