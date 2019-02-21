@@ -207,8 +207,8 @@ public class UserApiController {
 			resultMap.put("code", 2); // 缺少参数
 			return resultMap;
 		}
-		if (StringUnits.isInteger(blockTime) || StringUnits.isInteger(limit) || StringUnits.isInteger(tableId)
-				|| StringUnits.isInteger(apiType)) {
+		if (!StringUnits.isInteger(blockTime) || !StringUnits.isInteger(limit) || !StringUnits.isInteger(tableId)
+				|| !StringUnits.isInteger(apiType)) {
 			resultMap.put("code", 3); // 参数类型错误
 			return resultMap;
 		}
