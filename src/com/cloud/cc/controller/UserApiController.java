@@ -240,7 +240,7 @@ public class UserApiController {
 		if(urlStr.length()>0) {
 			tempContextUrl+="?"+urlStr;
 		}
-		userApi.setSqlquery(tempContextUrl);
+		userApi.setApi(tempContextUrl);
 		userApi.setGuid(StringUnits.getUUID());
 		int result = userApiService.addApiInterface(userApi);
 		resultMap.put("code", result);
@@ -254,6 +254,20 @@ public class UserApiController {
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		Users user=(Users)request.getSession().getAttribute("user");
 		resultMap.put("data", userApiService.selectByUserId(user.getUserid()));
+		return resultMap;
+	}
+	
+	
+	@RequestMapping("/delUserApi")
+	@ResponseBody
+	public Map<String,Object> delUserApi(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String apiId=request.getParameter("apiId");
+		if(StringUnits.isEmpty(apiId) || !StringUnits.isInteger(apiId)){
+			resultMap.put("code", 2);	//参数错误
+			return resultMap;
+		}
+		resultMap.put("code", userApiService.delApiInterface(Integer.parseInt(apiId)));
 		return resultMap;
 	}
 }

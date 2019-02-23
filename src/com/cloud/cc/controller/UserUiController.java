@@ -72,4 +72,31 @@ public class UserUiController {
 		return resultMap;
 	}
 	
+	
+	@RequestMapping("/selectUiTableFiled")
+	@ResponseBody
+	public Map<String,Object> selectUiTableFiled(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String uitId=request.getParameter("uitId");
+		if(StringUnits.isEmpty(uitId) || !StringUnits.isInteger(uitId)){
+			resultMap.put("code", 2);	//	参数错误
+			return resultMap;
+		}
+		resultMap.put("code", 1);
+		resultMap.put("data", uiTableService.selectById(Integer.parseInt(uitId)));
+		return resultMap;
+	}
+	
+	@RequestMapping("/delUiTable")
+	@ResponseBody
+	public Map<String,Object> delUiTable(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String uitId=request.getParameter("uitId");
+		if(StringUnits.isEmpty(uitId) || !StringUnits.isInteger(uitId)){
+			resultMap.put("code", 2);	//	参数错误
+			return resultMap;
+		}
+		resultMap.put("code", uiTableService.delUiData(Integer.parseInt(uitId)));
+		return resultMap;
+	}
 }

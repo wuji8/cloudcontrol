@@ -13,4 +13,6 @@ public interface UiTableService {
 	List<UiTable> selectByUserId(Integer userId,Integer cloudId);
 	
 	int updateUiData(UiTable uiTable);
+	
+	UiTable selectById(Integer uitId);
 }

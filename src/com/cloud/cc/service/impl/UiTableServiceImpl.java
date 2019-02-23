@@ -38,4 +38,10 @@ public class UiTableServiceImpl implements UiTableService {
 		return uiTableMapper.updateByPrimaryKeySelective(uiTable);
 	}
 
+	@Override
+	public UiTable selectById(Integer uitId) {
+		// TODO Auto-generated method stub
+		return uiTableMapper.selectByPrimaryKey(uitId);
+	}
+
 }
