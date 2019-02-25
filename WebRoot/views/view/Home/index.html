@@ -312,6 +312,13 @@ select{
             templateUrl: '../View/CreateDataTable.html',
             controller: 'CreateDataTable',
         })
+        $routeProvider.when('/ModifyUITable', {
+            templateUrl: '../View/ModifyUITable.html',
+            controller: 'ModifyUITable',
+        })
+        
+        
+        
          $routeProvider.when('/yunkong', {
             templateUrl: '../View/yunkong.html',
         })
@@ -321,6 +328,7 @@ select{
          $routeProvider.when('/loglists', {
             templateUrl: '../View/loglists.html',
         })
+        
         
         
         
@@ -404,10 +412,10 @@ select{
         })
         
         
-        $routeProvider.when('/ModifyUITable', {
+      /*   $routeProvider.when('/ModifyUITable', {
             templateUrl: '/View/ModifyUITable',
             controller: 'ModifyUITable',
-        })
+        }) */
         $routeProvider.when('/Sample_verify', {
             templateUrl: '/View/Sample_verify',
         })

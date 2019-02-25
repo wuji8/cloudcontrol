@@ -73,7 +73,7 @@
                         <td>{{i.Version}}</td>
                         <td>{{i.PlatformName}}</td>
                         <td>
-                            <a class="btn btn-default btn-xs btn-primary" href="#/ModifyUITable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}&UiTableId={{i.UitID}}">编辑</a>
+                            <a class="btn btn-default btn-xs btn-primary" href="#/ModifyUITable?ProjectID={{CurrentProjectID}}&ProjectName={{CurrentPanme}}&UiTableId={{i.uitid}}">编辑</a>
                             <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="deluitable($event)">删除</button>
                         </td>
                         <td></td>
@@ -161,14 +161,14 @@
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
-                    <tr class="data-tr" ng-repeat="i in apiList" data-id="{{i.ApiID}}">
-                        <td>{{i.ApiID}}</td>
-                        <td>{{i.TableName}}({{i.DbTable}})</td>
-                        <td>{{i.APIName}}</td>
-                        <td><span ng-if="i.Type == 1">查询</span><span ng-if="i.Type == 2">删除</span><span ng-if="i.Type == 3">增加</span><span ng-if="i.Type == 4">修改</span></td>
+                    <tr class="data-tr" ng-repeat="i in apiList" data-id="{{i.apiid}}">
+                        <td>{{i.apiid}}</td>
+                        <td>{{i.userTable.tablename}}({{i.userTable.dbtable}})</td>
+                        <td>{{i.apiname}}</td>
+                        <td><span ng-if="i.type == 1">查询</span><span ng-if="i.type == 2">删除</span><span ng-if="i.type == 3">增加</span><span ng-if="i.type == 4">修改</span></td>
                         <td>{{i.guid}}</td>
-                        <td>{{i.CreateTime}}</td>
-                        <td data-api="http://cloud.mall-software.net{{i.API}}">
+                        <td>{{i.createtime}}</td>
+                        <td data-api="http://cloud.mall-software.net{{i.api}}">
                             <button type="button" class="btn btn-default btn-xs btn-primary" ng-click="lookapi($event)">查看</button>
                             <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="delapi($event)">删除</button>
                         </td>

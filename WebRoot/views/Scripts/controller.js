@@ -5360,19 +5360,38 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             duration: 0,
         }, function (ret) {
             if (ret.index === 0) {
+//                $http({
+//                    method: 'post',
+//                    url: el+'/delUiTable.action',
+//                    data: { uitId: uitid },
+//                    
+//                }).then(function (json) {
+//                    if (json.data.code == 1) {
+//                        tip("删除成功!");
+//                        _getuitablelist(pid);
+//                    }
+//                }, function (json) {
+//                    $(".FixedPopup").hide();
+//                    tip("网络连接错误！");
+//                });
                 $http({
-                    method: 'post',
-                    url: '/api/Cloud/DeleteUITable',
-                    data: { token: token, uitid: uitid }
-                }).then(function (json) {
-                    if (json.data.code == 1) {
-                        tip(json.data.data);
-                        _getuitablelist(pid);
-                    }
-                }, function (json) {
-                    $(".FixedPopup").hide();
-                    tip("网络连接错误！");
-                });
+                	method:"post",
+                	url:el+'/delUiTable.action',
+                	data:{uitId: uitid},
+                   	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                	transformRequest: function(obj) {
+                		var str = [];
+                		for(var p in obj){
+                		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                		}
+                		return str.join("&");
+                		}
+                  }).then(function(json){
+                	  if (json.data.code == 1) {
+                          tip("删除成功!");
+                          _getuitablelist(pid);
+                      }
+                  })
             };
         });
     };
@@ -5602,13 +5621,13 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
     var _getapilist = function (pid) {
         $http.post(el+"/getUserApiByUserId.action").then(function (json) {
             var data = json.data;
-            if (data.code == 1) {
+   
                 $scope.apiList = data.data;
-            } 
+
 //            else if (data.code == 2) {
 //                OtherPlace();
 //            } 
-            else {
+           if(json.data.length == 0) {
                 $scope.apiList = "";
                 //tip(data.data);
                 $("#table-bottom-api").show();
@@ -5634,20 +5653,40 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             duration: 0,
         }, function (ret) {
             if (ret.index === 0) {
+//                $http({
+//                    method: 'post',
+//                    url: '/api/cloud/DeleteAPI',
+//                    data: { token: token, apiid: apiid }
+//                }).then(function (json) {
+//                    if (json.data.code == 1) {
+//                        tip(json.data.data);
+//                        _getapilist(pid);
+//                        $("#openAPI").click();
+//                    }
+//                }, function (json) {
+//                    $(".FixedPopup").hide();
+//                    tip("网络连接错误！");
+//                });
                 $http({
-                    method: 'post',
-                    url: '/api/cloud/DeleteAPI',
-                    data: { token: token, apiid: apiid }
-                }).then(function (json) {
-                    if (json.data.code == 1) {
-                        tip(json.data.data);
-                        _getapilist(pid);
-                        $("#openAPI").click();
-                    }
-                }, function (json) {
-                    $(".FixedPopup").hide();
-                    tip("网络连接错误！");
-                });
+                	method:"post",
+                	url:el+'/delUserApi.action',
+                	data:{apiId: apiid},
+                   	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                	transformRequest: function(obj) {
+                		var str = [];
+                		for(var p in obj){
+                		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                		}
+                		return str.join("&");
+                		}
+                  }).then(function(json){
+                	  if (json.data.code == 1) {
+                          tip("删除成功!");
+                          _getapilist(pid);
+                          $("#openAPI").click();
+                      }
+                  })
+                
             };
         });
     };
@@ -5956,17 +5995,29 @@ routingDemoApp.controller('ModifyUITable', ['$scope', '$http', '$location', func
 
     //获取表详情
     $scope.options = [{ ovalue: 1, otext: "文本" }, { ovalue: 2, otext: "单选框" }, { ovalue: 3, otext: "下拉框" }, { ovalue: 4, otext: "输入框" }, { ovalue: 5, otext: "折叠" }];
-    $http.post("/api/Cloud/GetUIDeatil", { token: token, uitid: $scope.CurrentUiTableID }).then(function (json) {
-        var json = json.data;
+    $http({
+    	method: 'POST',
+    	url: el+"/selectUiTableFiled.action",
+    	data: {uitId: $scope.CurrentUiTableID },
+    	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+    	transformRequest: function(obj) {
+    		var str = [];
+    		for(var p in obj){
+    		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    		}
+    		return str.join("&");
+    		}
+    }).success(function(json){
         if (json.code == 1) {
-            var data = json.data[0];
-            var uijson = JSON.parse(data.UIJson);
+            var data = json.data;
+            var uijson = JSON.parse(json.data.uijson);
             $scope.UiData = uijson.ui;
-            $scope.UitName = data.UitName;
+            $scope.UitName = data.uitname;
+        }else if(json.code == 2){
+        	
+        	alert("参数错误！")
         }
-    }, function (err) {
-        console.log(err);
-    });
+    })
 
     //禁用文本控件名
     $(".table-dom").on("change", ".ui-select", function () {
@@ -5996,18 +6047,38 @@ routingDemoApp.controller('ModifyUITable', ['$scope', '$http', '$location', func
         });
         dataJson.ui = arr;
         if ($("#InputTableName").val()) {
-            $.post("/api/Cloud/UpdateUITable", { token: token, uitid: $scope.CurrentUiTableID, name: $("#InputTableName").val(), controls: JSON.stringify(dataJson) }, function (json) {
-                if (json.code == 1) {
-                    tip(json.data);
-                    $(".danger").click(function () {
-                        window.history.back(-1);
-                    });
-                } else if (json.code == 2) {
-                    OtherPlace();
-                } else {
-                    tip(json.data);
-                }
-            });
+//            $.post("/api/Cloud/UpdateUITable", { token: token, uitid: $scope.CurrentUiTableID, name: $("#InputTableName").val(), controls: JSON.stringify(dataJson) }, function (json) {
+//                if (json.code == 1) {
+//                    tip(json.data);
+//                    $(".danger").click(function () {
+//                        window.history.back(-1);
+//                    });
+//                } else if (json.code == 2) {
+//                    OtherPlace();
+//                } else {
+//                    tip(json.data);
+//                }
+//            });
+            $http({
+            	method:"post",
+            	url:el+'/updateUiTable.action',
+            	data:{uitId: $scope.CurrentUiTableID, uitName: $("#InputTableName").val(), uiJson: JSON.stringify(dataJson)},
+               	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            	transformRequest: function(obj) {
+            		var str = [];
+            		for(var p in obj){
+            		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            		}
+            		return str.join("&");
+            		}
+              }).then(function(json){
+            	  if (json.data.code == 1) {
+                      tip("成功!");
+                      $(".danger").click(function () {
+                          window.history.back(-1);
+                      });
+                  }
+              })
         } else {
             tip("请输入表名！");
         }

@@ -44,21 +44,25 @@ function randerPage(logid) {
     var udid = $("#input-udid").val();
     var type = $("#select-type option:selected").val();
     var proid = $("#select-project option:selected").val();
-    $.post("/api/console/GetLogList", { token: token, udid: (udid?udid:""), type: (type?type:""), logid: (logid?logid:""), projectid: proid, pagesize: 20 }, function (json) {
+//    $.post("/api/console/GetLogList", { udid: (udid?udid:""), type: (type?type:""), logid: (logid?logid:""), projectid: proid, pagesize: 20 }, function (json) {
+    $.post("/api/console/GetLogList", { pageNo:(logid?logid:""),pageSize:20,type:(type?type:"")}, function (json) {
         if (json.code == 1) {
             var strList = renderList(json.data);
             $(".content-box").append(strList);
-        } else if (json.code == 0) {
+        } else if(json.code == 2){
+        	alert("页数和页码必须为数字！")
+        }else if (json.data.length == 0) {
             $(".content-box").append("<tr><td colspan='5' class='text-center'>暂无数据</td></tr>");
             $(".btn-loadmore").attr("disabled", "disabled");
-        } else if (json.code == 2) {
-            $(".tip-content").text("登录超时，请点击跳转登录页面！");
-            $("#smallModalClick").modal('show');
-            $(".btn-queding").click(function () { location.href = "/Home/Login"; });
-        } else {
-            $("#smallModal").find(".tip-content").text(json.data);
-            $("#smallModal").modal('show');
         }
+//        else if (json.code == 2) {
+//            $(".tip-content").text("登录超时，请点击跳转登录页面！");
+//            $("#smallModalClick").modal('show');
+//            $(".btn-queding").click(function () { location.href = "/Home/Login"; });
+//        } else {
+//            $("#smallModal").find(".tip-content").text(json.data);
+//            $("#smallModal").modal('show');
+//        }
     })
 }
 
