@@ -99,4 +99,38 @@ public class UserUiController {
 		resultMap.put("code", uiTableService.delUiData(Integer.parseInt(uitId)));
 		return resultMap;
 	}
+	
+	
+	@RequestMapping("/updateUiTable")
+	@ResponseBody
+	public Map<String,Object> updateUiTable(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String uitName=request.getParameter("uitName");
+		String uiJson=request.getParameter("uiJson");
+		String uitId=request.getParameter("uitId");
+		Users user=(Users)request.getSession().getAttribute("user");
+		if(StringUnits.isEmpty(uitName)){
+			resultMap.put("code", 2);	//参数错误
+			resultMap.put("msg", "表名称必须要填");
+			return resultMap;
+		}
+		if(StringUnits.isEmpty(uiJson)){
+			resultMap.put("code", 2);	//参数错误
+			resultMap.put("msg", "表内容必须要填");
+			return resultMap;
+		}
+		if(StringUnits.isEmpty(uitId) || !StringUnits.isInteger(uitId)){
+			resultMap.put("code", 2);
+			resultMap.put("msg","请填写正确的uitId");
+			return resultMap;
+		}
+		UiTable uiTable=new UiTable();
+		uiTable.setUitid(Integer.parseInt(uitId));
+		uiTable.setUijson(uiJson);
+		uiTable.setUitname(uitName);
+		uiTable.setUserid(user.getUserid());
+		resultMap.put("code",uiTableService.updateUiData(uiTable));
+		return resultMap;
+	}
+	
 }
