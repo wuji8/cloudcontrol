@@ -146,4 +146,12 @@
   	select * from users where userName=#{userName}
   </select>
   
+  <select id="queryPage" resultMap="BaseResultMap" parameterType="map">
+  	select * from users where cloudId=#{cloudId} limit #{startRow},#{pageSize}
+  </select>
+  
+  <select id="queryCount" resultType="int" parameterType="map">
+  	select count(*) from users where cloudId=#{cloudId}
+  </select>
+  
 </mapper>

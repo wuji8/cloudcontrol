@@ -1,4 +1,4 @@
-package com.cloud.cc.controller;
+ package com.cloud.cc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

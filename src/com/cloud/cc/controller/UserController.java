@@ -162,9 +162,29 @@ public class UserController {
 		return resultMap;
 	}
 	
-	public static void main(String[] args) {
-		String str="{\"ui\":[{\"type\":\"int\",\"field\":\"121312\"},{\"type\":\"int\",\"field\":\"3111\"},{\"type\":\"int\",\"field\":\"23123\"}]}";
-		TableModel tableModel=JSON.parseObject(str,  new TypeReference<TableModel>() {});
-		System.out.println(tableModel.getUi());
+	
+	@RequestMapping("/getUserByCouldID")
+	@ResponseBody
+	public Map<String,Object> getUserByCouldID(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String couldId=request.getParameter("couldId");
+		if(StringUnits.isEmpty(couldId) || !StringUnits.isInteger(couldId)){
+			resultMap.put("code", 2);
+			return resultMap;
+		}
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		if(StringUnits.isEmpty(pageNo) || !StringUnits.isInteger(pageNo)){
+			pageNo="1";
+		}
+		if(StringUnits.isEmpty(pageSize) || !StringUnits.isInteger(pageSize)){
+			pageSize="20";
+		}
+		PageHelper<Users> pageHelper=new PageHelper<Users>();
+		pageHelper.setPageNo(Integer.parseInt(pageNo));
+		pageHelper.setPageSize(Integer.parseInt(pageSize));
+		userService.getUserByCouldID(pageHelper);
+		resultMap.put("data",pageHelper);
+		return resultMap;
 	}
 }

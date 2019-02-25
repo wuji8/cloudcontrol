@@ -2,6 +2,7 @@ package com.cloud.cc.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.cloud.cc.mapper.RoleRelationMapper;
 import com.cloud.cc.mapper.UserRoleMapper;
 import com.cloud.cc.mapper.UsersMapper;
 import com.cloud.cc.service.UsersService;
+import com.cloud.cc.tools.PageHelper;
 import com.cloud.cc.vo.Relation;
 import com.cloud.cc.vo.RoleRelation;
 import com.cloud.cc.vo.UserRole;
@@ -115,6 +117,12 @@ public class UsersServiceImpl implements UsersService {
 			roleRelationMapper.insertSelective(roleRelation);
 		}
 		return 1;
+	}
+
+	@Override
+	public void getUserByCouldID(PageHelper<Users> pageHelper) {
+		pageHelper.setRows(usersMapper.queryPage(pageHelper.getParams()));
+		pageHelper.setTotal(usersMapper.queryCount(pageHelper.getParams()));
 	}
 
 }

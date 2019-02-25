@@ -2,6 +2,7 @@ package com.cloud.cc.service;
 
 import java.util.List;
 
+import com.cloud.cc.tools.PageHelper;
 import com.cloud.cc.vo.UserRole;
 import com.cloud.cc.vo.Users;
 
@@ -22,4 +23,6 @@ public interface UsersService {
 	Users isLogin(String userName,String userPwd);
 	
 	int updateUserRole(Integer userId,String[] role);
+	
+	void getUserByCouldID(PageHelper<Users> pageHelper);
 }
