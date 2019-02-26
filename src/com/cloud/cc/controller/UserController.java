@@ -88,6 +88,11 @@ public class UserController {
 			resultMap.put("code",5);	//检查参数值长度是否正确
 			return resultMap;
 		}
+		//判断用户名是否已存在
+		if(userService.selectByUserName(user.getUsername())!=null){
+			resultMap.put("code", 7);	//用户名已存在
+			return resultMap;
+		}
 		int result=userService.addUser(user, roleId);
 		resultMap.put("code", result);
 		return resultMap;
