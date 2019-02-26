@@ -88,8 +88,37 @@ public class UserController {
 			resultMap.put("code",5);	//检查参数值长度是否正确
 			return resultMap;
 		}
+		//判断用户名是否已存在
+		if(userService.selectByUserName(user.getUsername())!=null){
+			resultMap.put("code", 7);	//用户名已存在
+			return resultMap;
+		}
 		int result=userService.addUser(user, roleId);
 		resultMap.put("code", result);
+		return resultMap;
+	}
+	
+	
+	@RequestMapping("/operUserState")
+	@ResponseBody
+	public Map<String,Object> operUserState(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String userId=request.getParameter("userId");
+		if(StringUnits.isEmpty(userId) || !StringUnits.isInteger(userId)){
+			resultMap.put("code", 2);	//参数错误
+			return resultMap;
+		}
+		Users users=userService.selectById(Integer.parseInt(userId));
+		if(users==null){
+			resultMap.put("code", 3);	//找不到该用户
+			return resultMap;
+		}
+		if(users.getStatus()==1){
+			users.setStatus(0);
+		}else{
+			users.setStatus(1);
+		}
+		resultMap.put("code", userService.updateUser(users));
 		return resultMap;
 	}
 	

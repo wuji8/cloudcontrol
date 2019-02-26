@@ -125,4 +125,10 @@ public class UsersServiceImpl implements UsersService {
 		pageHelper.setTotal(usersMapper.queryCount(pageHelper.getParams()));
 	}
 
+	@Override
+	public Users selectById(Integer userId) {
+		// TODO Auto-generated method stub
+		return usersMapper.selectByPrimaryKey(userId);
+	}
+
 }
