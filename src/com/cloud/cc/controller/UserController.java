@@ -76,7 +76,7 @@ public class UserController {
 			resultMap.put("code", 4);	//没有权限操作
 			return resultMap;
 		}
-		int result=userService.addUser(users, roleId);
+		int result=userService.addUser(user, roleId);
 		resultMap.put("code", result);
 		return resultMap;
 	}

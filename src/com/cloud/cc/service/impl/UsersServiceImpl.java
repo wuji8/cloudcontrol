@@ -85,7 +85,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public List<UserRole> selectUserRole(Integer userId, Integer roleId) {
 		// TODO Auto-generated method stub
-		return userRoleMapper.selectByUserIdAndRoleId(userId, roleId);
+		return userRoleMapper.selectByUserIdAndRoleId(userId, roleId);	
 	}
 
 	@Override
