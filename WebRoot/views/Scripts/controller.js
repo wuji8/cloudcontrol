@@ -5701,6 +5701,9 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
 
     //新增云控账户
     $scope.submitAddCloudUser = function () {
+    	if($("#username").val().length >16 || $("#userpsd").val().length > 16 || $("#username1").val().length >10){
+    		alert("账号密码长度不能超过16，昵称不能超过10！");return
+    	}
         $("#submit-user").attr("disabled", "").text("添加中...");
         if ($("#username").val()) {
             var pid = $("#InputProjectName").attr("data-str");
@@ -5732,16 +5735,16 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             		return str.join("&");
             		}
             }).success(function (json){
-            	var data = json.data;
+            	var data = json;
                 if (data.code == 1) {
                     tip("添加账户成功！");
                     $("#addUserModal").modal('hide');
                     _getuserlist(pid);
                     $(".table-bottom-tip").hide();
-                } else if (data.code == 2) {
-                    OtherPlace();
-                } else {
-                    tip(data.data);
+                } else if (data.code == 5) {
+                    alert("设置账号密码长度太大！")
+                } else if (data.code == 6) {
+                    alert("请完善资料！")
                 }
             })
             $("#submit-user").removeAttr("disabled").text("确定");

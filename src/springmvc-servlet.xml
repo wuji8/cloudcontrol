@@ -71,7 +71,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/toLogin.action"/>
-			<bean class="com.cloud.cc.interceptors.UserInterceptors"></bean>
+			<bean class="com.cloud.cc.interceptor.UserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	 
