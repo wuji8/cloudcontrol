@@ -99,6 +99,30 @@ public class UserController {
 	}
 	
 	
+	@RequestMapping("/operUserState")
+	@ResponseBody
+	public Map<String,Object> operUserState(HttpServletRequest request){
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		String userId=request.getParameter("userId");
+		if(StringUnits.isEmpty(userId) || !StringUnits.isInteger(userId)){
+			resultMap.put("code", 2);	//参数错误
+			return resultMap;
+		}
+		Users users=userService.selectById(Integer.parseInt(userId));
+		if(users==null){
+			resultMap.put("code", 3);	//找不到该用户
+			return resultMap;
+		}
+		if(users.getStatus()==1){
+			users.setStatus(0);
+		}else{
+			users.setStatus(1);
+		}
+		resultMap.put("code", userService.updateUser(users));
+		return resultMap;
+	}
+	
+	
 	@RequestMapping("/modifyUserInfo")
 	@ResponseBody
 	public Map<String,Object> updateUserInfo(HttpServletRequest request,Users user){

@@ -25,4 +25,6 @@ public interface UsersService {
 	int updateUserRole(Integer userId,String[] role);
 	
 	void getUserByCouldID(PageHelper<Users> pageHelper);
+	
+	Users selectById(Integer userId);
 }
