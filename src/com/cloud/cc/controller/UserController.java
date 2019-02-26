@@ -76,6 +76,18 @@ public class UserController {
 			resultMap.put("code", 4);	//没有权限操作
 			return resultMap;
 		}
+		if(user.getCloudid()==null || user.getCloudid()==0){
+			resultMap.put("code",6);
+			return resultMap;
+		}
+		if(StringUnits.isEmpty(user.getNickname()) || StringUnits.isEmpty(user.getUsername()) || StringUnits.isEmpty(user.getUserpass())){
+			resultMap.put("code",6);	//检查参数是否正确
+			return resultMap;
+		}
+		if(user.getNickname().length()>10 || user.getUsername().length()>16 || user.getUserpass().length()>16){
+			resultMap.put("code",5);	//检查参数值长度是否正确
+			return resultMap;
+		}
 		int result=userService.addUser(user, roleId);
 		resultMap.put("code", result);
 		return resultMap;
@@ -93,6 +105,22 @@ public class UserController {
 		}
 		if(users.getRoleId()!=1) {
 			result.put("code", 4);	//没有权限操作
+			return result;
+		}
+		if(user.getUserid()==null){
+			result.put("code",6);	//检查参数是否正确
+			return result;
+		}
+		if(user.getCloudid()==null || user.getCloudid()==0){
+			result.put("code",6);
+			return result;
+		}
+		if(StringUnits.isEmpty(user.getNickname()) || StringUnits.isEmpty(user.getUsername()) || StringUnits.isEmpty(user.getUserpass())){
+			result.put("code",6);	//检查参数是否正确
+			return result;
+		}
+		if(users.getNickname().length()>10 || users.getUsername().length()>16 || users.getUserpass().length()>16){
+			result.put("code",5);	//检查参数值长度是否正确
 			return result;
 		}
 		result.put("code", userService.updateUser(user));
