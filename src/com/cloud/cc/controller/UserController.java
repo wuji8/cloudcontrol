@@ -119,7 +119,7 @@ public class UserController {
 			result.put("code",6);	//检查参数是否正确
 			return result;
 		}
-		if(users.getNickname().length()>10 || users.getUsername().length()>16 || users.getUserpass().length()>16){
+		if(user.getNickname().length()>10 || user.getUsername().length()>16 || user.getUserpass().length()>16){
 			result.put("code",5);	//检查参数值长度是否正确
 			return result;
 		}
