@@ -19,7 +19,7 @@
                 <div class="nice-select nice-select-blue project-select" name="nice-select" style="width: 280px;position: relative;" id="pname-box">
                     <input type="text" value="{{CurrentPanme}}" readonly style="color: #333333;width:93%" str="{{CurrentProjectID}}" data-puid="CurrentPuid" data-str="{{CurrentProjectID}}" id="InputProjectName">
                     <ul>
-                        <li ng-repeat="i in cloudprojectdata" data-puid="{{i.cuid}}" data-value="{{i.CloudID}}">{{i.cloudname}}</li>
+                        <li ng-repeat="i in cloudprojectdata" data-puid="{{i.cuid}}" data-value="{{i.cloudid}}">{{i.cloudname}}</li>
                     </ul>
                 </div>
             </div>
@@ -222,10 +222,13 @@
                         <input type="text" class="form-control" id="username">
                         <span class="help-block">注：用户的账号</span>
                     </div>
-                    <div class="form-group" style="font-size:15px" id="mydiv">
-                        <label for="recipient-name" class="control-label">权限:</label>
-                        <span style="margin:0 8px">ui表</span><input type="checkbox" class="" name="quanxian" value="ui">
-                        <span style="margin:0 8px">数据表</span><input type="checkbox" class="" name="quanxian" value="data">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户密码:</label>
+                        <input type="password" class="form-control" id="userpsd">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户昵称:</label>
+                        <input type="text" class="form-control" id="username1">
                     </div>
                     <!-- <div class="form-group">
                         <label for="recipient-name" class="control-label">备注:</label>

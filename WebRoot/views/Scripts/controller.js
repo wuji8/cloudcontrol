@@ -5510,8 +5510,8 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
     var _getuserlist = function (id) {
     	$http({
           method: 'post',
-          url: el+'/huoquyonghu',
-          data:{cloudId:id},
+          url: el+'/getUserByCouldId.action',
+          data:{cloudId:id,pageNo:1,pageSize:50,},
        	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
     	transformRequest: function(obj) {
     		var str = [];
@@ -5704,8 +5704,35 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
         $("#submit-user").attr("disabled", "").text("添加中...");
         if ($("#username").val()) {
             var pid = $("#InputProjectName").attr("data-str");
-            $http.post(el+"/addUser.action", { token: token, projectid: pid, clouduser: $("#username").val(), remark: $("#remark").val() }).then(function (json) {
-                var data = json.data;
+//            $http.post(el+"/addUser.action", { token: token, projectid: pid, clouduser: $("#username").val(), remark: $("#remark").val() }).then(function (json) {
+//                var data = json.data;
+//                if (data.code == 1) {
+//                    tip("添加账户成功！");
+//                    $("#addUserModal").modal('hide');
+//                    _getuserlist(pid);
+//                    $(".table-bottom-tip").hide();
+//                } else if (data.code == 2) {
+//                    OtherPlace();
+//                } else {
+//                    tip(data.data);
+//                }
+//            }, function (err) {
+//                console.log(err);
+//            });
+            $http({
+            	method: 'POST',
+            	url:el+"/addUser.action",
+            	data: { cloudid: pid, username: $("#username").val(), userpass: $("#userpsd").val(),nickname: $("#username1").val()},
+            	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            	transformRequest: function(obj) {
+            		var str = [];
+            		for(var p in obj){
+            		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            		}
+            		return str.join("&");
+            		}
+            }).success(function (json){
+            	var data = json.data;
                 if (data.code == 1) {
                     tip("添加账户成功！");
                     $("#addUserModal").modal('hide');
@@ -5716,9 +5743,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
                 } else {
                     tip(data.data);
                 }
-            }, function (err) {
-                console.log(err);
-            });
+            })
             $("#submit-user").removeAttr("disabled").text("确定");
         } else {
             $(".tip").text("请正确填写用户名！");
