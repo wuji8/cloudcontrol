@@ -42,21 +42,21 @@ public class UsersServiceImpl implements UsersService {
 	public int addUser(Users user,String[] role) {
 		// TODO Auto-generated method stub
 		try {
-			String idStr="";
-			for (int i = 0; i < role.length; i++) {
-				idStr+=role+",";
-			}
-			idStr=idStr.substring(0, idStr.length()-1);
+//			String idStr="";
+//			for (int i = 0; i < role.length; i++) {
+//				idStr+=role+",";
+//			}
+//			idStr=idStr.substring(0, idStr.length()-1);
 			usersMapper.insertSelective(user);
-			List<Relation> lists=relationMapper.selectById(idStr);
-			for(Relation list:lists) {
-				RoleRelation roleRelation=new RoleRelation();
-				roleRelation.setCreatetime(new Date());
-				roleRelation.setRelationId(list.getRelationId());
-				roleRelation.setRoleId(user.getRoleId());
-				roleRelation.setUserId(user.getUserid());
-				roleRelationMapper.insertSelective(roleRelation);
-			}
+//			List<Relation> lists=relationMapper.selectById(idStr);
+//			for(Relation list:lists) {
+//				RoleRelation roleRelation=new RoleRelation();
+//				roleRelation.setCreatetime(new Date());
+//				roleRelation.setRelationId(list.getRelationId());
+//				roleRelation.setRoleId(user.getRoleId());
+//				roleRelation.setUserId(user.getUserid());
+//				roleRelationMapper.insertSelective(roleRelation);
+//			}
 			return 1;
 		}catch(Exception exception) {
 			exception.printStackTrace();
