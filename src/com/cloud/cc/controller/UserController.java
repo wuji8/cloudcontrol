@@ -211,6 +211,7 @@ public class UserController {
 		PageHelper<Users> pageHelper=new PageHelper<Users>();
 		pageHelper.setPageNo(Integer.parseInt(pageNo));
 		pageHelper.setPageSize(Integer.parseInt(pageSize));
+		pageHelper.getParams().put("cloudId", Integer.parseInt(couldId));
 		userService.getUserByCouldID(pageHelper);
 		resultMap.put("data",pageHelper);
 		return resultMap;
