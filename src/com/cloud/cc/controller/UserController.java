@@ -54,7 +54,7 @@ public class UserController {
 			logsService.addLogsData(logs);
 			request.getSession().setAttribute("user", user);
 			resultMap.put("code", 1);
-			resultMap.put("data", userService.selectUserRole(user.getUserid(),user.getRoleId()));
+			//resultMap.put("data", userService.selectUserRole(user.getUserid(),user.getRoleId()));
 		}else {
 			resultMap.put("code", 0);
 		}
