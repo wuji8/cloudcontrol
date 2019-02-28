@@ -123,21 +123,22 @@
                 <table class="table-top table-botm" border="0">
                     <tr>
                         <th>用户名</th>
+                        <th>昵称</th>
                         <th>所在项目</th>
                         <th>状态</th>
-                        <th>设备数</th>
-                        <th>备注</th>
-                        <th>操作</th>
+                        <!-- <th>设备数</th> --><th>操作</th>
                     </tr>
-                    <tr class="data-tr" ng-repeat="i in userlist" data-id="{{i.UserID}}">
-                        <td>{{i.UserName}}</td>
-                        <td>{{i.CloudName}}</td>
-                        <td>{{i.Status==0?"停用":"启用"}}</td>
-                        <td>{{i.Device}}</td>
-                        <td>{{i.Remark}}</td>
+                    <tr class="data-tr" ng-repeat="i in userlist" data-id="{{i.userid}}">
+                        <td>{{i.username}}</td>
+                         <td>{{i.nickname}}</td>
+                        <td>{{i.cloudid}}</td>
+                        <td>{{i.status==0?"停用":"启用"}}</td>
+                        <!-- <td>{{i.cloudid}}</td> -->
                         <td>
-                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-if="i.Status==1" ng-click="stopuser($event)">停用</button>
-                            <button type="button" class="btn btn-default btn-xs btn-primary" ng-if="i.Status==0" ng-click="openuser($event)">启用</button>
+                            <button type="button" class="btn btn-default btn-xs btn-primary" ng-click="editCloudUser(i.username,i.userid)">修改</button>
+                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-if="i.status==1" ng-click="stopuser($event)">停用</button>
+                            <button type="button" class="btn btn-default btn-xs btn-primary" ng-if="i.status==0" ng-click="openuser($event)">启用</button>
+                            <button type="button" class="btn btn-default btn-xs btn-danger" ng-click="delCloudUser(i.userid)">删除</button>
                         </td>
                     </tr>
                 </table>
@@ -219,16 +220,16 @@
                 <form>
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="username">
+                        <input type="text" class="form-control" id="ausername">
                         <span class="help-block">注：用户的账号</span>
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">用户密码:</label>
-                        <input type="password" class="form-control" id="userpsd">
+                        <input type="password" class="form-control" id="auserpsd">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">用户昵称:</label>
-                        <input type="text" class="form-control" id="username1">
+                        <input type="text" class="form-control" id="ausername1">
                     </div>
                     <!-- <div class="form-group">
                         <label for="recipient-name" class="control-label">备注:</label>
@@ -240,6 +241,45 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button type="button" class="btn btn-primary" id="submit-user" ng-click="submitAddCloudUser()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除用户-->
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">用户</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户名:</label>
+                        <input type="text" class="form-control" id="eusername" readonly>
+                        <span class="help-block">注：用户的账号</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户密码:</label>
+                        <input type="password" class="form-control" id="euserpsd">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户昵称:</label>
+                        <input type="text" class="form-control" id="eusername1">
+                    </div>
+                    <input style="display:none" id="myid">
+                    <!-- <div class="form-group">
+                        <label for="recipient-name" class="control-label">备注:</label>
+                        <input type="text" class="form-control" id="remark">
+                    </div> -->
+                    <p class="tip" style="color: red; text-align: center;"></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submit-user" ng-click="submiteditCloudUser()">确定</button>
             </div>
         </div>
     </div>
