@@ -112,7 +112,7 @@ public class UserController {
 		if(users==null){
 			resultMap.put("code", 3);	//找不到该用户
 			return resultMap;
-		}
+		} 
 		if(users.getStatus()==1){
 			users.setStatus(0);
 		}else{

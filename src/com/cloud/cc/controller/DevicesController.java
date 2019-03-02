@@ -22,7 +22,11 @@ public class DevicesController {
 	@Autowired
 	private DevicesService devicesServiceImpl;
 	
-	
+	/**
+	 * 添加设备
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/addDevices")
 	@ResponseBody
 	public Map<String,Object> addDevices(HttpServletRequest request){
@@ -32,6 +36,7 @@ public class DevicesController {
 		if(StringUnits.isEmpty(udid) || StringUnits.isEmpty(remark)){
 			resultMap.put("code", 2);	//	参数错误
 			return resultMap;
+			
 		}
 		Devices devices=new Devices();
 		devices.setUdid(udid);
@@ -42,11 +47,16 @@ public class DevicesController {
 	}
 	
 	
+	/**
+	 * 删除设备
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/delDevices")
 	@ResponseBody
 	public Map<String,Object> delDevices(HttpServletRequest request){
 		Map<String,Object> resultMap=new HashMap<String, Object>();
-		String[] deviceId=request.getParameterValues("device");
+		String[] deviceId=request.getParameterValues("deviceId");
 		if(deviceId==null || deviceId.length<0){
 			resultMap.put("code", 2);	//参数有误
 			return resultMap;
