@@ -13,7 +13,17 @@ public class Users {
 
     private String mToken;
     
-    private Integer roleId;
+    private String ccid;
+    
+    public String getCcid() {
+		return ccid;
+	}
+
+	public void setCcid(String ccid) {
+		this.ccid = ccid;
+	}
+
+	private Integer roleId;
 
     public Integer getRoleId() {
 		return roleId;

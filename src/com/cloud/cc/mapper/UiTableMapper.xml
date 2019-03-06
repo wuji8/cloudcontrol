@@ -108,4 +108,8 @@
   	select * from uitable where userId=#{userId} and cloudId=#{cloudId}
   </select>
   
+  <select id="selectByCloudId" resultMap="BaseResultMap" parameterType="int">
+  	select * from uitable where cloudId=#{cloudId}
+  </select>
+  
 </mapper>

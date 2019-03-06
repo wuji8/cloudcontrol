@@ -11,15 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.cloud.cc.service.LogsService;
 import com.cloud.cc.service.UsersService;
 import com.cloud.cc.tools.PageHelper;
 import com.cloud.cc.tools.StringUnits;
 import com.cloud.cc.vo.Logs;
 import com.cloud.cc.vo.Users;
-import com.cloud.cc.vo.model.TableModel;
 
 @Controller
 public class UserController {
@@ -93,6 +90,7 @@ public class UserController {
 			resultMap.put("code", 7);	//用户名已存在
 			return resultMap;
 		}
+		user.setCcid(StringUnits.getUUID().toUpperCase());
 		int result=userService.addUser(user, roleId);
 		resultMap.put("code", result);
 		return resultMap;
