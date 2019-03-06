@@ -238,7 +238,7 @@ public class UserApiController {
 			}
 		}
 		if(urlStr.length()>0) {
-			tempContextUrl+="?"+urlStr;
+			tempContextUrl+="userApi/?"+urlStr+"guid=@guid&cuid=@cuid&ccid=@ccid";
 		}
 		userApi.setApi(tempContextUrl);
 		userApi.setGuid(StringUnits.getUUID());
