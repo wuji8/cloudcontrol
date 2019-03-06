@@ -20,7 +20,7 @@ routingDemoApp.controller('InnerIndexController', ['$scope', '$http', function (
             if (obj.code == 1) {
                 $scope.data = obj.data; //得到请求的项目列表数据
                 $scope.count = json.data.Count;  //总计
-                $scope.pageCount = json.data.pageCount; //页总数
+                $scoaddUser.actionpe.pageCount = json.data.pageCount; //页总数
                 $scope.p_current = page;  //当前页
                 $scope.p_all_page = json.data.pageCount; //页总数 
                 //reloadPno();
@@ -5574,11 +5574,19 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             if (ret.index === 0) {
                 $http({
                     method: 'post',
-                    url: '/api/cloud/EnableCloudUser',
-                    data: { token: token, userid: userid, status: 0 }
+                    url: el+'/operUserState.action',
+                    data: { userId: userid},
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            	transformRequest: function(obj) {
+            		var str = [];
+            		for(var p in obj){
+            		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            		}
+            		return str.join("&");
+            		}
                 }).then(function (json) {
                     if (json.data.code == 1) {
-                        tip(json.data.data);
+                        tip("操作成功！");
 //                        var pid = $("#InputProjectName").attr("data-str");
                         _getuserlist(pid);
                         $("#cloudUsers").click();
@@ -5605,13 +5613,36 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             duration: 0,
         }, function (ret) {
             if (ret.index === 0) {
-                $http({
+//                $http({
+//                    method: 'post',
+//                    url: '/api/cloud/EnableCloudUser',
+//                    data: { token: token, userid: userid, status: 1 }
+//                }).then(function (json) {
+//                    if (json.data.code == 1) {
+//                        tip(json.data.data);
+//                        _getuserlist(pid);
+//                        $("#cloudUsers").click();
+//                    }
+//                }, function (json) {
+//                    $(".FixedPopup").hide();
+//                    tip("网络连接错误！");
+//                });
+            	$http({
                     method: 'post',
-                    url: '/api/cloud/EnableCloudUser',
-                    data: { token: token, userid: userid, status: 1 }
+                    url: el+'/operUserState.action',
+                    data: { userId: userid},
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+            	transformRequest: function(obj) {
+            		var str = [];
+            		for(var p in obj){
+            		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            		}
+            		return str.join("&");
+            		}
                 }).then(function (json) {
                     if (json.data.code == 1) {
-                        tip(json.data.data);
+                        tip("操作成功！");
+//                        var pid = $("#InputProjectName").attr("data-str");
                         _getuserlist(pid);
                         $("#cloudUsers").click();
                     }
@@ -5751,6 +5782,8 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
                     alert("设置账号密码长度太大！")
                 } else if (data.code == 6) {
                     alert("请完善资料！")
+                }else if (data.code == 7) {
+                    alert("用户已存在！")
                 }
             })
             $("#submit-user").removeAttr("disabled").text("确定");
@@ -5798,7 +5831,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
             	var data = json;
                 if (data.code == 1) {
                     tip("修改账户成功！");
-                    $("#addUserModal").modal('hide');
+                    $("#delItemModal").modal('hide');
                     _getuserlist(pid);
                     $(".table-bottom-tip").hide();
                 } else if (data.code == 5) {
@@ -5933,8 +5966,8 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
     	var user1id=userid;
     	$http({
         	method: 'POST',
-        	url: el+"/del.action",
-        	data: { userid:user1id },
+        	url: el+"/delUser.action",
+        	data: { userId:user1id },
         	headers:{'Content-Type': 'application/x-www-form-urlencoded'},
         	transformRequest: function(obj) {
         		var str = [];
@@ -5945,6 +5978,7 @@ routingDemoApp.controller('CloudService', ['$scope', '$http', '$location', funct
         		}
         }).success(function(data){
         	if(data.code == 1){
+        		tip("删除成功！")
         		var pid = $("#InputProjectName").attr("data-str");
                 _getuserlist(pid);
         	}
