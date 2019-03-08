@@ -56,7 +56,7 @@ public class JDBC {
 	 * @param sql
 	 * @return	返回值为List
 	 */
-	 public List<Map<String,Object>> getListData(String sql){
+	 public static List<Map<String,Object>> getListData(String sql){
 		 List<Map<String,Object>> resultList=new ArrayList<Map<String,Object>>();
 		 JDBC db=new JDBC(sql);
 		 try {
@@ -74,7 +74,7 @@ public class JDBC {
 	 * 
 	 * @param sql 
 	 */
-	public boolean upDate(String sql) {
+	public static boolean upDate(String sql) {
 		JDBC db = new JDBC(sql);
 		try {
 			db.conn.setAutoCommit(false);

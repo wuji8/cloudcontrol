@@ -148,7 +148,7 @@
   </select>
   
   <select id="selectUserTable" resultMap="BaseResultMap">
-  	select *,(SELECT COUNT(tableId) FROM usertable AS ut WHERE userId=#{userId} AND cloudId=#{cloudId} AND deleted=0) AS `count` from usertable where userId=#{userId} and cloudId=#{cloudId} and deleted=0
+  	select *,(SELECT COUNT(tableId) FROM usertable AS ut WHERE userId=#{userId} AND cloudId=#{cloudId} AND deleted=0) AS `count` from usertable where userId=#{userId} and cloudId=#{cloudId} and deleted=0 order by createtime desc
   </select>
   
   <select id="countUserTable" resultType="int">

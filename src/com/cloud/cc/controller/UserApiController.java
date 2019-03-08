@@ -87,10 +87,9 @@ public class UserApiController {
 		// 判断api类型，操作什么类型就执行什么操作
 		String sql = getSql(userApi.getType(), jsonModel, requestParam, userApi.getUserTable().getTablename(),
 				userApi.getLimitTop());
-		JDBC jdbc = new JDBC(sql);
 		if (userApi.getType() == 1) { // 查询，调用查询方法
 			resultMap.put("code", 1);
-			List<Map<String, Object>> resultList = jdbc.getListData(sql);
+			List<Map<String, Object>> resultList = JDBC.getListData(sql);
 			resultMap.put("data", resultList);
 			String str = "";
 			for (Querys query : jsonModel.getQuerys()) {
@@ -101,16 +100,16 @@ public class UserApiController {
 			// 进行修改该数据的锁定时长
 			String sqlStr = "update " + userApi.getUserTable().getTablename() + " set blockTime="
 					+ DateUtil.getNewSecond(new Date(), userApi.getBlocktime()) + " where " + str;
-			jdbc.upDate(sqlStr);
+			JDBC.upDate(sqlStr);
 			resultMap.put("msg", "操作成功");
 		} else if (userApi.getType() == 4) { // 判断是否修改，修改则给该数据为行级锁
-			jdbc.getListData("select * from " + userApi.getUserTable().getTablename() + " where id="
+			JDBC.getListData("select * from " + userApi.getUserTable().getTablename() + " where id="
 					+ requestParam.get("ID") + " for update");
-			jdbc.upDate(sql);
+			JDBC.upDate(sql);
 			resultMap.put("code", 1);
 			resultMap.put("msg", "操作成功");
 		} else {
-			jdbc.upDate(sql);
+			JDBC.upDate(sql);
 			resultMap.put("code", 1);
 			resultMap.put("msg", "操作成功");
 		}
