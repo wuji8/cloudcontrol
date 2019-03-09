@@ -91,9 +91,9 @@ public class UserApiController {
 			}
 		}
 		// 判断api类型，操作什么类型就执行什么操作
-		String sql = getSql(userApi.getType(), jsonModel, requestParam, userApi.getUserTable().getTablename(),
+		String sql = getSql(userApi.getType(), jsonModel, requestParam, userApi.getUserTable().getDbtable(),
 				userApi.getLimitTop());
-		if (userApi.getType() == 1) { // 查询，调用查询方法
+		if (userApi.getType().equals(1)) { // 查询，调用查询方法
 			resultMap.put("code", 1);
 			List<Map<String, Object>> resultList = JDBC.getListData(sql);
 			resultMap.put("data", resultList);
@@ -108,7 +108,7 @@ public class UserApiController {
 					+ DateUtil.getNewSecond(new Date(), userApi.getBlocktime()) + " where " + str;
 			JDBC.upDate(sqlStr);
 			resultMap.put("msg", "操作成功");
-		} else if (userApi.getType() == 4) { // 判断是否修改，修改则给该数据为行级锁
+		} else if (userApi.getType().equals(4)) { // 判断是否修改，修改则给该数据为行级锁
 			JDBC.getListData("select * from " + userApi.getUserTable().getTablename() + " where id="
 					+ requestParam.get("ID") + " for update");
 			JDBC.upDate(sql);
@@ -152,7 +152,7 @@ public class UserApiController {
 			break;
 		case 2:
 			// 删除
-			sql += "delete from `" + tableName + "' where";
+			sql += "delete from `" + tableName + "` where";
 			for (Querys query : jsonModel.getQuerys()) {
 				sql += " `" + query.getField() + "' " + query.getSymbol() + " " + valueMap.get(query.getField())
 						+ "' and";
@@ -249,7 +249,7 @@ public class UserApiController {
 			}
 		}
 		if(urlStr.length()>0) {
-			tempContextUrl+="userApi/?"+urlStr+"guid=@guid&cuid=@cuid&ccid=@ccid";
+			tempContextUrl+="userApi.action?"+urlStr+"guid=@guid&cuid=@cuid&ccid=@ccid";
 		}
 		userApi.setApi(tempContextUrl);
 		userApi.setGuid(StringUnits.getUUID());

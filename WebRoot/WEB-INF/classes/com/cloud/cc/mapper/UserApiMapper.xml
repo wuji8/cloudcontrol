@@ -18,7 +18,7 @@
     <result column="limitTop" property="limitTop" jdbcType="INTEGER"/>
     <association property="userTable" javaType="com.cloud.cc.vo.UserTable">
     	<id column="tableid" property="tableid" jdbcType="INTEGER"/>
-  		<result column="tableName" property="tablename" jdbcType="VARCHAR"/>
+  		<result column="dbTable" property="dbtable" jdbcType="VARCHAR"/>
   	</association>
   	<association property="cloudProject" javaType="com.cloud.cc.vo.CloudProjects">
   		<id column="cloudId" property="cloudid" jdbcType="INTEGER"/>
@@ -222,7 +222,7 @@
   </select>
   
   <select id="selectUserApiByGUID" resultMap="BaseResultMap">
-  	select ua.*,cp.cloudid,cp.cloudname,ut.tableName,ua.limitTop from 
+  	select ua.*,cp.cloudid,cp.cloudname,ut.dbtable,ua.limitTop from 
   	userapi as ua
   	inner join usertable as ut
   	on ua.tableId=ut.tableId

@@ -21,7 +21,7 @@ import com.mysql.jdbc.ResultSet;
  */
 public class JDBC {
 
-	public static final String url = "jdbc:mysql://localhost:3306/journal"; // 鏁版嵁搴撳湴鍧�
+	public static final String url = "jdbc:mysql://192.168.2.5:3306/cloundcontrol"; // 鏁版嵁搴撳湴鍧�
 //	public static final String url = "jdbc:mysql://45.126.123.63:3306/journal";  //鏁版嵁搴撳湴鍧�
 	public static final String name = "com.mysql.jdbc.Driver"; // 杩炴帴绫诲瀷mysql oracle sqlservice......
 	public static final String user = "root"; // 鏁版嵁搴撶敤鎴峰悕
