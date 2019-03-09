@@ -99,7 +99,7 @@
   	select *
   	from logs
   	where userid=#{userId} 
-  	<if test="type!=null">
+  	<if test="type!=null and type!=''">
   	and type=#{type}
   	</if>
   	order by createtime desc
@@ -110,7 +110,7 @@
   	select count(logid)
   	from logs
   	where userid=#{userId}
-  	<if test="type!=null">
+  	<if test="type!=null and type!=''">
   	and type=#{type}
   	</if>
   </select>

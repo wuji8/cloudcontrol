@@ -154,7 +154,7 @@ public class UserApiController {
 			// 删除
 			sql += "delete from `" + tableName + "` where";
 			for (Querys query : jsonModel.getQuerys()) {
-				sql += " `" + query.getField() + "' " + query.getSymbol() + " " + valueMap.get(query.getField())
+				sql += " `" + query.getField() + "` " + query.getSymbol() + " '" + valueMap.get(query.getField())
 						+ "' and";
 			}
 			sql = sql.substring(0, sql.length() - 3);
