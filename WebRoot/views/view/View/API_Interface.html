@@ -13,7 +13,16 @@
             <p class="top-title">数据库操作API</p>
         </div>
         <div class="detail-title">
-            （1）用户自定义API-上传数据API：http://cloud.mall-software.net/api/Cloud/UserAPI?guid={guid}&cuid={cuid}&udid={udid}&Remark={Remark}&SN={SN}&CreateTime={CreateTime}&ExpireTime={ExpireTime}
+            （1）用户自定义API-上传数据API：localhost:端口号/cloudControl/userApi.action?guid={guid}&cuid={cuid}&udid={udid}&Remark={Remark}&SN={SN}&CreateTime={CreateTime}&ExpireTime={ExpireTime}
+        </div>
+        <div class="detail-content">
+            guid-api的唯一标识
+            <br />cuid-项目的唯一标识
+            <br />ccid-用户的唯一标识
+            <br />服务器返回数据：【code】0-参数错误，请检查是否为空 2-找不到该数据，请检查是否已删除 code-3与该数据用户不匹配，请检查 code-4请求错误，请重试 code-1操作成功 data-查询会返回的数据
+        </div>
+        <div class="detail-title">
+            （2）用户自定义API-修改数据API：localhost:端口号/cloudControl/userApi.action?guid={guid}&cuid={cuid}&udid={udid}&Remark={Remark}&ExpireTime={ExpireTime}
         </div>
         <div class="detail-content">
             guid：生成API的时候自动生成，无需更改
@@ -22,16 +31,7 @@
             <br />服务器返回数据：【code】是否成功(1 or 0)，【data】不成功时data为错误信息。
         </div>
         <div class="detail-title">
-            （2）用户自定义API-修改数据API：http://cloud.mall-software.net/api/Cloud/UserAPI?guid={guid}&cuid={cuid}&udid={udid}&Remark={Remark}&ExpireTime={ExpireTime}
-        </div>
-        <div class="detail-content">
-            guid：生成API的时候自动生成，无需更改
-            <br />cuid：添加云控项目的时候生成的唯一ID（必填）
-            <br />udid、Remark、SN、CreateTime、ExpireTime等参数是生成API的时候自己选填的参数。
-            <br />服务器返回数据：【code】是否成功(1 or 0)，【data】不成功时data为错误信息。
-        </div>
-        <div class="detail-title">
-            （3）用户自定义API-查询数据API：http://cloud.mall-software.net/api/Cloud/UserAPI?guid={guid}&cuid={cuid}&udid={udid}
+            （3）用户自定义API-查询数据API：localhost:端口号/cloudControl/userApi.action?guid={guid}&cuid={cuid}&udid={udid}
         </div>
         <div class="detail-content">
             guid：生成API的时候自动生成，无需更改
@@ -40,7 +40,7 @@
             <br />服务器返回数据：【code】是否成功(1 or 0)，【data】成功时为数据table，不成功时data为错误信息。
         </div>
         <div class="detail-title">
-            （4）用户自定义API-删除数据API：http://cloud.mall-software.net/api/Cloud/UserAPI?guid={guid}&cuid={cuid}&udid={udid}
+            （4）用户自定义API-删除数据API：localhost:端口号/cloudControl/userApi.action?guid={guid}&cuid={cuid}&udid={udid}
         </div>
         <div class="detail-content">
             guid：生成API的时候自动生成，无需更改
@@ -52,7 +52,7 @@
             <p class="top-title">云控相关API</p>
         </div>
         <div class="detail-title">
-            （5）软猫云控-获取任务API：http://cloud.mall-software.net/api/Cloud/GetTask?cuid={cuid}&udid={udid}&ccid={ccid}
+            （5）软猫云控-获取任务API：localhost:端口号/stageCloud/myTask.action?cuid={cuid}&udid={udid}&ccid={ccid}
         </div>
         <div class="detail-content">
             cuid：云控项目唯一标示（必填）
@@ -60,10 +60,10 @@
             <br />ccid：云控用户唯一标示（可空）
             <br />服务器返回数据：【code】是否成功(1 or 0)，【data】成功时返回任务信息，不成功时为错误信息。
         </div>
-        <div class="table-head">
+      <!--   <div class="table-head">
             <p class="top-title">验证码发布方相关API</p>
-        </div>
-        <div class="detail-title" style="background: #ccc;">
+        </div> -->
+       <!--  <div class="detail-title" style="background: #ccc;">
             （6）软件验证码-提交账号API：http://cloud.mall-software.net/api/Cloud/SubmitAccount?ccid={ccid}&account={account}&code={code}
         </div>
         <div class="detail-content">
@@ -110,6 +110,6 @@
             <br />account：要提交的账号（必填）
             <br />pass：要提交的密码（必填）
             <br />服务器返回数据：【code】是否成功(1 or 0)，【data】不成功时为错误信息。
-        </div>
+        </div> -->
     </div>
 </div>
