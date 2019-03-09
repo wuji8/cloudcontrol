@@ -23,6 +23,11 @@ public class CloudProjectController {
 	private CloudProjectsService cloudProjectService;
 	
 	
+	/**
+	 * 添加项目  projectName-项目名称 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/addProject")
 	@ResponseBody
 	public Map<String,Object> addProject(HttpServletRequest request){
@@ -42,7 +47,11 @@ public class CloudProjectController {
 		return resultMap;
 	}
 	
-	
+	/**
+	 * 删除项目 cloudId-项目Id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/delProject")
 	@ResponseBody
 	public Map<String,Object> delProject(HttpServletRequest request){
@@ -56,7 +65,11 @@ public class CloudProjectController {
 		return resultMap;
 	}
 	
-	
+	/**
+	 * 获取所有项目
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/getAllProject")
 	@ResponseBody
 	public Map<String,Object> getAllProject(HttpServletRequest request){

@@ -39,7 +39,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public int addUser(Users user,String[] role) {
+	public int addUser(Users user) {
 		// TODO Auto-generated method stub
 		try {
 //			String idStr="";
@@ -82,11 +82,11 @@ public class UsersServiceImpl implements UsersService {
 		return usersMapper.deleteByPrimaryKey(userId);
 	}
 
-	@Override
+	/*@Override
 	public List<UserRole> selectUserRole(Integer userId, Integer roleId) {
 		// TODO Auto-generated method stub
 		return userRoleMapper.selectByUserIdAndRoleId(userId, roleId);	
-	}
+	}*/
 
 	@Override
 	public Users isLogin(String userName,String userPwd) {
@@ -98,8 +98,8 @@ public class UsersServiceImpl implements UsersService {
 		return null;
 	}
 
-	@Override
-	public int updateUserRole(Integer userId, String[] role) {
+	/*@Override
+	public int updateUserRole(Integer userId) {
 		// TODO Auto-generated method stub
 		//查出用户
 		Users user=usersMapper.selectByPrimaryKey(userId);
@@ -117,7 +117,7 @@ public class UsersServiceImpl implements UsersService {
 			roleRelationMapper.insertSelective(roleRelation);
 		}
 		return 1;
-	}
+	}*/
 
 	@Override
 	public void getUserByCouldID(PageHelper<Users> pageHelper) {

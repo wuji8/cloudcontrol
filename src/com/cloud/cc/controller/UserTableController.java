@@ -25,7 +25,11 @@ public class UserTableController {
 	@Autowired
 	private UserTableService userTableService;
 	
-	
+	/**
+	 * 查看当前用户的表
+	 * @param request cloudId-项目名称
+	 * @return
+	 */
 	@RequestMapping("/showMyTables")
 	@ResponseBody
 	public Map<String,Object> showMyTables(HttpServletRequest request){
@@ -43,6 +47,11 @@ public class UserTableController {
 	}
 	
 	
+	/**
+	 * 增加用户表
+	 * @param request cloudid-项目Id,tname-表名称,json-json字符串
+	 * @return
+	 */
 	@RequestMapping("/addTable")
 	@ResponseBody
 	public Map<String,Object> addTables(HttpServletRequest request){
@@ -66,6 +75,12 @@ public class UserTableController {
 		return resultMap;
 	}
 	
+	
+	/**
+	 * 获取表的所有字段
+	 * @param request tableId-表Id
+	 * @return
+	 */
 	@RequestMapping("/getTableField")
 	@ResponseBody
 	public Map<String,Object> getTableField(HttpServletRequest request){
@@ -85,6 +100,12 @@ public class UserTableController {
 		return resultMap;
 	}
 	
+	
+	/**
+	 * 删除表
+	 * @param request tableId-表ID
+	 * @return
+	 */
 	@RequestMapping("/delTable")
 	@ResponseBody
 	public Map<String,Object> delTable(HttpServletRequest request){

@@ -34,6 +34,12 @@ public class UserApiController {
 	@Autowired
 	private UsersService userService;
 
+	
+	/**
+	 * 用户api接口
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/userApi")
 	@ResponseBody
 	public Map<String, Object> userOperApi(HttpServletRequest request) {
@@ -186,6 +192,12 @@ public class UserApiController {
 		return sql;
 	}
 
+	
+	/**
+	 * 添加api
+	 * @param request apiname-api名称,tableid-表ID,apiType-api类型,json-数据json格式,limit-查询条数,blockTime-锁定时长
+	 * @return
+	 */
 	@RequestMapping("/addApi")
 	@ResponseBody
 	public Map<String, Object> addApiInterface(HttpServletRequest request) {
@@ -247,6 +259,11 @@ public class UserApiController {
 	}
 	
 	
+	/**
+	 * 根据用户获取api
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/getUserApiByUserId")
 	@ResponseBody
 	public Map<String,Object> getUserApiByUserId(HttpServletRequest request){
@@ -257,6 +274,11 @@ public class UserApiController {
 	}
 	
 	
+	/**
+	 * 删除api
+	 * @param request apiId
+	 * @return
+	 */
 	@RequestMapping("/delUserApi")
 	@ResponseBody
 	public Map<String,Object> delUserApi(HttpServletRequest request){

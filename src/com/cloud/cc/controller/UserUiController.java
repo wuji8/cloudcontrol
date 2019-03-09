@@ -22,7 +22,11 @@ public class UserUiController {
 	@Autowired
 	private UiTableService uiTableService;
 	
-	
+	/**
+	 * 获取ui列表
+	 * @param request cloudId-云控项目Id
+	 * @return
+	 */
 	@RequestMapping("/getUiTableList")
 	@ResponseBody
 	public Map<String,Object> getUiTableList(HttpServletRequest request){
@@ -38,7 +42,11 @@ public class UserUiController {
 		return resultMap;
 	}
 	
-	
+	/**
+	 * 添加Ui表
+	 * @param request addUiTable.action
+	 * @return
+	 */
 	@RequestMapping("/addUiTable")
 	@ResponseBody
 	public Map<String,Object> addUiTable(HttpServletRequest request){
@@ -72,7 +80,11 @@ public class UserUiController {
 		return resultMap;
 	}
 	
-	
+	/**
+	 * 获取Ui表信息
+	 * @param request uitId=Ui表Id
+	 * @return
+	 */
 	@RequestMapping("/selectUiTableFiled")
 	@ResponseBody
 	public Map<String,Object> selectUiTableFiled(HttpServletRequest request){
@@ -87,6 +99,12 @@ public class UserUiController {
 		return resultMap;
 	}
 	
+	
+	/**
+	 * 删除Ui表数据
+	 * @param request uitId=Ui表Id
+	 * @return
+	 */
 	@RequestMapping("/delUiTable")
 	@ResponseBody
 	public Map<String,Object> delUiTable(HttpServletRequest request){
@@ -100,7 +118,11 @@ public class UserUiController {
 		return resultMap;
 	}
 	
-	
+	/**
+	 * 修改UI表
+	 * @param request uitName-表名称 uiJson-json字符串 uitId-Ui表数据id
+	 * @return
+	 */
 	@RequestMapping("/updateUiTable")
 	@ResponseBody
 	public Map<String,Object> updateUiTable(HttpServletRequest request){

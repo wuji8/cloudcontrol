@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +27,11 @@ public class UserController {
 	@Autowired
 	private LogsService logsService;
 	
+	/**
+	 * 用户登录
+	 * @param request userName-用户名称 userPwd-用户密码
+	 * @return
+	 */
 	@RequestMapping("/toLogin")
 	@ResponseBody
 	public Map<String,Object> isLogin(HttpServletRequest request){
@@ -60,9 +64,15 @@ public class UserController {
 	}
 	
 	
+	/**
+	 * 添加用户
+	 * @param request
+	 * @param user-用户实体对象
+	 * @return
+	 */
 	@RequestMapping("/addUser")
 	@ResponseBody
-	public Map<String,Object> addUser(HttpServletRequest request,Users user,String[] roleId){
+	public Map<String,Object> addUser(HttpServletRequest request,Users user){
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		//判断当前用户是否是超级管理员，只有超级管理员才能对用户进行操作
 		Users users=(Users) request.getSession().getAttribute("user");
@@ -92,12 +102,17 @@ public class UserController {
 			return resultMap;
 		}
 		user.setCcid(StringUnits.getUUID().toUpperCase());
-		int result=userService.addUser(user, roleId);
+		int result=userService.addUser(user);
 		resultMap.put("code", result);
 		return resultMap;
 	}
 	
 	
+	/**
+	 * 操作用户是否启用和禁用 
+	 * @param request userId-用户Id
+	 * @return
+	 */
 	@RequestMapping("/operUserState")
 	@ResponseBody
 	public Map<String,Object> operUserState(HttpServletRequest request){
@@ -122,6 +137,12 @@ public class UserController {
 	}
 	
 	
+	/**
+	 * 修改用户信息
+	 * @param request
+	 * @param user对象信息
+	 * @return
+	 */
 	@RequestMapping("/modifyUserInfo")
 	@ResponseBody
 	public Map<String,Object> updateUserInfo(HttpServletRequest request,Users user){
@@ -155,7 +176,11 @@ public class UserController {
 		return result;
 	}
 	
-	
+	/**
+	 * 删除用户
+	 * @param request userId-用户ID
+	 * @return
+	 */
 	@RequestMapping("/delUser")
 	@ResponseBody
 	public Map<String,Object> delUser(HttpServletRequest request){
@@ -178,7 +203,7 @@ public class UserController {
 		return result;
 	}
 	
-	@RequestMapping("/modifyUserRole")
+/*	@RequestMapping("/modifyUserRole")
 	@ResponseBody
 	public Map<String,Object> modifyUserRole(HttpServletRequest request,Integer userId,String[] roleId){
 		Map<String,Object> resultMap=new HashMap<String, Object>();
@@ -193,8 +218,13 @@ public class UserController {
 		}
 		resultMap.put("code", userService.updateUserRole(userId, roleId));
 		return resultMap;
-	}
+	}*/
 	
+	/**
+	 * 日志分页
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/logsPage")
 	@ResponseBody
 	public Map<String,Object> queryLogsPage(HttpServletRequest request){
@@ -222,7 +252,11 @@ public class UserController {
 		return resultMap;
 	}
 	
-	
+	/**
+	 * 获取用户项目列表
+	 * @param request couldId-项目Id pageNo-当前页 pageSize-页面容量
+	 * @return
+	 */
 	@RequestMapping("/getUserByCouldID")
 	@ResponseBody
 	public Map<String,Object> getUserByCouldID(HttpServletRequest request){

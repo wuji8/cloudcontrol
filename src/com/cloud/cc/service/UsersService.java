@@ -10,7 +10,7 @@ public interface UsersService {
 
 	Users selectUserByCCID(String ccId);
 	
-	int addUser(Users user,String[] role);
+	int addUser(Users user);
 	
 	Users selectByUserName(String userName);
 	
@@ -18,11 +18,11 @@ public interface UsersService {
 	
 	int delUser(Integer userId);
 	
-	List<UserRole> selectUserRole(Integer userId,Integer roleId);
+	//List<UserRole> selectUserRole(Integer userId);
 	
 	Users isLogin(String userName,String userPwd);
 	
-	int updateUserRole(Integer userId,String[] role);
+	//int updateUserRole(Integer userId);
 	
 	void getUserByCouldID(PageHelper<Users> pageHelper);
 	

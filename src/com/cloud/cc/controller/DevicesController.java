@@ -24,7 +24,7 @@ public class DevicesController {
 	
 	/**
 	 * 添加设备
-	 * @param request
+	 * @param request udid-UDID remark-备注 
 	 * @return
 	 */
 	@RequestMapping("/addDevices")
